@@ -16,4 +16,4 @@ import readFuncExample from "./func/template/readFuncExample";// read Example Fu
 export const addExample = addFuncExample;
 export const readExample = readFuncExample;
 
-// entry point for all function
+// entry point for all functions
