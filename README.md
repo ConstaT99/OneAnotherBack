@@ -15,7 +15,7 @@ This repository contains the Cloud Functions for OneAnother.
     - File functions/index.js already exists. Overwrite? **No**
     - File functions/.gitignore already exists. Overwrite? **No**
     - Do you want to install dependencies with npm now? **No**
-- "Need write test command here in `package.json`"(if you see this contact Ruining Tao or Hongyi Jian)
+- Run `yarn test` this command will allow you to build and test with mocha, for all function
 - Run`firebase use test` it will lead you to the test database(it not working then change test to default, which means test database not setup)
 - Run `yarn deploy`, it will deploy all functions to test database
 - Go to URL https://us-central1-oneanother-757c7.cloudfunctions.net/helloWorld, If you see `Hello from OneAnother!` Then Set Up is finished. (This step may take few minutes)
