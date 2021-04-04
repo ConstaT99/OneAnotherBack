@@ -17,8 +17,9 @@ For **Mac os**: If you do not have Xcode installed in your computer please go to
 - Install yarn : `npm install --global yarn `
 - check yarn install successfully `yarn -v`
 - Install All dependencies: `cd functions`, then `yarn install`
-- Run `yarn add firebase-tools`
+- Run `npm install -g firebase-tools`
 - Run `firebase login` this will login the account that work with this project
+- Run `cd ..` back to upper folder
 - Run `firebase init functions`,The answer for question when you run the command:
 
     - What language would you like to use to write Cloud Functions? **TypeScript**
