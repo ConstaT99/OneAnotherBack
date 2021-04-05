@@ -5,27 +5,27 @@ module.exports = {
     node: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "google",
+    'eslint:recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'google',
+    'airbnb-typescript',
   ],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ["tsconfig.json", "tsconfig.dev.json"],
+    project: ['tsconfig.json', 'tsconfig.dev.json'],
     tsconfigRootDir: __dirname,
-    sourceType: "module",
+    sourceType: 'module',
   },
   ignorePatterns: [
-    "/lib/**/*", // Ignore built files.
+    '/lib/**/*', // Ignore built files.
   ],
   plugins: [
-    "@typescript-eslint",
-    "import",
+    '@typescript-eslint',
+    'import',
   ],
   rules: {
-    "quotes": ["error", "double"],
-    "max-len": ["error", {"code": 120}],
+    'max-len': ['error', { code: 120 }],
   },
 };

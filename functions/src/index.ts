@@ -8,12 +8,14 @@ entry point for all cloud function, please follow the layout dispaly in the temp
 */
 
 // Teamplate for writing in index.ts before deploy functions
-export * from "./func/template/helloWorld";// Hello Wrold function
-import addFuncExample from "./func/template/addFuncExample";// add Example Function
-import readFuncExample from "./func/template/readFuncExample";// read Example Function
+// Hello Wrold function
+import addFuncExample from '../func/template/addFuncExample';
+// add Example Function
+import readFuncExample from '../func/template/readFuncExample';
+
+export * from '../func/template/helloWorld';// read Example Function
 
 // template example
 export const addExample = addFuncExample;
 export const readExample = readFuncExample;
 // entry point for all functions
-
