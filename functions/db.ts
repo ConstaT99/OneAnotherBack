@@ -2,7 +2,7 @@
 // export const realtimeDb = admin.database();// This is realtimeDb
 import * as admin from 'firebase-admin';
 // import firebase from "firebase";
-const ServiceAccount = require('../oneanother-757c7-firebase-adminsdk-hi63k-ac4e310940.json');
+const ServiceAccount = require('../oneanother-757c7-firebase-adminsdk-hi63k-3d1dce4fbb.json');
 
 const config = {
   credential: admin.credential.cert(ServiceAccount),
