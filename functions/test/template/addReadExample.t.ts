@@ -6,7 +6,7 @@ import 'mocha';
 
 // import {db} from "../../func/db";
 
-describe('add and read Example Function Test', () => {
+describe('add, read and delete Example Function Test', () => {
   it('read func return right result that test inserted', async () => {
     const testData = {
       sampleId: '12314',
@@ -18,5 +18,7 @@ describe('add and read Example Function Test', () => {
       field: 'text',
     });
     expect(testRead).to.equal('Hello');
+  });
+  it('delete function work correctly', async () => {
   });
 });
