@@ -161,7 +161,6 @@ reply{ // this is nested
 ```
 pictures{
     uploadBy:reference_user
-    picid: autoid
     url: string
     Time: time
 }
@@ -170,7 +169,6 @@ pictures{
 ```
 videos{
     uploadBy: reference_user
-    vidid:autodi
     url: string
     Time: time
 }
