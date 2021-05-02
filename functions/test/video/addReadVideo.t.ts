@@ -1,15 +1,20 @@
 // /* eslint-disable no-undef */
-// import { expect } from 'chai';
-// import { addVideo } from '../../func/video/addVideoFunc';
+import { expect } from 'chai';
+import { addVideo } from '../../func/video/addVideoFunc';
 // import { readVideo } from '../../func/video/readVideoFunc';
 // import { deleteVideo }from '../../func/video/deleteVideoFunc';
-// import 'mocha';
+import 'mocha';
+import * as testinfo from '../testInfo/testInfo';
 
-// // import {db} from "../../func/db";
+// const filepath = '../testInfo/live_and_create.jpg';
 
-
-// describe('add and read Example Function Test', () => {
-//   it('read func return right result that test inserted', async () => {
-//   });
-// });
-
+describe('addvideo Test', () => {
+  it('add video test', async () => {
+    const testData = {
+      userId: testinfo.TEST_DOC_ID,
+      url: testinfo.TEST_URL_PIC,
+    };
+    const testRef = await addVideo(testData);
+    expect(!(await testRef.get()).exists).to.equal(false);
+  });
+});

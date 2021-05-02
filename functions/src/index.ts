@@ -21,7 +21,6 @@ import deleteFuncExample from '../func/template/deleteFuncExamlple';
 import addFuncVideo from '../func/video/addVideoFunc';
 import deleteFuncVideo from '../func/video/deleteVideoFunc';
 
-
 // Hello Wrold function
 export * from '../func/template/helloWorld';// read Example Function
 
