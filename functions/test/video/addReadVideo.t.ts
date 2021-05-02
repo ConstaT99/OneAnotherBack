@@ -13,4 +13,3 @@
 //   });
 // });
 
-// import testImg from '../testInfo/live_and_create.jpg';

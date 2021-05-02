@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import firebase from 'firebase';
-import { db, storage } from '../../db';
+// import { db, storage } from '../../db';
 
 /*
 A scratch function that adds video to cloud storage

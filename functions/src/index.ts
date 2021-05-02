@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
-declare module '*.jpg';
+// declare module '*.jpg';
 
 /*
 entry point for all cloud function, please follow the layout dispaly in the template section
