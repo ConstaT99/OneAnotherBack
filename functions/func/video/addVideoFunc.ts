@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import firebase from 'firebase';
-import { db } from '../../db';
+import { db, storage } from '../../db';
 
 /*
 A scratch function that adds video to cloud storage
@@ -27,6 +27,7 @@ export const addVideo = async (data:{
 
   // Create a file reference in firebase storage
   const storageRef = firebase.storage().ref();
+  // `video/${fname}`
   const fileRef = storageRef.child(fname);
   // Upload file
   const uploadTask = fileRef.put(content);
