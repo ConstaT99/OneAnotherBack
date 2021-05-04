@@ -5,9 +5,6 @@ import { addVideo } from '../../func/video/addVideoFunc';
 // import { deleteVideo }from '../../func/video/deleteVideoFunc';
 import 'mocha';
 import * as testinfo from '../testInfo/testInfo';
-
-// const filepath = '../testInfo/live_and_create.jpg';
-
 describe('addvideo Test', () => {
   it('add video test', async () => {
     const testData = {
@@ -17,4 +14,5 @@ describe('addvideo Test', () => {
     const testRef = await addVideo(testData);
     expect(!(await testRef.get()).exists).to.equal(false);
   });
+  
 });
