@@ -16,18 +16,18 @@ TODO:
 */
 
 export const upload = async (input :{
-  postfix: string,
+  // postfix: string,
   ftype: string,
   file: any, // by using File and Blob API
   fileName: string,
 }) => {
-  const { postfix, ftype, filePath , fileName } = input;
+  const { ftype, file , fileName } = input;
   const storageRef = storage().ref();
   if (ftype === 'image') {
     functions.logger.info('here is image uploader');
-    const imagesRef = storageRef.child(‘image’);
+    const imagesRef = storageRef.child('image');
     spaceRef = imagesRef.child(fileName);
-
+    
   } else if (ftype === 'video') {
     const videosRef = storageRef.child('video');
     functions.logger.info('here is video uploader');
@@ -36,6 +36,7 @@ export const upload = async (input :{
   }
   const url = null;
   // this is root reference
+
   return url;
 };
 
