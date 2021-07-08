@@ -3,3 +3,4 @@
 // export * from '../test/template/addReadExample.t';
 
 export * from '../test/video/addReadVideo.t';
+export * from '../test/template/addReadExample.t';
