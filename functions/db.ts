@@ -13,5 +13,5 @@ const config = {
 };
 export const project = admin.initializeApp(config);
 export const db = project.firestore();
-export const storage = firebase.storage();
+// export const storage = firebase.storage();
 admin.auth();

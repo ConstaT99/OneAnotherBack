@@ -1,3 +1,4 @@
+/*
 import { expect } from 'chai';
 import { addVideo } from '../../func/video/addVideoFunc';
 // import { readVideo } from '../../func/video/readVideoFunc';
@@ -11,3 +12,4 @@ describe('Uplaod File Test', () => {
 
   });
 });
+*/
