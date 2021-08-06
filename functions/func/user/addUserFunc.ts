@@ -12,3 +12,21 @@ export const addUser = async (data:{
     { userInfo } = data;
 }
  */
+
+import * as functions from 'firebase-functions';
+import { db } from '../../db';
+
+export const addUser = async (data:{
+  uid: string;
+  other: object;
+}) => {
+  const collection = 'user';
+  functions.logger.info('');
+  const userRef = db.collection(collection);
+  if (userRef.add(data)) {
+    return true;
+  }
+  return false;
+};
+
+export default functions.https.onCall(addUser);
