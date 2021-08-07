@@ -29,8 +29,3 @@ export const readUser = async (data:{
 };
 
 export default functions.https.onCall(readUser);
-
-// export const readUserHttp = functions.https.onRequest((request, response) => {
-//     uid = request.uid;
-//   response.send('Hello from OneAnother!');
-// });

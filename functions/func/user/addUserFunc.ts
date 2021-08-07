@@ -18,10 +18,9 @@ import { db } from '../../db';
 
 export const addUser = async (data:{
   uid: string;
-  other: object;
+  other: Array<number>;
 }) => {
   const collection = 'user';
-  functions.logger.info('');
   const userRef = db.collection(collection);
   if (userRef.add(data)) {
     return true;
