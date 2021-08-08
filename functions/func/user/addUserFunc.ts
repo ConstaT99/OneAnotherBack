@@ -1,9 +1,7 @@
-import firebase from 'firebase/app';
+import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { UserRecord } from 'firebase-functions/lib/providers/auth';
 import { db } from '../../db'; // import timestamp class
-import timeStamp = firebase.firestore.Timestamp;
-// import { user } from 'firebase-functions/lib/providers/auth';
 
 /*
 import * as functions from 'firebase-functions';
@@ -45,7 +43,7 @@ export const addUser = async (user:UserRecord) => {
   const gender = 'Unknown';
   // profile
   const userName = uid; // given a default
-  const registerDate = timeStamp.now(); // get current date
+  const registerDate = admin.firestore.Timestamp.now(); // get current date
   const rate = 0; // 用户信誉分
   // post
   const postLike: Array<string> = []; //  喜欢的帖子 post/docId
@@ -53,9 +51,7 @@ export const addUser = async (user:UserRecord) => {
   const postNum = 0; // 发帖个数
   const comment: Array<string> = []; // 评论 comment/docId
   const followPost : Array<string> = []; // 关注的post post/docId
-  const savedPost:Map<string, string[]> = new Map<string, string[]>([
-    ['myDefault', []], // this is 收藏夹
-  ]);
+  const savedPost:string[] = [];
   // friend
   const followBy: Array<string> = [];// 关注我的用户 user/docId
   const followingList : Array<string> = []; // 关注的其他用户 user/docId
