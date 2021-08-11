@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { UserRecord } from 'firebase-functions/lib/providers/auth';
@@ -17,34 +18,28 @@ Outputs: {
 
 Written by Jerry
 
-TODO: userName should be unique
+TODO:
+ 1. userName should be unique
+ 2. black list
+
  */
 
 export const addUser = async (user:UserRecord) => {
   const {
-    uid, photoURL, email, phoneNumber,
+    uid, photoURL, email, phoneNumber, displayName,
   } = user;
   if (uid == null) {
-    console.log('uid is null or missing');
-    return false;
+    // console.log('uid is null or missing');
+    return Promise.reject(new Error('no input for uid'));
   }
-  // if (photoURL == null) {
-  //   photoURL = 'default avatar'; // need to fill in a url with default avatar
-  // }
-  // if(email == null){
-  //   email = ""; // when its empty its email is not provide
-  // }
-  // if(phoneNumber == null){
-  //   phoneNumber = "";// if “” then phoneNumber is not provide
-  // }
-
   const location = '';
   const avatar = photoURL;// avatar url
-  const gender = 'Unknown';
+  const gender = 0; // 0 means unkwnon, 1 means female , 2 means male
   // profile
-  const userName = uid; // given a default
+  const userName = displayName; // given a default
+  const accountName = uid;
   const registerDate = admin.firestore.Timestamp.now(); // get current date
-  const rate = 0; // 用户信誉分
+  const rate = 5; // 用户信誉分
   // post
   const postLike: Array<string> = []; //  喜欢的帖子 post/docId
   const post: Array<string> = []; // 发的帖子
@@ -66,14 +61,14 @@ export const addUser = async (user:UserRecord) => {
   const wantToBuy: Array<string> = [];// 求购
 
   const order: Array<string> = []; // 订单列表 order/docId
-
   // 验证
-  const student = 0; // by default the student status will unverify which is 0;
-  const realName = 0; // by default the real status will unverify which is 0;
-  const school = ''; // if student is 1 this school will fill in the name of school;
+  const student:boolean = false; // by default the student status will unverify which is 0;
+  const realName:boolean = false; // by default the real status will unverify which is 0;
+  const school:string = ''; // if student is 1 this school will fill in the name of school;
 
   const userInfo = {
     userName,
+    accountName,
     avatar,
     email,
     gender,
@@ -103,7 +98,13 @@ export const addUser = async (user:UserRecord) => {
   };
   const collection = 'user';
   const userRef = db.collection(collection);
-  return userRef.doc(uid).set(userInfo).catch(console.error);
+  return new Promise((resolve, reject) => {
+    userRef.doc(uid).set(userInfo).then(() => {
+      resolve(`user ${uid} created the data successfully.`);
+    }).catch((error) => {
+      reject(error);
+    });
+  });
 };
 
 export default functions.auth.user().onCreate(addUser);
