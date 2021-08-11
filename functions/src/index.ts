@@ -35,8 +35,6 @@ import readUserFunc from '../func/user/readUserFunc';
 import updateUserFunc from '../func/user/updateUserFunc';
 import deleteUserFunc from '../func/user/deleteUserFunc';
 
-
-
 export * from '../func/template/helloWorld';
 
 // video
