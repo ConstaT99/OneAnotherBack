@@ -66,6 +66,9 @@ export const addUser = async (user:UserRecord) => {
   const realName:boolean = false; // by default the real status will unverify which is 0;
   const school:string = ''; // if student is 1 this school will fill in the name of school;
 
+  const blackUsetList:string[] = [];
+  const blackPostList:string[] = [];
+
   const userInfo = {
     userName,
     accountName,
@@ -95,6 +98,8 @@ export const addUser = async (user:UserRecord) => {
     realName,
     school,
     cart,
+    blackUsetList,
+    blackPostList,
   };
   const collection = 'user';
   const userRef = db.collection(collection);
