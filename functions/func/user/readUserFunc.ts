@@ -7,7 +7,7 @@ This is oncall  function for read user profile written by Jerry;
 input:
     data = { uid }
 output:
-    user not found page
+    promise snapshot
 
 TODO:
     1. complete more safety check(for example:
@@ -17,7 +17,6 @@ TODO:
 export const readUser = async (data:{
   uid: string;
 }) => {
-  functions.logger.info('this is read user profile  Function');
   const { uid } = data;// get the value
   if (uid == null) {
     return Promise.reject(new Error('uid is not exist'));
@@ -25,7 +24,14 @@ export const readUser = async (data:{
   const collection = 'user';
   const userRef = db.collection(collection).doc(uid);
   const userDoc = await userRef.get();
-  return userDoc.data();
+  return new Promise((resolve, reject) => {
+    const userData = userDoc.data();
+    if (!userData) {
+      reject(new Error('read user failed'));
+    } else {
+      resolve(userData);
+    }
+  });
 };
 
 export default functions.https.onCall(readUser);

@@ -20,8 +20,6 @@ Written by Jerry
 
 TODO:
  1. userName should be unique
- 2. black list
-
  */
 
 export const addUser = async (user:UserRecord) => {
@@ -37,7 +35,6 @@ export const addUser = async (user:UserRecord) => {
   const gender = 0; // 0 means unkwnon, 1 means female , 2 means male
   // profile
   const userName = displayName; // given a default
-  const accountName = uid;
   const registerDate = admin.firestore.Timestamp.now(); // get current date
   const rate = 5; // 用户信誉分
   // post
@@ -71,7 +68,7 @@ export const addUser = async (user:UserRecord) => {
 
   const userInfo = {
     userName,
-    accountName,
+    uid,
     avatar,
     email,
     gender,
