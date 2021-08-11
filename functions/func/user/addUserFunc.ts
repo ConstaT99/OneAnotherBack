@@ -3,17 +3,19 @@ import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { UserRecord } from 'firebase-functions/lib/providers/auth';
 import { db } from '../../db'; // import timestamp class
-
 /*
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
 A scratch function that adds user to cloud storage
-Inputs: user: UserRecord
+Inputs:{
+  user: UserRecord
+}
+
 properties can be checked at: https://firebase.google.com/docs/reference/admin/node/admin.auth.UserRecord
 
 Outputs: {
-  return result of catch
+  return promise<string | Error>
 }
 
 Written by Jerry
@@ -63,7 +65,7 @@ export const addUser = async (user:UserRecord) => {
   const realName:boolean = false; // by default the real status will unverify which is 0;
   const school:string = ''; // if student is 1 this school will fill in the name of school;
 
-  const blackUsetList:string[] = [];
+  const blackUserList:string[] = [];
   const blackPostList:string[] = [];
 
   const userInfo = {
@@ -95,12 +97,12 @@ export const addUser = async (user:UserRecord) => {
     realName,
     school,
     cart,
-    blackUsetList,
+    blackUserList,
     blackPostList,
   };
   const collection = 'user';
   const userRef = db.collection(collection);
-  return new Promise((resolve, reject) => {
+  return new Promise< string | Error >((resolve, reject) => {
     userRef.doc(uid).set(userInfo).then(() => {
       resolve(`user ${uid} created the data successfully.`);
     }).catch((error) => {
