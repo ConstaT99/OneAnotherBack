@@ -25,15 +25,15 @@ user {
 
     ### 二手 ###
     wantToBuy: [productBuy]// 求购车
-    
+
     cart: [productSell]//购物车
     boughtNum: int // 购买个数
     bought:[productBuy] // 已购买物件
-    
+
     wantToSell: [productSell] // 售卖栏
     soldNum: int // 已售卖个数
     sell:[productSell] // 已售卖物件
-    
+
     willingToBuy: [productWillBuy]// 求购(this going to have another collection)
     order: [orderDocId]
 

@@ -7,8 +7,6 @@ This is oncall  function for read user profile written by Jerry;
 input:
     data:{
       uid: string;
-      updateField: string;
-      updateContext: any;
     }
 output:
     promise<writeresult>
