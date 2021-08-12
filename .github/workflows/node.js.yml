@@ -18,5 +18,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+    - run: cd /home/runner/work/OneAnotherBack/OneAnotherBack/functions/
     - run: yarn install
     - run: yarn test
