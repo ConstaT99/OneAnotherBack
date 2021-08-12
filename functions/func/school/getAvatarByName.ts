@@ -20,10 +20,23 @@ export const getAvatarByName = async (data:{
   schoolCollection.where('schoolName', '==', data.name)
     .get()
     .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => firebase.storage()
-        .refFromURL(doc.get('avatar')).getDownloadURL());
+      console.log('querying');
+      querySnapshot.forEach((doc) => {
+        firebase.storage().refFromURL(doc.get('avatar')).getDownloadURL()
+          .then((url) => {
+            console.log(url);
+            return url;
+          })
+          .catch((error) => {
+            console.log('oops1')
+            return error;
+          });
+      });
     })
-    .catch((error) => error);
+    .catch((error) => {
+      console.log('oops2');
+      return error;
+    });
 };
 
 export default functions.https.onCall(getAvatarByName);

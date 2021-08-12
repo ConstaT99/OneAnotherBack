@@ -15,11 +15,24 @@ Output {
 
 export const addSchool = async (data:{
   avatar: string;
-  name: string;
+  schoolName: string;
 }) => new Promise(((resolve, reject) => {
+  const { avatar, schoolName } = data;
+  // 5 is just an arbitrary number, should be ok tho
+  if (avatar === undefined || schoolName === undefined || avatar.length <= 5 || schoolName.length <= 5) {
+    reject(new Error('invalid field'));
+    return;
+  }
+  // getAvatarByName({ name: schoolName })
+  //   .then(() => {
+  //     reject(new Error(`school ${schoolName} already exists`));
+  //   })
+  //   .catch(() => {});
+
+  //! TODO: check unique name
   db.collection('school').add(data)
     .then((docRef) => {
-      resolve(`Upload success for school ${data.avatar} with ID ${docRef.id}`);
+      resolve(`Upload success for school ${data.schoolName} with ID ${docRef.id}`);
     })
     .catch((error) => {
       reject(error);
