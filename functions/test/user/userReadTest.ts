@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// import { expect } from 'chai';
-// import * as functions from 'firebase-functions';
+import { expect } from 'chai';
 import { readUser } from '../../func/user/readUserFunc';
 import 'mocha';
-// import { test } from '../testInit';
 
-describe('read and delete Example Function Test', () => {
+describe('User read test', () => {
   it('read user func return right result that test inserted', async () => {
     const testdata = {
       uid: 'Nbcl2gT2XkQpSaO4gnAcJAiS0YF3',
@@ -13,8 +10,9 @@ describe('read and delete Example Function Test', () => {
     const userdata = await readUser(testdata);
     if (userdata === undefined) {
       console.log('user is undefined');
+      expect(false).to.equal(true); // A stupid test statement
     } else {
-      console.log('the user is ', userdata.email);
+      console.log('the user email is ', userdata.email);
     }
   });
 });

@@ -1,11 +1,9 @@
 import { expect } from 'chai';
 import { readUser } from '../../func/user/readUserFunc';
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// import * as functions from 'firebase-functions';
 import { updateUser } from '../../func/user/updateUserFunc';
 import 'mocha';
 
-describe('read and delete Example Function Test', () => {
+describe('User update test', () => {
   it('read user func return right result that test inserted', async () => {
     const testdata = {
       uid: 'Nbcl2gT2XkQpSaO4gnAcJAiS0YF3',

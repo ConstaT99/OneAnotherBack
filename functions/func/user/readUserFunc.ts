@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
