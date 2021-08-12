@@ -117,15 +117,15 @@ describe('school get tests', () => {
     await getAvatarByName({ name: data.schoolName })
       .then((link) => {
         console.log(link);
-        const file = fs.createWriteStream('/test/school/tmp.png');
+        const file = fs.createWriteStream('./test/school/tmp.png');
         // @ts-ignore
         http.get(link, (response) => {
           if (response.statusCode !== 200) {
             expect.fail('link was not downloadable');
           }
           response.pipe(file);
-          const original = fs.readFileSync('/test/school/test.png');
-          const downloaded = fs.readFileSync('/test/school/tmp.png');
+          const original = fs.readFileSync('./test/school/test.png');
+          const downloaded = fs.readFileSync('./test/school/tmp.png');
           expect(original.compare(downloaded)).to.equal(true);
         });
       })
