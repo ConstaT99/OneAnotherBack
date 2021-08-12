@@ -7,6 +7,7 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
+    "deployOne": "firebase deploy --only",
     "logs": "firebase functions:log",
     "test": "yarn build && mocha --timeout 10000 --reporter spec ./lib/src/index.t.js",
     "clean": "rm -rf lib",
