@@ -17,7 +17,7 @@ export const addSchool = async (data:{
   avatar: string;
   name: string;
 }) => new Promise(((resolve, reject) => {
-  db.collection('School').add(data)
+  db.collection('school').add(data)
     .then((docRef) => {
       resolve(`Upload success for school ${data.avatar} with ID ${docRef.id}`);
     })

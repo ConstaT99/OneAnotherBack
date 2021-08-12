@@ -16,7 +16,7 @@ Output {
 export const getAvatarByName = async (data:{
   name : string;
 }) => {
-  const schoolCollection = db.collection('School');
+  const schoolCollection = db.collection('school');
   schoolCollection.where('schoolName', '==', data.name)
     .get()
     .then((querySnapshot) => {

@@ -13,7 +13,7 @@ Output {
  */
 
 export const updateSchool = async () => {
-  const snapshot = await db.collection('School').get();
+  const snapshot = await db.collection('school').get();
   return snapshot.docs.map((doc) => doc.data());
 };
 

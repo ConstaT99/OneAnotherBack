@@ -25,7 +25,7 @@ export const updateSchool = async (data:{
 }) => {
   const { schoolName, newAvatar, newSchoolName } = data;
   return new Promise(((resolve, reject) => {
-    const schoolCollection = db.collection('School');
+    const schoolCollection = db.collection('school');
     schoolCollection.where('schoolName', '==', schoolName)
       .get()
       .then((querySnapshot) => {
