@@ -73,8 +73,7 @@ describe('school get tests', () => {
   // This adds a new entry for following test. Ideally we should upload a new image, but upload is
   // not working yet.
   const data = {
-    avatar: 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com/o/test.png'
-      + '?alt=media&token=c2d103ae-2ce1-4565-9758-fc8d558cfac3',
+    avatar: 'test.png',
     schoolName: 'yingyingying',
   };
   let toClean: any;
@@ -85,7 +84,7 @@ describe('school get tests', () => {
       // @ts-ignore
       ID = message.split(' ').pop();
     })
-    .catch(() => { throw new Error('oops, some test settings went wrong'); });
+    .catch(() => { throw new Error('oops, add school went wrong in setup'); });
 
   it('should fetch existing school doc', async () => {
     const schoolDoc = await getSchoolById({ docID: ID });
@@ -114,27 +113,21 @@ describe('school get tests', () => {
 
   // !TODO: make this work
   it('should get avatar link by name', async () => {
-    await getAvatarByName({ name: data.schoolName })
-      .then((link) => {
-        console.log(link);
-        const file = fs.createWriteStream('./test/school/tmp.png');
-        // @ts-ignore
-        http.get(link, (response) => {
-          if (response.statusCode !== 200) {
-            expect.fail('link was not downloadable');
-          }
-          response.pipe(file);
-          const original = fs.readFileSync('./test/school/test.png');
-          const downloaded = fs.readFileSync('./test/school/tmp.png');
-          expect(original.compare(downloaded)).to.equal(true);
-        });
-      })
-      .catch((error) => {
-        expect.fail(`did not read link, reason ${error}`);
-      });
+    const link = await getAvatarByName({ name: data.schoolName });
+    console.log('???');
+    console.log(link);
+    const file = fs.createWriteStream('./test/school/tmp.png');
+    // @ts-ignore
+    http.get(link, (response) => {
+      if (response.statusCode !== 200) {
+        expect.fail('link was not downloadable');
+      }
+      response.pipe(file);
+      const original = fs.readFileSync('./test/school/test.png');
+      const downloaded = fs.readFileSync('./test/school/tmp.png');
+      expect(original.compare(downloaded)).to.equal(true);
+    });
   });
 
-  // Not sure why we need "it" to cleanup. Just calling cleanup outside it
-  // will not work
-  it('clean up', () => { cleanup(toClean); });
+  after(() => { cleanup(toClean); });
 });

@@ -1,6 +1,5 @@
 import * as functions from 'firebase-functions';
-import firebase from 'firebase';
-import { db } from '../../db';
+import { db, storage } from '../../db';
 
 /*
 Author @YH
@@ -20,23 +19,17 @@ export const getAvatarByName = async (data:{
   schoolCollection.where('schoolName', '==', data.name)
     .get()
     .then((querySnapshot) => {
-      console.log('querying');
       querySnapshot.forEach((doc) => {
-        firebase.storage().refFromURL(doc.get('avatar')).getDownloadURL()
-          .then((url) => {
-            console.log(url);
-            return url;
-          })
-          .catch((error) => {
-            console.log('oops1')
-            return error;
-          });
+        const file = storage.file(doc.data().avatar);
+        const expiration = new Date();
+        expiration.setDate(expiration.getDate() + 7);
+        file.getSignedUrl({ action: 'read', expires: expiration }).then((urls) => {
+          console.log(urls[0]);
+          return urls[0];
+        });
       });
     })
-    .catch((error) => {
-      console.log('oops2');
-      return error;
-    });
+    .catch((error) => error);
 };
 
 export default functions.https.onCall(getAvatarByName);
