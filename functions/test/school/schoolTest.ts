@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 import * as fs from 'fs';
-import * as http from 'http';
+import * as https from 'https';
 import { getSchoolById } from '../../func/school/getSchoolByIdFunc';
 import { addSchool } from '../../func/school/addSchoolFunc';
 import { db } from '../../db';
@@ -32,6 +32,16 @@ describe('school add tests', () => {
       })
       .catch(() => {
         expect.fail();
+      });
+  });
+
+  it('should not add duplicate', async () => {
+    await addSchool(data)
+      .then((message) => {
+        cleanup(message);
+        expect.fail();
+      })
+      .catch(() => {
       });
   });
 
@@ -69,7 +79,8 @@ describe('school add tests', () => {
   });
 });
 
-describe('school get tests', () => {
+// !TODO: convert setup to before
+describe('school get tests', async () => {
   // This adds a new entry for following test. Ideally we should upload a new image, but upload is
   // not working yet.
   const data = {
@@ -85,6 +96,13 @@ describe('school get tests', () => {
       ID = message.split(' ').pop();
     })
     .catch(() => { throw new Error('oops, add school went wrong in setup'); });
+
+  let prevLength : any;
+  getAllSchool()
+    .then((res) => {
+      prevLength = res.length;
+    })
+    .catch(() => { throw new Error('oops, get all school went wrong in setup'); });
 
   it('should fetch existing school doc', async () => {
     const schoolDoc = await getSchoolById({ docID: ID });
@@ -105,27 +123,24 @@ describe('school get tests', () => {
 
   it('should get all schools', async () => {
     const schoolDoc = await getAllSchool();
-    expect(schoolDoc.length).to.equal(2);
+    expect(schoolDoc.length).to.equal(prevLength + 1);
     const names = schoolDoc.map((entry) => entry.schoolName);
     expect(names).to.contain(data.schoolName);
     expect(names).to.include('University of Illinois, Urbana-Champaign');
   });
 
-  // !TODO: make this work
   it('should get avatar link by name', async () => {
     const link = await getAvatarByName({ name: data.schoolName });
-    console.log('???');
-    console.log(link);
     const file = fs.createWriteStream('./test/school/tmp.png');
-    // @ts-ignore
-    http.get(link, (response) => {
+    https.get(link, (response) => {
       if (response.statusCode !== 200) {
         expect.fail('link was not downloadable');
       }
       response.pipe(file);
       const original = fs.readFileSync('./test/school/test.png');
       const downloaded = fs.readFileSync('./test/school/tmp.png');
-      expect(original.compare(downloaded)).to.equal(true);
+      expect(original.compare(downloaded)).to.equal(1);
+      fs.unlinkSync('./test/school/tmp.png');
     });
   });
 

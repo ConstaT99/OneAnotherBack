@@ -14,7 +14,8 @@ Output {
 
 export const getAllSchool = async () => {
   const snapshot = await db.collection('school').get();
-  return snapshot.docs.map((doc) => doc.data());
+  const arrayOfSchool = await snapshot.docs.map((doc) => doc.data());
+  return arrayOfSchool;
 };
 
 export default functions.https.onCall(getAllSchool);
