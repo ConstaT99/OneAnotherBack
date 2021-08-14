@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
-import { getAvatarByName } from './getAvatarByName';
+import { getAvatarByName } from './getAvatarByNameFunc';
 
 /*
 Author @YH jian

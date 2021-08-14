@@ -5,7 +5,7 @@ import * as https from 'https';
 import { getSchoolById } from '../../func/school/getSchoolByIdFunc';
 import { addSchool } from '../../func/school/addSchoolFunc';
 import { db } from '../../db';
-import { getAvatarByName } from '../../func/school/getAvatarByName';
+import { getAvatarByName } from '../../func/school/getAvatarByNameFunc';
 import { getAllSchool } from '../../func/school/getAllSchoolFunc';
 
 // I'm not testing delete here since that will remove images in firestore
