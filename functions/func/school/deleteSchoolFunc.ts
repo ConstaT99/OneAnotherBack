@@ -20,7 +20,7 @@ export const deleteSchool = async (data:{
 }) => {
   const { name } = data;
   return new Promise(((resolve, reject) => {
-    const schoolCollection = db.collection('School');
+    const schoolCollection = db.collection('school');
     schoolCollection.where('schoolName', '==', name)
       .get()
       .then((querySnapshot) => {
