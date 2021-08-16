@@ -1,43 +1,50 @@
 
 ```
+## user
 user {
-    blahb
-}
-userInfo {
-    uid: reference
-
     ### profile ###
-    RegisterDate: Time
-
-    message: [strings] // 私信通知
+    userName:(this is unique) default by uid
+    email: string
+    phoneNumber: number; // 电话号码
+  	location: string; // 位置
+    RegisterDate: timestamp
+    rate: Number // 用户信誉积分
+    avatar: url(string)
 
     ### 好友 ###
-    following: [reference_uid]
-    followedBy: [reference_uid]
+    following: [uid]
+    followedBy: [uid]
 
     ### 论坛 ###
-    posts: [reference_posts]
+    posts: [postDocId]// string[]
     postNum: int
-    replies: [reference_reply]
-    replyNum: int
-    postLike: [reference_post]
-    followPost: [reference_post]
+    comment: [uid]
+    postLike: [postDocId]
+    followPost: [postDocId]
+    savedpost: Map<string,string[]>
 
     ### 二手 ###
-    starred: [reference_Product] #收藏栏
-    wantToBuy: [Sell]
-    buyingNum: int // 正在求购
+    wantToBuy: [productBuy]// 求购车
 
-    wantToSell: [Buy]
-    sellingNum: int // 正在销售
+    cart: [productSell]//购物车
+    boughtNum: int // 购买个数
+    bought:[productBuy] // 已购买物件
 
-    soldNum: int
-    buyNum: int
+    wantToSell: [productSell] // 售卖栏
+    soldNum: int // 已售卖个数
+    sell:[productSell] // 已售卖物件
 
-    ### 预留 ###
-    prefrence: None #浏览记录etc.
-    payment: None
-    mailing: None
+    willingToBuy: [productWillBuy]// 求购(this going to have another collection)
+    order: [orderDocId]
+
+		### 身份验证 ###
+		student: boolen // default: 0, 1 已认证
+		realName: boolen // default: 0, 1 已认证
+		school: string // default empty, when setudent == 1 fill in school Name
+}
+
+## School{
+
 }
 ```
 ## 闲置交易

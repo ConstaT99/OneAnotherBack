@@ -1,3 +1,5 @@
+![CI](https://github.com/ConsCount/OneAnotherBack/actions/workflows/node.js.yml/badge.svg)
+
 # OneAnother Backend Repo
 
 This repository contains the Cloud Functions for OneAnother.
@@ -13,7 +15,11 @@ Firebase: https://firebase.google.com/docs
 # Before Set Up
 For **Mac os**: If you do not have Xcode installed in your computer please go to App store search Xcode and installed it on your computer.
 
+If you are **Windows** user, plz contant **Yihong Jian** for more information.
+
 # SetUp
+Tips: Do following steps in your **OneAnotherBack folder**(the one you clone from the GitHub)
+
 - Install yarn : `npm install --global yarn `
 - check yarn install successfully `yarn -v`
 - Install All dependencies: `cd functions`, then `yarn install`
@@ -39,16 +45,20 @@ i  Skipping write of functions/.gitignore
 ? Do you want to install dependencies with npm now? No
 ```
 
-- Run `yarn test` this command will allow you to build and test with mocha, for all function
-- Run`firebase use test` it will lead you to the test database(it not working then change test to default, which means test database not setup)
-- Run `yarn deploy`, it will build and deploy all functions to test database
+- Run `yarn test` this command will allow you to build and test with mocha, for all function 
+  - **make sure you do this under functions folder, otherwise it will not work**
+  - cd functions
+- Run`firebase use test` it will lead you to the test database
+  - **it not working then change test to default, which means test database not setup** 
+- Run `yarn deployOne functions:helloWorld`, it will build and deploy all functions to test database
+  - you may not have premission.
 - Go to URL https://us-central1-oneanother-757c7.cloudfunctions.net/helloWorld, If you see `Hello from OneAnother!` Then Set Up is finished. (This step may take few minutes)
 
 # Some Explanation
 - `./src/index.ts` is the entry point for each function.
 - `./src/index.t.ts` is the entry point for test functions.
 - `./functions/func/` file contain all Cloud function. Please Test it before you deploy.
-- `./functions/test/` file contain all test function.(need work)
+- `./functions/test/` file contain all test function.
 - `.eslintrc.js` is using airbnb template to organize code style.
 
 `yarn add chai mocha ts-node @types/chai @types/mocha --save-dev`// install test module

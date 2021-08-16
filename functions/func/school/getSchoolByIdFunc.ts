@@ -15,6 +15,10 @@ Output {
 
 export const getSchoolById = async (data:{
   docID : string;
-}) => db.collection('School').doc(data.docID);
+}) => {
+  const schoolRef = db.collection('school').doc(data.docID);
+  const schoolDoc = await schoolRef.get();
+  return schoolDoc.data();
+};
 
 export default functions.https.onCall(getSchoolById);

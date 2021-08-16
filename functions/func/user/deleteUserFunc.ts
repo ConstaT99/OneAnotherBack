@@ -1,24 +1,24 @@
+import { UserRecord } from 'firebase-functions/lib/providers/auth';
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
 /*
 This is oncall  function for read user profile written by Jerry;
 input:
-    data = { uid }
+    data:{
+      uid: string;
+    }
 output:
-    userDoc.data(): promise<firebasefirestore.documentdata | undefined >
+    promise<writeresult>
 */
-export const readUser = async (data:{
-  uid: string;
-}) => {
-  const { uid } = data;// get the value
+export const deleteUser = async (user:UserRecord) => {
+  const { uid } = user;// get the value
   if (uid == null) {
     return Promise.reject(new Error('uid is not exist'));
   }
   const collection = 'user';
   const userRef = db.collection(collection).doc(uid);
-  const userDoc = await userRef.get();
-  return userDoc.data();
+  return userRef.delete();
 };
 
-export default functions.https.onCall(readUser);
+export default functions.auth.user().onDelete(deleteUser);
