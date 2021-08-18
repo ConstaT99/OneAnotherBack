@@ -28,8 +28,9 @@ describe('Uplaod File Test', () => {
   //     fs.unlinkSync('./test/common/tmp.png');
   //   });
   // });
-  it ('upload test 2', async () => {
-    await upload({uid:'233', fname:"fjaewio", file:fs.readFileSync('./test/school/test.png')});
-    console.log('?');
-  })
+  it('upload test 2', async () => {
+    const uploaded = await upload({ uid: 'test', fname: 'test.png', file: fs.readFileSync('./test/school/test.png') });
+    console.log(uploaded);
+    // expect(storage.file(uploaded));
+  });
 });
