@@ -7,4 +7,5 @@
 //export * from '../test/school/schoolTest';
 
 //export * from '../test/common/upload.t';
-export * from '../test/common/delete.t';
+//export * from '../test/common/delete.t';
+export * from '../test/common/getFileURL.t';
