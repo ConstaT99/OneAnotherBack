@@ -25,7 +25,7 @@ TODO:
 
 export const addUser = async (user:UserRecord) => {
   const {
-    uid, photoURL, email, phoneNumber, displayName,
+    uid, photoURL, email, phoneNumber, displayName, emailVerified,
   } = user;
   if (uid == null) {
     // console.log('uid is null or missing');
@@ -98,6 +98,7 @@ export const addUser = async (user:UserRecord) => {
     cart,
     blackUserList,
     blackPostList,
+    emailVerified,
   };
   const collection = 'user';
   const userRef = db.collection(collection);
