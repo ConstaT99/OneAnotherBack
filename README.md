@@ -1,3 +1,5 @@
+![CI](https://github.com/ConsCount/OneAnotherBack/actions/workflows/node.js.yml/badge.svg)
+
 # OneAnother Backend Repo
 
 This repository contains the Cloud Functions for OneAnother.
