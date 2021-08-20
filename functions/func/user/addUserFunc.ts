@@ -38,6 +38,11 @@ export const addUser = async (user:UserRecord) => {
   const userName = displayName; // given a default
   const registerDate = admin.firestore.Timestamp.now(); // get current date
   const rate = 5; // 用户信誉分
+  let phoneNumberVerified:boolean = false;
+  if (phoneNumber != null) {
+    phoneNumberVerified = true;
+  }
+
   // post
   const postLike: Array<string> = []; //  喜欢的帖子 post/docId
   const post: Array<string> = []; // 发的帖子
@@ -99,6 +104,7 @@ export const addUser = async (user:UserRecord) => {
     blackUserList,
     blackPostList,
     emailVerified,
+    phoneNumberVerified,
   };
   const collection = 'user';
   const userRef = db.collection(collection);
