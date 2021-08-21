@@ -1,17 +1,19 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
-export const isUserExist = async(data:{
+export const isUserExists = async(data:{
     uid: string;
 }) => {
     const collection = 'user';
-    const userRef = db.collection(collection);
     const { uid } = data;
-    if (userRef.doc(uid)){
-        return true;
-    }else{
-        return false;
-    }
+    const userRef = db.collection(collection).doc(uid);
+    return userRef.get().then((doc) => {
+        if (doc.exists){
+            return true;
+        } else {
+            return false;
+        }
+    });
 }
 
-export default functions.https.onCall(isUserExist);
+export default functions.https.onCall(isUserExists);
