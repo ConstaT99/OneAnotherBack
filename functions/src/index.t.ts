@@ -4,3 +4,4 @@
 
 export * from '../test/user/userReadTest';
 export * from '../test/user/userUpdateTest';
+export * from '../test/post/postReadTest';
