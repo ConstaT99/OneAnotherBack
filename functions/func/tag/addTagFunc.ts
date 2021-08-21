@@ -18,8 +18,8 @@ export const addTagFunc = async (data:{
         //reject(new Error('invalid field'));
         return Promise.reject(new Error('invalid field'));
     }
-    //const checkExists = await isTagExists({name: name});
-    if (isTagExists({name: name})) {
+    const checkExists = await isTagExists({name: name});
+    if (checkExists) {
         return; // link the post to the existing tag
     }
     const DocId:string[] = [docId];// put the first post in to the DocId array

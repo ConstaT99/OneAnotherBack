@@ -7,11 +7,20 @@ import { isTagExists } from '../../func/tag/isTagExists';
 describe('addTagFunction test', () => {
     it('the result should be true if the Tag is successfully created', async () => {
         const testData = {
-            name: 'GreenStreetBets',
+            name: 'covid-19',
             docId: 'wR9n7Q6vF5i1kaep0tuq',
         };
         await addTagFunc(testData);
-        const checkExists = await isTagExists({name: 'GreenStreetBets'});
+        const checkExists = await isTagExists({name: 'covid-19'});
+        expect(checkExists).to.equal(true);
+    });
+    it('the result should not be created if the name are the same', async () => {
+        const testData = {
+            name: '香槟美食',
+            docId: 'wR9n7Q6vF5i1kaep0tuq',
+        };
+        await addTagFunc(testData);
+        const checkExists = await isTagExists({name: '香槟美食'});
         expect(checkExists).to.equal(true);
     });
 });
