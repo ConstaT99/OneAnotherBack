@@ -1,5 +1,16 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
+/*
+Author: @Carstin
+check if the tag already exists , if so return true, otherwise it would return false
+Input {
+    name: tagName
+}
+Output {
+    true : exists
+    false : not exists
+}
+*/
 
 export const isTagExists = async(data:{
     name: string;

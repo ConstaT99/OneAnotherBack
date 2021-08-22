@@ -10,7 +10,7 @@ describe('isTagExists function test', () => {
             name : 'GreenStreetBets',
         };
         const testInfo = await isTagExists(testData);
-        console.log(testInfo);
+        //console.log(testInfo);
         expect(testInfo).to.equal(true);
     });
     it('if the tag already exists, it should return true', async () => {
@@ -18,7 +18,7 @@ describe('isTagExists function test', () => {
             name : '香槟美食',
         };
         const testInfo = await isTagExists(testData);
-        console.log(testInfo);
+        //console.log(testInfo);
         expect(testInfo).to.equal(true);
     });
     it('if the tag do not exist, it should return false', async () => {
@@ -26,7 +26,7 @@ describe('isTagExists function test', () => {
             name : 'abc',
         };
         const testInfo = await isTagExists(testData);
-        console.log(testInfo);
+        //console.log(testInfo);
         expect(testInfo).to.equal(false);
     });
     it('if the tag do not exist, it should return false', async () => {
@@ -34,7 +34,7 @@ describe('isTagExists function test', () => {
             name : 'a12345667',
         };
         const testInfo = await isTagExists(testData);
-        console.log(testInfo);
+        //console.log(testInfo);
         expect(testInfo).to.equal(false);
     });
 });

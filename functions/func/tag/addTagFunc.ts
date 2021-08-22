@@ -1,19 +1,29 @@
 import * as functions from 'firebase-functions';
-import {isTagExists} from './isTagExists'
+import {isTagExists} from './isTagExists';
+import {getPicOfPost} from '../post/getPicOfPost';
 import { db } from '../../db'
+
 
 /*
 Author @Carstin
 This function must be called AFTER the createPost function since it requires the docId of the first post as an input
-! TODO: change the default avatar to the first pic of the first post if there is any
+! TODO: get the time for the tag (unix timestamp)
+Input {
+    name: name of the tag
+    docId: the docId of the post first created under this tag
+}
+Output {
+    the tag should be added into the tag collection
+}
 
 */
 
 export const addTagFunc = async (data:{
+    lastUpdate : number
     name: string
     docId: string
 }) => {
-    const {name, docId} = data;
+    const {name, docId, lastUpdate} = data;
     if (name === null) {
         //reject(new Error('invalid field'));
         return Promise.reject(new Error('invalid field'));
@@ -23,12 +33,18 @@ export const addTagFunc = async (data:{
         return; // link the post to the existing tag
     }
     const DocId:string[] = [docId];// put the first post in to the DocId array
-    const avatar:string = 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com/o/defaultTagAvatar.png?alt=media&token=80fb2991-96de-4c89-bf88-f6566315da57';
+    var avatar:string = 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com/o/defaultTagAvatar.png?alt=media&token=80fb2991-96de-4c89-bf88-f6566315da57';
+    
+    const postPic = await getPicOfPost({docId: docId});
+    if (postPic != null && typeof postPic === "string") {
+        avatar = postPic;
+    }
 
     const tagInfo = {
         DocId,
         avatar,
         name,
+        lastUpdate
     };
     const collection = 'tag';
     const tagRef = db.collection(collection);
