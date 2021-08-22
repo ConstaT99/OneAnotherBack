@@ -13,9 +13,9 @@ Output {
  */
 
 export const getTagById = async (data:{
-  docID : string;
+  tagId : string;
 }) => {
-  const tagRef = db.collection('tag').doc(data.docID);
+  const tagRef = db.collection('tag').doc(data.tagId);
   const tagDoc = await tagRef.get();
   return tagDoc.data();
 };

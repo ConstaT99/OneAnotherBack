@@ -20,12 +20,11 @@ export const isTagExists = async(data:{
     const tagRef = db.collection(collection);
     const snapshot = await tagRef.where('name', '==', name).get();
     console.log(snapshot);
-        if (snapshot.size === 1) {
-            return true;
-        } else {
-            return false;
-        }
-
-}
+    if (snapshot.size === 1) {
+        return snapshot.docs[0].id;
+    } else {
+        return null;
+    }
+};
 
 export default functions.https.onCall(isTagExists);

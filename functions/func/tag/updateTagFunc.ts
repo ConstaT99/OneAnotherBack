@@ -19,9 +19,9 @@ output{
 export const updateTagFunc = async (data:{
     tagId: string,
     lastUpdate: number,
-    docId: string
+    postId: string
 }) => {
-    const { tagId, lastUpdate, docId } = data;
+    const { tagId, lastUpdate, postId } = data;
     if (tagId == null) {
         return Promise.reject(new Error('tag does not exist'));
     }
@@ -38,7 +38,7 @@ export const updateTagFunc = async (data:{
             reject(new Error(`tagData Read failed`));
         } else {
             const docIdArray = 'DocId' ? tagData['DocId'] : tagData;
-            const newDocId = docIdArray.push(docId);
+            const newDocId = docIdArray.push(postId);
             tagRef.update({['DocId']: docIdArray});
             resolve(newDocId);
         }

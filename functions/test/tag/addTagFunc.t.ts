@@ -9,7 +9,7 @@ describe('addTagFunction test', () => {
         const testData = {
             lastUpdate : Math.floor(Date.now() / 1000), //unix timestamp in seconds
             name: 'covid-19',
-            docId: 'wR9n7Q6vF5i1kaep0tuq',
+            postId: 'wR9n7Q6vF5i1kaep0tuq',
         };
         await addTagFunc(testData);
         const checkExists = await isTagExists({name: 'covid-19'});
@@ -19,7 +19,7 @@ describe('addTagFunction test', () => {
         const testData = {
             lastUpdate : Math.floor(Date.now() / 1000),
             name: '香槟美食',
-            docId: 'wR9n7Q6vF5i1kaep0tuq',
+            postId: 'wR9n7Q6vF5i1kaep0tuq',
         };
         await addTagFunc(testData); //unix timestamp in seconds
         const checkExists = await isTagExists({name: '香槟美食'});

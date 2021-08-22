@@ -21,26 +21,28 @@ Output {
 export const addTagFunc = async (data:{
     lastUpdate : number
     name: string
-    docId: string
+    postId: string
 }) => {
-    const {name, docId, lastUpdate} = data;
+    const {name, postId, lastUpdate} = data;
     if (name === null) {
         //reject(new Error('invalid field'));
         return Promise.reject(new Error('invalid field'));
     }
     const checkExists = await isTagExists({name: name});
     if (checkExists) {
-        return; // link the post to the existing tag
+        return Promise.reject(new Error('tag is exists')); // link the post to the existing tag
     }
-    const DocId:string[] = [docId];// put the first post in to the DocId array
+    const DocId:string[] = [postId];// put the first post in to the DocId array
     var avatar:string = 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com/o/defaultTagAvatar.png?alt=media&token=80fb2991-96de-4c89-bf88-f6566315da57';
+    const access:boolean = true; // accessbility of this tag
     
-    const postPic = await getPicOfPost({docId: docId});
+    const postPic = await getPicOfPost({docId: postId});
     if (postPic != null && typeof postPic === "string") {
         avatar = postPic;
     }
 
     const tagInfo = {
+        access,
         DocId,
         avatar,
         name,
