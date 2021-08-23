@@ -1,6 +1,15 @@
 import * as functions from 'firebase-functions';
 import { storage } from '../../db';
-
+/*
+Author @Cratsin
+Get the url of the file within 5 min
+Input {
+    file: the reference of the input file
+}
+Output {
+    urls: the corresponded url of the file
+}
+*/
 export const getFileURL = async (data:{
     file: string
 }) => {

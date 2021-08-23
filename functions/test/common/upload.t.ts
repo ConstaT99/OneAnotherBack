@@ -9,7 +9,7 @@ import { upload } from '../../func/common/upload';
 // import * as testinfo from '../testInfo/testInfo';
 
 describe('Uplaod File Test', () => {
-  // it('up;aod file test', async () => {
+  // it('uplaod file test', async () => {
   //   const name = await upload({ file: './test/school/test.png' });
   //   console.log(name);
   //   const file = await storage.file(name);
@@ -29,7 +29,7 @@ describe('Uplaod File Test', () => {
   //   });
   // });
   it('upload test 2', async () => {
-    const uploaded = await upload({ uid: 'test', fname: 'test.png', file: fs.readFileSync('./test/school/test.png') });
+    const uploaded = await upload({ uid: 'test', fname: 'test.jpg', file: fs.readFileSync('./test/testInfo/live_and_create.jpg') });
     console.log(uploaded);
     // expect(storage.file(uploaded));
   });
