@@ -1,4 +1,6 @@
 ![CI](https://github.com/ConsCount/OneAnotherBack/actions/workflows/node.js.yml/badge.svg)
+![QC](https://github.com/ConsCount/OneAnotherBack/actions/workflows/qc.yml/badge.svg)
+
 
 # OneAnother Backend Repo
 
@@ -68,3 +70,6 @@ i  Skipping write of functions/.gitignore
 - Finished template function.
 - set up test database.
 - need set up comment layout in template function.
+
+# Note on pushing new code
+- Run ```yarn autofix``` to fix styling issues, otherwise your code will be blocked.
