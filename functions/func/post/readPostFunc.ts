@@ -3,7 +3,6 @@ import { db } from '../../db';
 
 export const readPost = async (data:{
   postId: string;
-  uid: string;
 }) => {
   // TODO:
   // need to do user check i am going to write a common function for uid check
