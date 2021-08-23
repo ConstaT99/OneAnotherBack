@@ -19,7 +19,8 @@ Output {
 }
 
 */
-
+const DEFAULT_AVATAR = 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com'
+  + '/o/defaultTagAvatar.png?alt=media&token=80fb2991-96de-4c89-bf88-f6566315da57';
 export const addTagFunc = async (data:{
     name: string
     postId: string
@@ -35,7 +36,7 @@ export const addTagFunc = async (data:{
        return checkExists; // link the post to the existing tag
     }
     const posts:Array<string> = [postId];// put the first post in to the DocId array
-    var avatar:string = 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com/o/defaultTagAvatar.png?alt=media&token=80fb2991-96de-4c89-bf88-f6566315da57';
+    var avatar:string = DEFAULT_AVATAR;
     const access:boolean = true; // accessbility of this tag
     const lastUpdate : number = Math.floor(Date.now() / 1000);
     const postPic = await getPicOfPost({postId: postId});
