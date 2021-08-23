@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
 /*
-auther @Cath
+author @Cath
 Input {
     author: the userId of user who composed the comment
     content: the content of the comment
