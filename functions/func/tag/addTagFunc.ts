@@ -38,7 +38,7 @@ export const addTagFunc = async (data:{
     var avatar:string = 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com/o/defaultTagAvatar.png?alt=media&token=80fb2991-96de-4c89-bf88-f6566315da57';
     const access:boolean = true; // accessbility of this tag
     const lastUpdate : number = Math.floor(Date.now() / 1000);
-    const postPic = await getPicOfPost({docId: postId});
+    const postPic = await getPicOfPost({postId: postId});
     if (postPic != null && typeof postPic === "string") {
         avatar = postPic;
     }
