@@ -12,18 +12,17 @@ Output {
 }
 */
 
-export const isTagExists = async(data:{
-    name: string;
+export const isTagExists = async (data:{
+  name: string;
 }) => {
-    const collection = 'tag';
-    const { name } = data;
-    const tagRef = db.collection(collection);
-    const snapshot = await tagRef.where('name', '==', name).get();
-    if (snapshot.size === 1) {
-        return snapshot.docs[0].id;
-    } else {
-        return null;
-    }
+  const collection = 'tag';
+  const { name } = data;
+  const tagRef = db.collection(collection);
+  const snapshot = await tagRef.where('name', '==', name).get();
+  if (snapshot.size === 1) {
+    return snapshot.docs[0].id;
+  }
+  return null;
 };
 
 export default functions.https.onCall(isTagExists);

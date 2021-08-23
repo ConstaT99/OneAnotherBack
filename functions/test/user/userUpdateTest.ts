@@ -11,7 +11,6 @@ describe('User update test', () => {
   };
 
   it('should update user name successfully', async () => {
-
     // First we track old name
     let userdata = await readUser(testdata);
     if (userdata === undefined) {
@@ -49,7 +48,6 @@ describe('User update test', () => {
   });
 
   it('should reject non existing field', async () => {
-
     testdata.updateField = '';
 
     await updateUser((testdata))
