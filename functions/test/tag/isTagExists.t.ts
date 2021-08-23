@@ -7,11 +7,11 @@ import { isTagExists } from '../../func/tag/isTagExists';
 describe('isTagExists function test', () => {
     it('if the tag already exists, it should return true', async () => {
         const testData = {
-            name : 'GreenStreetBets',
+            name : 'covid-19',
         };
         const testInfo = await isTagExists(testData);
         //console.log(testInfo);
-        expect(testInfo).to.equal('6T1LymjM01Vy1ey6GAdJ');
+        expect(testInfo).to.equal('iw9MNyLzHjw7r2dwW5cm');
     });
     it('if the tag already exists, it should return true', async () => {
         const testData = {
@@ -19,7 +19,7 @@ describe('isTagExists function test', () => {
         };
         const testInfo = await isTagExists(testData);
         //console.log(testInfo);
-        expect(testInfo).to.equal('fCfnECJ7cw8MPBLbcd0x');
+        expect(testInfo).to.equal('Ftt7P4XBi2VxyPOZ5hjU');
     });
     it('if the tag do not exist, it should return false', async () => {
         const testData = {
