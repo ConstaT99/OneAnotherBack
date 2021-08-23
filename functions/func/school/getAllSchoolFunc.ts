@@ -12,9 +12,10 @@ Output {
 }
  */
 
-export const updateSchool = async () => {
-  const snapshot = await db.collection('School').get();
-  return snapshot.docs.map((doc) => doc.data());
+export const getAllSchool = async () => {
+  const snapshot = await db.collection('school').get();
+  const arrayOfSchool = await snapshot.docs.map((doc) => doc.data());
+  return arrayOfSchool;
 };
 
-export default functions.https.onCall(updateSchool);
+export default functions.https.onCall(getAllSchool);
