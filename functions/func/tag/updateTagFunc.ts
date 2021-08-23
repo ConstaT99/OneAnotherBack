@@ -18,13 +18,13 @@ output{
 
 export const updateTagFunc = async (data:{
     tagId: string,
-    lastUpdate: number,
     postId: string
 }) => {
-    const { tagId, lastUpdate, postId } = data;
+    const { tagId, postId } = data;
     if (tagId == null) {
         return Promise.reject(new Error('tag does not exist'));
     }
+    const lastUpdate = Math.floor(Date.now() / 1000);
     const collection = 'tag';
     const tagRef = db.collection(collection).doc(tagId);
 
