@@ -23,4 +23,4 @@ jobs:
      - name: install dependency
        run: cd /home/runner/work/OneAnotherBack/OneAnotherBack/functions/ && yarn install
      - name: Run ESLint
-       run: yarn run eslint . --ext .js,.jsx,.ts,.tsx
+       run: yarn run lint . --ext .js,.jsx,.ts,.tsx
