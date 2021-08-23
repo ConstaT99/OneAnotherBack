@@ -5,12 +5,14 @@ import { db } from '../../db'
 Input {
     author: the userId of user who composed the comment
     content: the content of the comment
-    replyToPost: indicates whether the comment is replying to a post or another comment
-    replyId: the id of either a post or another comment (indicated by replyToPost) that this comment is replying to. 
+    replyToPost: indicates whether the comment is replying to a post/comment
+    replyId: the id of the post/comment that this comment is replying to. 
 }
 Output {
     the comment should be added into the comment collection
 }
+
+//TO DO: update repliedBy for the parent post/comment
 */
 
 export const addCommentFunc = async (data: {
