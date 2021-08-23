@@ -37,9 +37,9 @@ export const updateTagFunc = async (data:{
         if (!tagData) {
             reject(new Error(`tagData Read failed`));
         } else {
-            const docIdArray = 'DocId' ? tagData['DocId'] : tagData;
+            const docIdArray = tagData['posts'];
             const newDocId = docIdArray.push(postId);
-            tagRef.update({['DocId']: docIdArray});
+            tagRef.update({['posts']: docIdArray});
             resolve(newDocId);
         }
     });
