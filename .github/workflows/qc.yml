@@ -22,5 +22,7 @@ jobs:
          node-version: 14
      - name: install dependency
        run: cd /home/runner/work/OneAnotherBack/OneAnotherBack/functions/ && yarn install
-     - name: Run ESLint
-       run: cd /home/runner/work/OneAnotherBack/OneAnotherBack/functions/ && yarn lint . --ext .js,.jsx,.ts,.tsx
+     - name: fix bad coding practice
+       run: cd /home/runner/work/OneAnotherBack/OneAnotherBack/functions/ && yarn autofix
+     - name: run final linting
+       run: cd /home/runner/work/OneAnotherBack/OneAnotherBack/functions/ && yarn lint
