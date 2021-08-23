@@ -7,8 +7,8 @@ Input {
     name: tagName
 }
 Output {
-    true : exists
-    false : not exists
+    tagId of existing tag : exists
+    null : not exists
 }
 */
 
