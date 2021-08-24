@@ -13,11 +13,10 @@ Output{
 export const isCatExists = async (data:{
   name: string;
 }) => {
-  const {name} = data;
-  if (name === '娱乐' || name === '学习' || name === '时尚' || name === '生活' || name === '兴趣' ||name === '其它') {
+  const { name } = data;
+  if (name === '娱乐' || name === '学习' || name === '时尚' || name === '生活' || name === '兴趣' || name === '其它') {
     return true;
-  } else {
-    return false;
   }
-}
+  return false;
+};
 export default functions.https.onCall(isCatExists);

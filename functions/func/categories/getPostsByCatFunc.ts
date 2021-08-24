@@ -10,7 +10,7 @@ Output {
     return the postArray under this cat
 }
 */
-export const getPostsByCat = async (data:{
+export const getPostsByCatFunc = async (data:{
   name: string;
 }) => {
   const collection = 'categories';
@@ -18,6 +18,6 @@ export const getPostsByCat = async (data:{
   const catRef = db.collection(collection);
   const snapshot = await catRef.where('catName', '==', name).get();
   const postsData = snapshot.docs[0].data();
-  return postsData['postArray'];
-}
-export default functions.https.onCall(getPostsByCat);
+  return postsData.postArray;
+};
+export default functions.https.onCall(getPostsByCatFunc);
