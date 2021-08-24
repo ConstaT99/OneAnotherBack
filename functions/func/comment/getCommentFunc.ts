@@ -13,9 +13,9 @@ Output {
 */
 
 export const getCommentFunc = async (commentId: string) => {
-    const commentRef = db.collection('comment').doc(commentId);
-    const commentDoc = await commentRef.get();
-    return commentDoc.data();
+  const commentRef = db.collection('comment').doc(commentId);
+  const commentDoc = await commentRef.get();
+  return commentDoc.data();
 };
 
 export default functions.https.onCall(getCommentFunc);
