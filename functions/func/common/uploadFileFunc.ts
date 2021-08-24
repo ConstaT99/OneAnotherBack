@@ -13,14 +13,14 @@ input: {
 }
 output: either the destination filename or error
  */
-export const upload = async (data:{
+export const uploadFileFunc = async (data:{
   uid : string,
   fname : string,
   file : Buffer
 }) => {
   const { uid, fname, file } = data;
   const destName = `${uid}/${fname}`;
-  const destFile = await storage.file(destName);
+  const destFile = storage.file(destName);
   const exists = await destFile.exists();
   if (exists[0]) {
     return destName;
@@ -30,4 +30,4 @@ export const upload = async (data:{
     .catch((err) => err);
 };
 
-export default functions.https.onCall(upload);
+export default functions.https.onCall(uploadFileFunc);

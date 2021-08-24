@@ -12,18 +12,20 @@ Output {
 }
 */
 
-export const isUserExists = async(data:{
-    uid: string;
+export const isUserExists = async (data:{
+  uid: string;
 }) => {
-    const collection = 'user';
-    const { uid } = data;
-    const userRef = db.collection(collection);
-    const snapshot = await userRef.where('uid', '==', uid).get();
-    if (snapshot.size === 1) {
-        return true;
-    } else {
-        return false;
-    }
+  const collection = 'user';
+  const { uid } = data;
+  if (uid === null || uid === '') {
+    return Promise.reject(new Error('invalid input, uid cannot be null or empty'));
+  }
+  const userRef = db.collection(collection);
+  const snapshot = await userRef.where('uid', '==', uid).get();
+  if (snapshot.size === 1) {
+    return true;
+  }
+  return false;
 };
 
 export default functions.https.onCall(isUserExists);
