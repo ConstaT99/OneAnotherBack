@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { db } from '../../db';
 import { getPostsByCatFunc } from '../../func/categories/getPostsByCatFunc';
 
-describe('isCatExists test', () => {
-  it('expect false if this Cat does not exist', async () => {
+describe('getPostByCatFunc test', () => {
+  it('expect the return postArray to equal to the postArray in the db', async () => {
     const check = await getPostsByCatFunc({ name: '学习' });
     const collection = 'categories';
     const catRefid = db.collection(collection);
