@@ -14,16 +14,16 @@ output {
 }
 */
 export const updateTagStat = async (data:{
-    tagId: string
-    access: boolean
+  tagId: string
+  access: boolean
 }) => {
-    const {tagId, access} = data;
-    if (tagId === null) {
-        return Promise.reject(new Error('tagId does not exist'));
-    }
-    const collection = 'tag';
-    const userRef = db.collection(collection).doc(tagId);
-    return userRef.update({ ['access']: access });
+  const { tagId, access } = data;
+  if (tagId === null) {
+    return Promise.reject(new Error('tagId does not exist'));
+  }
+  const collection = 'tag';
+  const userRef = db.collection(collection).doc(tagId);
+  return userRef.update({ access });
 };
 
 export default functions.https.onCall(updateTagStat);
