@@ -12,8 +12,8 @@ Output {
 }
 */
 
-export const getCommentFunc = async (tagId: string) => {
-    const commentRef = db.collection('comment').doc(tagId);
+export const getCommentFunc = async (commentId: string) => {
+    const commentRef = db.collection('comment').doc(commentId);
     const commentDoc = await commentRef.get();
     return commentDoc.data();
 };
