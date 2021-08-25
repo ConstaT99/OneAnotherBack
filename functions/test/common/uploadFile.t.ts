@@ -1,9 +1,8 @@
-// import { expect } from 'chai';
+import { expect } from 'chai';
 
 import 'mocha';
 import fs from 'fs';
 import https from 'https';
-import { expect } from 'chai';
 import { uploadFileFunc } from '../../func/common/uploadFileFunc';
 import { storage } from '../../db';
 
@@ -17,7 +16,8 @@ describe('Uplaod File Test', () => {
     });
 
     console.log(name);
-    const file = await storage.file(name);
+    const {uid, fname} = name;
+    const file = await storage.file(`${uid}/${fname}`);
     const expiration = new Date();
     expiration.setDate(expiration.getHours() + 7);
     const urls = await file.getSignedUrl({ action: 'read', expires: expiration });
@@ -39,6 +39,7 @@ describe('Uplaod File Test', () => {
       file: fs.readFileSync('./test/testInfo/live_and_create.jpg'),
     });
     console.log(uploaded);
+    
     // expect(storage.file(uploaded));
   });
 });
