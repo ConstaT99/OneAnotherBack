@@ -20,7 +20,6 @@ describe('getURL test', () => {
       const original = fs.readFileSync('./test/testInfo/live_and_create.jpg');
       const downloaded = fs.readFileSync('./test/common/live_and_create_d.jpg');
       expect(original.compare(downloaded)).to.equal(1);
-      fs.unlinkSync('./test/common/live_and_create_d.jpg');
     });
   });
 });
