@@ -16,7 +16,7 @@ describe('Uplaod File Test', () => {
     });
 
     console.log(name);
-    const {uid, fname} = name;
+    const { uid, fname } = name;
     const file = await storage.file(`${uid}/${fname}`);
     const expiration = new Date();
     expiration.setDate(expiration.getHours() + 7);
@@ -39,7 +39,5 @@ describe('Uplaod File Test', () => {
       file: fs.readFileSync('./test/testInfo/live_and_create.jpg'),
     });
     console.log(uploaded);
-    
-    // expect(storage.file(uploaded));
   });
 });
