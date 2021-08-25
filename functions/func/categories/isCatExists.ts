@@ -13,10 +13,6 @@ Output{
 export const isCatExists = async (data:{
   name: string;
 }) => {
-  const { name } = data;
-  if (name === '娱乐' || name === '学习' || name === '时尚' || name === '生活' || name === '兴趣' || name === '其它') {
-    return true;
-  }
-  return false;
+  return ['娱乐', '学习', '时尚', '生活', '兴趣', '其它'].includes(data.name);
 };
 export default functions.https.onCall(isCatExists);
