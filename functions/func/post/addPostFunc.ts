@@ -6,7 +6,6 @@ import { addTagFunc } from '../tag/addTagFunc';
 TODO:
 1. limit the title character number
 2. limit the content character number
-3. add tag if tag is not exist
 */
 export const addPostFunc = async (data: {
   uid: string;
@@ -30,6 +29,17 @@ export const addPostFunc = async (data: {
     if (categories == null) {
       categories = 'other';
     }
+    const createTime:number = Math.floor(Date.now() / 1000);
+    const editTime:number = Math.floor(Date.now() / 1000);
+    const like:number = 0;
+    const comment:Array<string> = [];
+    const commentNum:number = 0;
+    const likeBy:Array<string> = [];
+    const savedBy:Array<string> = [];
+    const shareBy:Array<string> = [];
+    const viewNum : number = 0;
+    const edited:boolean = false;
+
     const postData = {
       uid,
       title,
@@ -37,6 +47,16 @@ export const addPostFunc = async (data: {
       image,
       tag,
       categories,
+      createTime,
+      editTime,
+      like,
+      likeBy,
+      comment,
+      savedBy,
+      shareBy,
+      viewNum,
+      commentNum,
+      edited,
     };
     const collection = 'post';
     const postRef = db.collection(collection);

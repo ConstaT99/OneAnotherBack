@@ -37,7 +37,7 @@ export const deletePost = async (data:{
   if (postUid !== uid) {
     return Promise.reject(new Error('you do not have premission to delete this post'));
   }
-  //   const postTag = postData.tag;
+  // const postTag = postData.tag;
   // delete from the tag array
   // delete from the categories
   return postRef.delete();
