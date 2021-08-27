@@ -9,7 +9,7 @@ describe('add comment test', () => {
       author: 'me',
       content: 'test comment content',
       replyToPost: true,
-      replyId: 'wR9n7Q6vF5i1kaep0tuq'
+      replyId: 'wR9n7Q6vF5i1kaep0tuq',
     };
     const returnId = await addCommentFunc(testData);
     const commentRef = db.collection('comment');
