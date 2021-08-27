@@ -7,3 +7,4 @@ export * from '../test/user/userUpdateTest';
 export * from '../test/school/schoolTest';
 export * from '../test/tag/isTagExists.t';
 export * from '../test/tag/addTagFunc.t';
+export * from '../test/comment/addCommentFunc.t';
