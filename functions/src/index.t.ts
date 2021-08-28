@@ -23,4 +23,4 @@ export * from '../test/categories/updateCatFunc.t';
 export * from '../test/comment/addCommentFunc.t';
 export * from '../test/comment/getCommentFunc.t';
 export * from '../test/comment/updateRepliedCommentFunc.t';
-export * from '../test/comment/updateRepliedPostFunc.t'
+export * from '../test/comment/updateRepliedPostFunc.t';
