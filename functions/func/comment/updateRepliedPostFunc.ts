@@ -30,7 +30,7 @@ export const updateRepliedPostFunc = async (data: {
     // @ts-ignore
     postData.comment.push(toAddId);
     // @ts-ignore
-    postData.commentNum++;
+    postData.commentNum += 1;
     // @ts-ignore
     postRef.update({ comment: postData.comment, commentNum: postData.commentNum });
   }
