@@ -20,6 +20,6 @@ export * from '../test/categories/deletePostFromCat.t';
 export * from '../test/categories/isCatExists.t';
 export * from '../test/categories/updateCatFunc.t';
 
-// export * from '../test/comment/addCommentFunc.t';
+export * from '../test/comment/addCommentFunc.t';
 export * from '../test/comment/getCommentFunc.t';
 export * from '../test/comment/updateRepliedCommentFunc.t';

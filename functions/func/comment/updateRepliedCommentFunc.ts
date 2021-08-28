@@ -25,10 +25,11 @@ export const updateRepliedCommentFunc = async (data: {
   }
   const commentData = commentDoc.data();
   // @ts-ignore
-  const { repliedBy } = commentData.repliedBy;
-  if (repliedBy.indexOf(toAddId) === -1) {
-    repliedBy.push(toAddId);
-    commentRef.update({ repliedBy });
+  if (commentData.repliedBy.indexOf(toAddId) === -1) {
+    // @ts-ignore
+    commentData.repliedBy.push(toAddId);
+    // @ts-ignore
+    commentRef.update({ repliedBy: commentData.repliedBy });
   }
   return commentData;
 };

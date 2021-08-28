@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
+import { updateRepliedCommentFunc } from './updateRepliedCommentFunc';
 
 /*
 author @Cath
@@ -43,6 +44,13 @@ export const addCommentFunc = async (data: {
   const collection = 'comment';
   const commentRef = db.collection(collection);
   const docRef = await commentRef.add(commentInfo);
+  const updateInfo = {
+    commentId: replyId,
+    toAddId: docRef.id,
+  };
+  if (!replyToPost) {
+    updateRepliedCommentFunc(updateInfo);
+  }
   return docRef.id;
 };
 
