@@ -20,14 +20,14 @@ export const updateRepliedCommentFunc = async (data: {
   const commentRef = db.collection('comment').doc(commentId);
   const commentDoc = await commentRef.get();
   if (commentDoc === undefined) {
-      return Promise.reject(new Error("invalid update, cannot read parent comment."))
+    return Promise.reject(new Error('invalid update, cannot read parent comment.'));
   }
   const commentData = commentDoc.data();
   // @ts-ignore
   const repliedBy = commentData.repliedBy;
   if (repliedBy.indexOf(toAddId) === -1) {
-    repliedBy.push(toAddId);  
-    commentRef.update({repliedBy});
+    repliedBy.push(toAddId);
+    commentRef.update({ repliedBy });
   }
   return commentData;
 };
