@@ -1,3 +1,4 @@
+import * as functions from 'firebase-functions';
 import { db } from '../../db';
 /*
 author @Cath
@@ -31,3 +32,5 @@ export const updateRepliedCommentFunc = async (data: {
   }
   return commentData;
 };
+
+export default functions.https.onCall(updateRepliedCommentFunc);
