@@ -24,7 +24,7 @@ export const updateRepliedCommentFunc = async (data: {
   }
   const commentData = commentDoc.data();
   // @ts-ignore
-  const repliedBy = commentData.repliedBy;
+  const { repliedBy } = commentData.repliedBy;
   if (repliedBy.indexOf(toAddId) === -1) {
     repliedBy.push(toAddId);
     commentRef.update({ repliedBy });
