@@ -14,6 +14,7 @@ export * from '../test/common/delete.t';
 
 export * from '../test/tag/isTagExists.t';
 export * from '../test/tag/addTagFunc.t';
+export * from '../test/tag/deletePostFromTag.t';
 
 export * from '../test/categories/updateCatFunc.t';
 export * from '../test/categories/deletePostFromCat.t';
