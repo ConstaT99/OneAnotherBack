@@ -44,6 +44,7 @@ describe('User update test', () => {
         expect.fail('Not suppose to update for null context');
       })
       .catch(() => {
+        // Nothing
       });
   });
 
@@ -55,6 +56,7 @@ describe('User update test', () => {
         expect.fail('Not suppose to update for empty field');
       })
       .catch(() => {
+        // Nothing
       });
 
     testdata.updateField = 'LOL';
@@ -64,6 +66,7 @@ describe('User update test', () => {
         expect.fail('Not suppose to update for non existing field');
       })
       .catch(() => {
+        // Nothing
       });
   });
 });

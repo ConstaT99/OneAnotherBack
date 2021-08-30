@@ -1,8 +1,22 @@
 /* eslint-disable import/export */
 
-export * from '../test/user/userReadTest';
-export * from '../test/user/userUpdateTest';
-export * from '../test/post/postReadTest';
-export * from '../test/school/schoolTest';
-export * from '../test/tag/isTagExists.t';
-export * from '../test/tag/addTagFunc.t';
+// // User collection
+// export * from '../test/user/userReadTest';
+// export * from '../test/user/userUpdateTest';
+
+// Post collection
+export * from '../test/post/postReadTest.t';
+export * from '../test/post/readPostTest.t';
+
+// // School collection
+// export * from '../test/school/schoolTest.t';
+
+// // tag collection
+// export * from '../test/tag/isTagExists.t';
+// export * from '../test/tag/addTagFunc.t';
+
+// // categories
+// export * from '../test/categories/updateCatFunc.t';
+// export * from '../test/categories/deletePostFromCat.t';
+// export * from '../test/categories/isCatExists.t';
+// export * from '../test/categories/updateCatFunc.t';
