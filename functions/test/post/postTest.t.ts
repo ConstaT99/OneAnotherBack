@@ -12,6 +12,7 @@ describe('Post add test', () => {
     image: [null],
     tag: 'iw9MNyLzHjw7r2dwW5cm',
     categories: null,
+    aStatus: false,
   };
 
   const testDataTwo = {
@@ -21,6 +22,7 @@ describe('Post add test', () => {
     image: [null],
     tag: 'iw9MNyLzHjw7r2dwW5cm',
     categories: null,
+    aStatus: false,
   };
 
   const testDataThree = {
@@ -30,6 +32,7 @@ describe('Post add test', () => {
     image: [null],
     tag: 'iw9MNyLzHjw7r2dwW5cm',
     categories: null,
+    aStatus: false,
   };
 
   const testDataFour = {
@@ -39,12 +42,13 @@ describe('Post add test', () => {
     image: [null],
     tag: 'iw9MNyLzHjw7r2dwW5cm',
     categories: null,
+    aStatus: false,
   };
 
   it('Easy add & update test', async () => {
     const resultOne = addPostFunc(testDataOne);
     resultOne.then(() => {
-      // console.log(snapshot);
+      // pass the test
     }).catch(() => {
       expect.fail();
     });
@@ -67,7 +71,6 @@ describe('Post add test', () => {
   it('add Test with no title and no content', async () => {
     const resultFour = addPostFunc(testDataFour);
     resultFour.then(() => {
-      // console.log(result);
       expect.fail();
     }).catch(() => {
       // Doing Nothing it should raise error
@@ -78,7 +81,7 @@ describe('Post add test', () => {
   it('add Test with no title and content', async () => {
     const resultTwo = addPostFunc(testDataTwo);
     resultTwo.then(() => {
-      // console.log(result);
+      // pass the test
     }).catch(() => {
       expect.fail();
     });
@@ -87,13 +90,9 @@ describe('Post add test', () => {
   it('add Test with title and no content with update content', async () => {
     const resultThree = addPostFunc(testDataThree);
     resultThree.then(() => {
-      // console.log(result);
+      // pass the test
     }).catch(() => {
       expect.fail();
     });
   });
-
-  // it('update Post Test ', async () => {
-  //   updatePostFunc(updateDateOne);
-  // });
 });

@@ -14,9 +14,10 @@ export const addPostFunc = async (data: {
   image: string[] | null[];// contain image url
   tag: string; // tagid
   categories: string | null; // categroy id
+  aStatus: boolean;
 }) => {
   const {
-    uid, content, title, image, tag,
+    uid, content, title, image, tag, aStatus
   } = data;
   let { categories } = data;
   if (uid == null) {
@@ -59,6 +60,7 @@ export const addPostFunc = async (data: {
     viewNum,
     commentNum,
     edited,
+    aStatus,
   };
   const collection = 'post';
   const postRef = db.collection(collection);
