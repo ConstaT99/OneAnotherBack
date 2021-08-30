@@ -4,7 +4,7 @@ import 'mocha';
 
 describe('Post read test', () => {
   const testdata = {
-    postId: 'wR9n7Q6vF5i1kaep0tuq',
+    postId: '0HZGUlIV9VrGTAIS8Gim',
   };
 
   it('should read successfully for existing post', async () => {
@@ -12,7 +12,7 @@ describe('Post read test', () => {
     if (postdata === undefined) {
       expect.fail('post is undefined');
     } else {
-      expect(postdata.user).to.equal('user/mSbpvEkIwD8jqj3IwUOh');
+      expect(postdata.uid).to.equal('CmSdt5xeSKfZiAw84ye1PC8zOjf2');
     }
   });
 

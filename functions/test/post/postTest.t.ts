@@ -3,6 +3,9 @@ import { readPost } from '../../func/post/readPostFunc';
 import { addPostFunc } from '../../func/post/addPostFunc';
 import 'mocha';
 import { updatePostFunc } from '../../func/post/updatePostFunc';
+import { deletePostFunc } from '../../func/post/deletePostFunc';
+// import { deletePostFunc } from '../../func/post/deletePostFunc';
+
 
 describe('Post add test', () => {
   const testDataOne = {
@@ -10,7 +13,7 @@ describe('Post add test', () => {
     title: 'This is Test Title',
     content: 'This is Test Content',
     image: [null],
-    tag: 'iw9MNyLzHjw7r2dwW5cm',
+    tag: 'covid-19',
     categories: null,
     aStatus: false,
   };
@@ -20,7 +23,7 @@ describe('Post add test', () => {
     title: null,
     content: 'This is Test Content',
     image: [null],
-    tag: 'iw9MNyLzHjw7r2dwW5cm',
+    tag: 'covid-19',
     categories: null,
     aStatus: false,
   };
@@ -30,7 +33,7 @@ describe('Post add test', () => {
     title: 'This is Test Title',
     content: null,
     image: [null],
-    tag: 'iw9MNyLzHjw7r2dwW5cm',
+    tag: 'covid-19',
     categories: null,
     aStatus: false,
   };
@@ -40,12 +43,12 @@ describe('Post add test', () => {
     title: null,
     content: null,
     image: [null],
-    tag: 'iw9MNyLzHjw7r2dwW5cm',
+    tag: 'covid-19',
     categories: null,
     aStatus: false,
   };
 
-  it('Easy add & update test', async () => {
+  it('add & update & read & delete test', async () => {
     const resultOne = addPostFunc(testDataOne);
     resultOne.then(() => {
       // pass the test
@@ -58,19 +61,33 @@ describe('Post add test', () => {
       updateField: 'content',
       updateContext: 'This is test update content',
     };
-    updatePostFunc(updateDateOne);
+
+    await updatePostFunc(updateDateOne);
+
     const readData = {
       postId: updateDateOne.postId,
     };
-    const myResult = readPost(readData);
+
+    const myResult = await readPost(readData);
     if (myResult === undefined) {
       expect.fail();
     }
+    expect(myResult.content).to.equal(updateDateOne.updateContext);
+
+    const deleteData = {
+      uid: 'CmSdt5xeSKfZiAw84ye1PC8zOjf2',
+      postId: readData.postId,
+    }
+
+    await deletePostFunc(deleteData).then(() => {
+      // pass 
+    }).catch(( error ) => {
+      expect.fail(error);
+    });
   });
 
   it('add Test with no title and no content', async () => {
-    const resultFour = addPostFunc(testDataFour);
-    resultFour.then(() => {
+    addPostFunc(testDataFour).then(() => {
       expect.fail();
     }).catch(() => {
       // Doing Nothing it should raise error
@@ -85,14 +102,35 @@ describe('Post add test', () => {
     }).catch(() => {
       expect.fail();
     });
+    const deleteData = {
+      uid: 'CmSdt5xeSKfZiAw84ye1PC8zOjf2',
+      postId: (await resultTwo).id,
+    }
+
+    await deletePostFunc(deleteData).then(() => {
+      // pass 
+    }).catch((error) => {
+      expect.fail(error);
+    });
   });
 
-  it('add Test with title and no content with update content', async () => {
+  it('add Test with title and no content', async () => {
     const resultThree = addPostFunc(testDataThree);
     resultThree.then(() => {
       // pass the test
     }).catch(() => {
       expect.fail();
+    });
+
+    const deleteData = {
+      uid: 'CmSdt5xeSKfZiAw84ye1PC8zOjf2',
+      postId: (await resultThree).id,
+    }
+
+    await deletePostFunc(deleteData).then(() => {
+      // pass 
+    }).catch((error) => {
+      expect.fail(error);
     });
   });
 });

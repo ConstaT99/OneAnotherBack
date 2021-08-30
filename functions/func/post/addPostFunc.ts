@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
+import { updateCatFunc } from '../categories/updateCatFunc';
 import { addTagFunc } from '../tag/addTagFunc';
 
 /*
@@ -17,7 +18,7 @@ export const addPostFunc = async (data: {
   aStatus: boolean;
 }) => {
   const {
-    uid, content, title, image, tag, aStatus
+    uid, content, title, image, tag, aStatus,
   } = data;
   let { categories } = data;
   if (uid == null) {
@@ -30,7 +31,7 @@ export const addPostFunc = async (data: {
     return Promise.reject(new Error('one of title should not null'));
   }
   if (categories == null) {
-    categories = 'other';
+    categories = '其它';
   }
   const createTime:number = Math.floor(Date.now() / 1000);
   const editTime:number = Math.floor(Date.now() / 1000);
@@ -69,7 +70,8 @@ export const addPostFunc = async (data: {
     name: tag,
     postId: result.id,
   };
-  addTagFunc(taginfo); // add tag
+  await addTagFunc(taginfo);
+  await updateCatFunc({ name: categories, postId: result.id})
   return result;
 };
 

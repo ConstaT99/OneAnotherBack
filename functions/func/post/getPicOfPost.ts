@@ -25,8 +25,8 @@ export const getPicOfPost = async (data:{
     if (!postData) {
       reject(new Error(`postData Read failed: at collection post with docID [${postId}].`));
     } else {
-      const pic = postData.picture;
-      const url = pic[0];
+      const img = postData.image;
+      const url = img[0];
       resolve(url);
     }
   });

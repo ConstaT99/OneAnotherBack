@@ -1,5 +1,7 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
+import { deletePostFromCatFunc } from '../categories/deletePostFromCatFunc';
+import { deletePostFromTagFunc } from '../tag/deletePostFromTagFunc';
 
 /*
 This is oncall  function for delete post written by Jerry;
@@ -12,12 +14,9 @@ output:
     promise<writeresult | Error >
 
     TODO:
-    1. finish delete the post from tag array
-    2. finish delete the post from category array
-    3. like array need fixed a
     4. add another number called viewed with length 30
 */
-export const deletePost = async (data:{
+export const deletePostFunc = async (data:{
   uid: string;
   postId: string;
 }) => {
@@ -39,10 +38,25 @@ export const deletePost = async (data:{
   if (postUid !== uid) {
     return Promise.reject(new Error('you do not have premission to delete this post'));
   }
-  // const postTag = postData.tag;
-  // delete from the tag array
+
+  // delete tage from tag
+  const postTag = postData.tag;
+  const deleteTagData = {
+    name: postTag,
+    postId: postId,
+  };
+
+  await deletePostFromTagFunc(deleteTagData);
+  
   // delete from the categories
+  const postCat = postData.categories;
+  const deleteCatData = {
+    name: postCat,
+    postId: postId,
+  };
+  await deletePostFromCatFunc(deleteCatData);
+
   return postRef.delete();
 };
 
-export default functions.https.onCall(deletePost);
+export default functions.https.onCall(deletePostFunc);
