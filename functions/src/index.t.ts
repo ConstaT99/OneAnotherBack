@@ -14,6 +14,7 @@ export * from '../test/school/schoolTest.t';
 // tag collection
 export * from '../test/tag/isTagExists.t';
 export * from '../test/tag/addTagFunc.t';
+export * from '../test/tag/deletePostFromTag.t';
 
 // categories
 export * from '../test/categories/updateCatFunc.t';
