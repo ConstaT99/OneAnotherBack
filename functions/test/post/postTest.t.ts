@@ -6,7 +6,6 @@ import { updatePostFunc } from '../../func/post/updatePostFunc';
 import { deletePostFunc } from '../../func/post/deletePostFunc';
 // import { deletePostFunc } from '../../func/post/deletePostFunc';
 
-
 describe('Post add test', () => {
   const testDataOne = {
     uid: 'CmSdt5xeSKfZiAw84ye1PC8zOjf2',
@@ -77,11 +76,11 @@ describe('Post add test', () => {
     const deleteData = {
       uid: 'CmSdt5xeSKfZiAw84ye1PC8zOjf2',
       postId: readData.postId,
-    }
+    };
 
     await deletePostFunc(deleteData).then(() => {
-      // pass 
-    }).catch(( error ) => {
+      // pass
+    }).catch((error) => {
       expect.fail(error);
     });
   });
@@ -105,10 +104,10 @@ describe('Post add test', () => {
     const deleteData = {
       uid: 'CmSdt5xeSKfZiAw84ye1PC8zOjf2',
       postId: (await resultTwo).id,
-    }
+    };
 
     await deletePostFunc(deleteData).then(() => {
-      // pass 
+      // pass
     }).catch((error) => {
       expect.fail(error);
     });
@@ -125,10 +124,10 @@ describe('Post add test', () => {
     const deleteData = {
       uid: 'CmSdt5xeSKfZiAw84ye1PC8zOjf2',
       postId: (await resultThree).id,
-    }
+    };
 
     await deletePostFunc(deleteData).then(() => {
-      // pass 
+      // pass
     }).catch((error) => {
       expect.fail(error);
     });

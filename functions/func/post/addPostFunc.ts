@@ -71,7 +71,7 @@ export const addPostFunc = async (data: {
     postId: result.id,
   };
   await addTagFunc(taginfo);
-  await updateCatFunc({ name: categories, postId: result.id})
+  await updateCatFunc({ name: categories, postId: result.id });
   return result;
 };
 

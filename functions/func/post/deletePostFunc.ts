@@ -43,16 +43,16 @@ export const deletePostFunc = async (data:{
   const postTag = postData.tag;
   const deleteTagData = {
     name: postTag,
-    postId: postId,
+    postId,
   };
 
   await deletePostFromTagFunc(deleteTagData);
-  
+
   // delete from the categories
   const postCat = postData.categories;
   const deleteCatData = {
     name: postCat,
-    postId: postId,
+    postId,
   };
   await deletePostFromCatFunc(deleteCatData);
 
