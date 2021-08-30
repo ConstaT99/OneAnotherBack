@@ -14,6 +14,8 @@ output:
     TODO:
     1. finish delete the post from tag array
     2. finish delete the post from category array
+    3. like array need fixed a
+    4. add another number called viewed with length 30
 */
 export const deletePost = async (data:{
   uid: string;

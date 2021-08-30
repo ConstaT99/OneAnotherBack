@@ -30,6 +30,8 @@ export const addPostFunc = async (data: {
     if (categories == null) {
       categories = 'other';
     }
+    const likeby:Array<string> = [];
+    const anonymityStatus:Boolean = false;
     const postData = {
       uid,
       title,
@@ -37,6 +39,8 @@ export const addPostFunc = async (data: {
       image,
       tag,
       categories,
+      likeby,
+      anonymityStatus,
     };
     const collection = 'post';
     const postRef = db.collection(collection);
