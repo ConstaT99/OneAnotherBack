@@ -15,7 +15,7 @@ Output{
 }
 */
 
-export const updateCatFunc = async (data:{
+export const updateCat = async (data:{
   name: string,
   postId: string
 }) => {
@@ -45,4 +45,4 @@ export const updateCatFunc = async (data:{
     }
   });
 };
-export default functions.https.onCall(updateCatFunc);
+export default functions.https.onCall(updateCat);

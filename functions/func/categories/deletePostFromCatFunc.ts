@@ -16,7 +16,7 @@ Output{
 }
 */
 
-export const deletePostFromCatFunc = async (data:{
+export const deletePostFromCat = async (data:{
   name: string,
   postId: string
 }) => {
@@ -55,4 +55,4 @@ export const deletePostFromCatFunc = async (data:{
     }
   });
 };
-export default functions.https.onCall(deletePostFromCatFunc);
+export default functions.https.onCall(deletePostFromCat);

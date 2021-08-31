@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { db } from '../../db';
-import { deletePostFromCatFunc } from '../../func/categories/deletePostFromCatFunc';
+import { deletePostFromCat } from '../../func/categories/deletePostFromCatFunc';
 
 describe('deletePostFromCat test', () => {
   it('the postId should be removed from the postArray in this category', async () => {
@@ -8,7 +8,7 @@ describe('deletePostFromCat test', () => {
       name: '兴趣',
       postId: 'abcd',
     };
-    await deletePostFromCatFunc(testData);
+    await deletePostFromCat(testData);
     const collection = 'categories';
     const catRefid = db.collection(collection);
     const snapshot = await catRefid.where('catName', '==', testData.name).get();
@@ -23,11 +23,12 @@ describe('deletePostFromCat test', () => {
       name: '兴趣',
       postId: 'notExistsPostId',
     };
-    await deletePostFromCatFunc(testData)
+    await deletePostFromCat(testData)
       .then(() => {
         expect.fail('post does not exist in this tag');
       })
       .catch(() => {
+        // nothing
       });
   });
 });

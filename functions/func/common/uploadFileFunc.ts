@@ -13,7 +13,7 @@ input: {
 }
 output: either the destination filename or error
  */
-export const uploadFileFunc = async (data:{
+export const uploadFile = async (data:{
   uid : string,
   fname : string,
   file : Buffer
@@ -30,4 +30,4 @@ export const uploadFileFunc = async (data:{
     .catch((err) => err);
 };
 
-export default functions.https.onCall(uploadFileFunc);
+export default functions.https.onCall(uploadFile);

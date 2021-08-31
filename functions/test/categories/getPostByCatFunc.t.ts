@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import { db } from '../../db';
-import { getPostsByCatFunc } from '../../func/categories/getPostsByCatFunc';
+import { getPostsByCat } from '../../func/categories/getPostsByCatFunc';
 
 describe('getPostByCatFunc test', () => {
   it('expect the return postArray to equal to the postArray in the db', async () => {
-    const check = await getPostsByCatFunc({ name: '学习' });
+    const check = await getPostsByCat({ name: '学习' });
     const collection = 'categories';
     const catRefid = db.collection(collection);
     const snapshot = await catRefid.where('catName', '==', '学习').get();
