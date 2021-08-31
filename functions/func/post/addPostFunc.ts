@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import { isUserExists } from '../common/isUserExists';
 import { db } from '../../db';
 import { updateCatFunc } from '../categories/updateCatFunc';
 import { addTagFunc } from '../tag/addTagFunc';
@@ -23,6 +24,9 @@ export const addPostFunc = async (data: {
   let { categories } = data;
   if (uid == null) {
     return Promise.reject(new Error('user is not exist'));
+  }
+  if (!isUserExists({ uid })) {
+    return Promise.reject(new Error('user is not exists'));
   }
   if (image.length > 4) {
     return Promise.reject(new Error('exceed the number of images'));

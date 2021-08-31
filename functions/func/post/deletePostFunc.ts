@@ -14,7 +14,7 @@ output:
     promise<writeresult | Error >
 
     TODO:
-    4. add another number called viewed with length 30
+    delete comments and all replies
 */
 export const deletePostFunc = async (data:{
   uid: string;
@@ -55,6 +55,8 @@ export const deletePostFunc = async (data:{
     postId,
   };
   await deletePostFromCatFunc(deleteCatData);
+
+  // TODO!! delete comment and replies
 
   return postRef.delete();
 };
