@@ -47,6 +47,7 @@ export const addPostFunc = async (data: {
   const shareBy:Array<string> = [];
   const viewNum : number = 0;
   const edited:boolean = false;
+  const postScore:number = 0;
 
   const postData = {
     uid,
@@ -66,6 +67,7 @@ export const addPostFunc = async (data: {
     commentNum,
     edited,
     aStatus,
+    postScore,
   };
   const collection = 'post';
   const postRef = db.collection(collection);
