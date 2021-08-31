@@ -13,7 +13,7 @@ export const addPostFunc = async (data: {
   uid: string;
   title: string | null; // 30 字
   content: string | null; // contain text of the post 1000 字
-  image: string[] | null[];// contain image url
+  image: string[];// contain image url
   tag: string; // tagid
   categories: string | null; // categroy id
   aStatus: boolean;
@@ -31,7 +31,7 @@ export const addPostFunc = async (data: {
   if (image.length > 4) {
     return Promise.reject(new Error('exceed the number of images'));
   }
-  if (title == null && content == null) {
+  if (title == null && content == null && image === []) {
     return Promise.reject(new Error('one of title should not null'));
   }
   if (categories == null) {

@@ -1,11 +1,19 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
+/*
+This is oncall function for update user profile written by Cath;
+input:
+    data:{
+      postId: string;
+    }
+output:
+    promise<firebasefirestore.documentdata | undefined>
+*/
+
 export const readPost = async (data:{
   postId: string;
 }) => {
-  // TODO:
-  // need to do user check i am going to write a common function for uid check
   const { postId } = data;
   if (postId == null) {
     return Promise.reject(new Error('post does not exist'));

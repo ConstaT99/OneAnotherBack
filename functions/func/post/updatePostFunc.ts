@@ -6,6 +6,7 @@ This is oncall function for update user profile written by Jerry;
 input:
     data:{
       uid: string;
+      postId: string;
       updateField: string;
       updateContext: any;
     }
