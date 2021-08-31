@@ -31,7 +31,8 @@ export const addPostFunc = async (data: {
   if (image.length > 4) {
     return Promise.reject(new Error('exceed the number of images'));
   }
-  if (title == null && content == null && image === []) {
+  const emptyString:string[] = [];
+  if (title == null && content == null && image === emptyString) {
     return Promise.reject(new Error('one of title should not null'));
   }
   if (categories == null) {
