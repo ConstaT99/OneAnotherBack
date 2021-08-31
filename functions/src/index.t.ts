@@ -1,22 +1,23 @@
 /* eslint-disable import/export */
 
-//  export * from '../test/template/addReadExample.t';
-
+// User collection
 export * from '../test/user/userReadTest';
 export * from '../test/user/userUpdateTest';
 
-export * from '../test/school/schoolTest';
+// School collection
+export * from '../test/school/schoolTest.t';
 
-export * from '../test/common/isUserExists.t';
-export * from '../test/common/uploadFile.t';
-export * from '../test/common/getFileURL.t';
-export * from '../test/common/delete.t';
-
+// tag collection
 export * from '../test/tag/isTagExists.t';
 export * from '../test/tag/addTagFunc.t';
 export * from '../test/tag/deletePostFromTag.t';
 
+// categories
 export * from '../test/categories/updateCatFunc.t';
 export * from '../test/categories/deletePostFromCat.t';
 export * from '../test/categories/isCatExists.t';
 export * from '../test/categories/updateCatFunc.t';
+
+// Post collection
+export * from '../test/post/postReadTest.t';
+export * from '../test/post/postTest.t';

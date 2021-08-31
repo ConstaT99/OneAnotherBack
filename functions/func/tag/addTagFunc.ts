@@ -25,7 +25,6 @@ export const addTagFunc = async (data:{
 }) => {
   const { name, postId } = data;
   if (name === null) {
-    // reject(new Error('invalid field'));
     return Promise.reject(new Error('invalid field'));
   }
   const checkExists = await isTagExists({ name });
