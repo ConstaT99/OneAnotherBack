@@ -10,7 +10,7 @@ Output {
     return the postArray under this cat
 }
 */
-export const getPostsByCatFunc = async (data:{
+export const getPostsByCat = async (data:{
   name: string;
 }) => {
   const collection = 'categories';
@@ -20,4 +20,4 @@ export const getPostsByCatFunc = async (data:{
   const postsData = snapshot.docs[0].data();
   return postsData.postArray;
 };
-export default functions.https.onCall(getPostsByCatFunc);
+export default functions.https.onCall(getPostsByCat);

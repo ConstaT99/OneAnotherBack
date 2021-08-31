@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { db } from '../../db';
-import { updateCatFunc } from '../../func/categories/updateCatFunc';
+import { updateCat } from '../../func/categories/updateCatFunc';
 
 describe('updateCatFunc test', () => {
   it('the postId should be added into the postArray in this category', async () => {
@@ -8,7 +8,7 @@ describe('updateCatFunc test', () => {
       name: '兴趣',
       postId: 'abcd',
     };
-    await updateCatFunc(testData);
+    await updateCat(testData);
     const collection = 'categories';
     const catRefid = db.collection(collection);
     const snapshot = await catRefid.where('catName', '==', testData.name).get();

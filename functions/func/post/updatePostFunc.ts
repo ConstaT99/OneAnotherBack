@@ -13,7 +13,7 @@ input:
 output:
     promise<writeresult>
 */
-export const updatePostFunc = async (data: {
+export const updatePost = async (data: {
   uid: string;
   postId: string;
   updateField: string;
@@ -43,4 +43,4 @@ export const updatePostFunc = async (data: {
   return postRef.update({ [updateField]: updateContext });
 };
 
-export default functions.https.onCall(updatePostFunc);
+export default functions.https.onCall(updatePost);

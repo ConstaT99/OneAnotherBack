@@ -16,7 +16,7 @@ Output{
 }
 */
 
-export const deletePostFromTagFunc = async (data:{
+export const deletePostFromTag = async (data:{
   name: string,
   postId: string
 }) => {
@@ -52,4 +52,4 @@ export const deletePostFromTagFunc = async (data:{
     }
   });
 };
-export default functions.https.onCall(deletePostFromTagFunc);
+export default functions.https.onCall(deletePostFromTag);
