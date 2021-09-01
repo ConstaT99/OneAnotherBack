@@ -13,7 +13,7 @@ Output {
 
 */
 
-export const deleteFileFunc = async (data:{
+export const deleteFile = async (data:{
   uid : string,
   fname : string,
 }) => {
@@ -21,4 +21,4 @@ export const deleteFileFunc = async (data:{
   await storage.deleteFiles({ prefix: `${uid}/${fname}` }).then().catch((err) => err);
 };
 
-export default functions.https.onCall(deleteFileFunc);
+export default functions.https.onCall(deleteFile);

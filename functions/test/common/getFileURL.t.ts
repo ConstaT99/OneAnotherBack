@@ -2,7 +2,7 @@ import 'mocha';
 import fs from 'fs';
 import https from 'https';
 import { expect } from 'chai';
-import { getFileUrlFunc } from '../../func/common/getFileUrlFunc';
+import { getFileUrl } from '../../func/common/getFileUrlFunc';
 
 describe('getURL test', () => {
   it('url test 1, should return the url', async () => {
@@ -10,7 +10,7 @@ describe('getURL test', () => {
       file: 'test/test.jpg',
     };
     const tempFile = fs.createWriteStream('./test/common/live_and_create_d.jpg');
-    const urls = await getFileUrlFunc(testData);
+    const urls = await getFileUrl(testData);
     console.log(urls);
     https.get(urls, (response) => {
       if (response.statusCode !== 200) {
