@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import { isUserExists } from '../common/isUserExists';
 import { db } from '../../db';
 import { updateCatFunc } from '../categories/updateCatFunc';
 import { addTagFunc } from '../tag/addTagFunc';
@@ -12,7 +13,7 @@ export const addPostFunc = async (data: {
   uid: string;
   title: string | null; // 30 字
   content: string | null; // contain text of the post 1000 字
-  image: string[] | null[];// contain image url
+  image: string[];// contain image url
   tag: string; // tagid
   categories: string | null; // categroy id
   aStatus: boolean;
@@ -24,10 +25,14 @@ export const addPostFunc = async (data: {
   if (uid == null) {
     return Promise.reject(new Error('user is not exist'));
   }
+  if (!isUserExists({ uid })) {
+    return Promise.reject(new Error('user is not exists'));
+  }
   if (image.length > 4) {
     return Promise.reject(new Error('exceed the number of images'));
   }
-  if (title == null && content == null) {
+  const emptyString:string[] = [];
+  if (title == null && content == null && image === emptyString) {
     return Promise.reject(new Error('one of title should not null'));
   }
   if (categories == null) {
@@ -45,6 +50,7 @@ export const addPostFunc = async (data: {
   const shareBy:Array<string> = [];
   const viewNum : number = 0;
   const edited:boolean = false;
+  const postScore:number = 0;
 
   const postData = {
     uid,
@@ -66,6 +72,7 @@ export const addPostFunc = async (data: {
     aStatus,
     shareNum,
     savedNum,
+    postScore,
   };
   const collection = 'post';
   const postRef = db.collection(collection);
