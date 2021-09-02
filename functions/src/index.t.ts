@@ -21,4 +21,4 @@
 // // Post collection
 // export * from '../test/post/postReadTest.t';
 // export * from '../test/post/postTest.t';
-export * from '../test/hot-tags/updatePostScoreFunc.t';
+export * from '../test/hot-tags/getTagScore.t';
