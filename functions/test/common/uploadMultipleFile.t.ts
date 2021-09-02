@@ -21,7 +21,7 @@ describe('Upload multiple file Test', () => {
     await uploadMultipleFile(testData).then(() => {
       expect.fail('file array or fileName array is empty');
     }).catch(() => {
-      //nothing
+      // nothing
     });
   });
 });
