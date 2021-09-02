@@ -2,6 +2,18 @@ import * as functions from 'firebase-functions';
 import { getFileUrl } from './getFileUrlFunc';
 import { uploadFile } from './uploadFileFunc';
 
+/*
+Author @Cratsin
+upload multiple files in one func
+Input {
+    uid: owner of this image
+    fname: an array of name of the file, the value in this array should be corresponding to the file
+    file: An array of byte Buffer of file content
+}
+Output {
+    urls: the corresponded url of the file
+}
+*/
 
 export const uploadMultipleFile = async (data:{
     uid : string,
