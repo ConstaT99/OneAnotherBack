@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import * as functions from 'firebase-functions';
 import { getFileUrl } from './getFileUrlFunc';
 import { uploadFile } from './uploadFileFunc';
@@ -16,22 +17,25 @@ Output {
 */
 
 export const uploadMultipleFile = async (data:{
-    uid : string,
-    fname : string[],
-    file : Buffer[]
+  uid : string,
+  fname : string[],
+  file : Buffer[]
 }) => {
-    const { uid, fname, file } = data;
-    if (file.length === 0 || fname.length === 0) {
-        return Promise.reject('file array or fileName array is empty');
-    }
-    var urlArray = [];
-    for (let i = 0; i < file.length; i++) {
-        var tmpFname = fname[i];
-        var tmpFile = file[i];
-        var tmpDestName = await uploadFile({uid: uid, fname: tmpFname, file: tmpFile});
-        var url = getFileUrl({file: tmpDestName});
-        urlArray.push(url);
-    }
-    return urlArray;
-}
+  const { uid, fname, file } = data;
+  if (file.length === 0 || fname.length === 0) {
+    return Promise.reject(new Error('file array or fileName array is empty'));
+  }
+  const urlArray = [];
+  for (let i = 0; i < file.length; i += 1) {
+    const tmpFname = fname[i];
+    const tmpFile = file[i];
+    const tmpDestName = await uploadFile({ uid, fname: tmpFname, file: tmpFile });
+    const url = await getFileUrl({ file: tmpDestName });
+    urlArray.push(url);
+  }
+  if (urlArray === undefined) {
+    return Promise.reject(new Error('urlArray is Empty'));
+  }
+  return urlArray;
+};
 export default functions.https.onCall(uploadMultipleFile);
