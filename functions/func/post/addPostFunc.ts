@@ -35,7 +35,9 @@ export const addPostFunc = async (data: {
   }
   const createTime:number = Math.floor(Date.now() / 1000);
   const editTime:number = Math.floor(Date.now() / 1000);
-  const like:number = 0;
+  const likeNum:number = 0;
+  const shareNum:number = 0;
+  const savedNum: number = 0;
   const comment:Array<string> = [];
   const commentNum:number = 0;
   const likeBy:Array<string> = [];
@@ -53,7 +55,7 @@ export const addPostFunc = async (data: {
     categories,
     createTime,
     editTime,
-    like,
+    likeNum,
     likeBy,
     comment,
     savedBy,
@@ -62,6 +64,8 @@ export const addPostFunc = async (data: {
     commentNum,
     edited,
     aStatus,
+    shareNum,
+    savedNum,
   };
   const collection = 'post';
   const postRef = db.collection(collection);
