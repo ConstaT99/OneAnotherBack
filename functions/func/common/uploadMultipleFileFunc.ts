@@ -22,6 +22,9 @@ export const uploadMultipleFile = async (data:{
   file : Buffer[]
 }) => {
   const { uid, fname, file } = data;
+  if (uid === null) {
+    return Promise.reject(new Error('uid is empty'));
+  }
   if (file.length === 0 || fname.length === 0) {
     return Promise.reject(new Error('file array or fileName array is empty'));
   }
