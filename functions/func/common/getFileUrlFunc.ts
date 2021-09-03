@@ -16,7 +16,7 @@ export const getFileUrl = async (data:{
   const { file } = data;
   const storagePath = storage.file(file);
   const expiration = new Date();
-  expiration.setMinutes(expiration.getMinutes() + 5);
+  expiration.setDate(expiration.getFullYear() + 99);
   const urls = await storagePath.getSignedUrl({ action: 'read', expires: expiration });
   return urls[0];
 };

@@ -21,3 +21,6 @@ export * from '../test/categories/updateCatFunc.t';
 // Post collection
 export * from '../test/post/postReadTest.t';
 export * from '../test/post/postTest.t';
+
+// common
+export * from '../test/common/uploadMultipleFile.t';
