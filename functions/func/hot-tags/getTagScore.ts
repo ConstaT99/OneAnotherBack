@@ -1,14 +1,16 @@
+/* eslint-disable */
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
-import { getPostScore } from './getPostScoreFunc';
+// import { getPostScore } from './getPostScoreFunc';
 /*
-Author: @Carstin
-return the score of this post
+Author: @ZhanJing @Carstin
+return the current score of this tag
+! TODO: the for loop needs to be upgraded. (Runtime improvement)
 Input {
-  postId: the postId of the post you want to get score of
+  tagId: The tagId of the tag which you want to check
 }
 Output {
-  return the actual score of the post (does not include upload)
+  return the actual score of the tag (does not include upload)
 }
 */
 
@@ -21,36 +23,30 @@ export const getTagScore = async (data:{
   const tagData = tagDoc.data();
 
   if (!tagData) {
-    return Promise.reject(new Error(`tagData Read failed: at collection post with tagName [${name}].`));
+    return Promise.reject(new Error(`tagData Read failed: at collection post with tagId [${tagId}].`));
   }
 
   let tagScore = 0;
-  const posts = tagData.posts;
-  console.log("posts vector is: ", posts);
+  const posts = await tagData.posts;
 
-  return new Promise((resolve, reject) => {
-      const array = [0];
-      posts.forEach(async (postId:string) => {
-        let postScore = await getPostScore({postId});
-        console.log("this post is:", postId, " and score is: ",postScore);
-        tagScore += postScore;
-        array.splice(0,1,tagScore);
-        console.log("updated score is: ",array[0]);
-      });
-      resolve(array);
+  return new Promise(async (resolve, reject) => {
+    if (!posts) {
+      reject(new Error('posts Read failed'));
+    } else {
+      for (const postId of posts) {
+        const postRef = db.collection('post').doc(postId);
+        const postDoc = await postRef.get();
+        const postData = postDoc.data();
+        if (!postData) {
+          reject(new Error('postData Read failed'));
+        } else {
+          const postScore = await postData.postScore;
+          tagScore += postScore;
+        }
+      }
+      resolve(tagScore);
+    }
   });
-
-  /*
-  await posts.forEach(async (postId : string) => {
-    let postScore = await getPostScore({postId});
-    console.log("this post is:", postId, " and score is: ",postScore);
-    tagScore += postScore;
-    postArray.splice(0,1,tagScore);
-    console.log("updated score is: ",postArray[0]);
-    resolve(postArray);
-  });
-  
-  console.log("so the tagScore is: ", postArray[0]);
-  return tagScore;*/
 };
+
 export default functions.https.onCall(getTagScore);

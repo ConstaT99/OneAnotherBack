@@ -1,4 +1,4 @@
-// /* eslint-disable import/export */
+/* eslint-disable import/export */
 
 // // User collection
 // export * from '../test/user/userReadTest';

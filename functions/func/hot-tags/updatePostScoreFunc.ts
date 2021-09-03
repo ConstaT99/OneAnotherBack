@@ -29,7 +29,7 @@ export const updatePostScore = async (data: {
   }
   const postScore = await getPostScore({ postId });
 
-  return postRef.update({ postScore: postScore });
+  return postRef.update({ postScore });
 }; // Admin SDK
 
 export default functions.https.onCall(updatePostScore); // Allow users to get access to this function

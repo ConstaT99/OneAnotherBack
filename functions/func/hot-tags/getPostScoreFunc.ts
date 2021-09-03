@@ -23,8 +23,8 @@ export const getPostScore = async (data:{
     return Promise.reject(new Error(`postData Read failed: at collection post with docID [${postId}].`));
   }
   const likeNum = postData.like;
-  const viewNum = postData.viewNum;
-  const commentNum = postData.commentNum;
+  const { viewNum } = postData;
+  const { commentNum } = postData;
   const share = postData.shareBy;
   let shareNum = 0;
   if (share !== undefined) { shareNum = share.length; }
