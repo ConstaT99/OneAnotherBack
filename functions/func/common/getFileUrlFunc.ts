@@ -10,7 +10,7 @@ Output {
     urls: the corresponded url of the file
 }
 */
-export const getFileUrlFunc = async (data:{
+export const getFileUrl = async (data:{
   file: string
 }) => {
   const { file } = data;
@@ -21,4 +21,4 @@ export const getFileUrlFunc = async (data:{
   return urls[0];
 };
 
-export default functions.https.onCall(getFileUrlFunc);
+export default functions.https.onCall(getFileUrl);

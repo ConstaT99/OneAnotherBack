@@ -13,8 +13,8 @@ output:
     promise<writeresult>
 */
 
-export const deleteComment = async (data:{commentId: string}) => {
-  const {commentId} = data;
+export const deleteComment = async (data:{ commentId: string }) => {
+  const { commentId } = data;
   const commentExists = await getComment(commentId);
   if (!commentExists) {
     return Promise.reject(new Error('comment does not exist'));
@@ -26,18 +26,17 @@ export const deleteComment = async (data:{commentId: string}) => {
     const postData = postDoc.data();
     if (!postData) {
       return Promise.reject(new Error('postData Read failed'));
-    } else {
-      const comment = postData.comment;
-      await comment.forEach((element:string, index:number) => {
-        if (element === postId) comment.splice(index, 1);
-      });
-      await postRef.update({ comment });
     }
+    const { comment } = postData;
+    await comment.forEach((element:string, index:number) => {
+      if (element === commentId) comment.splice(index, 1);
+    });
+    await postRef.update({ comment });
   }
   const replyArray = commentExists.repliedBy;
   if (replyArray.length !== 0) {
     replyArray.forEach((element:string) => {
-      deleteComment({commentId: element})   // not sure it will work, if not use normal for loop
+      deleteComment({ commentId: element }); // not sure it will work, if not use normal for loop
     });
   }
 
