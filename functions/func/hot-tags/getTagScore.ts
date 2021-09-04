@@ -23,11 +23,12 @@ export const getTagScore = async (data:{
   if (!tagData) {
     return Promise.reject(new Error(`tagData Read failed: at collection post with tagId [${tagId}].`));
   }
+  const nameOfTag = await tagData.name;
+  console.log(nameOfTag);
 
   const postCollection = db.collection('post');
-  const snapshot = await postCollection.where('tag', '==', tagId).get();
+  const snapshot = await postCollection.where('tag', '==', nameOfTag).get();
   const arrayOfPost = snapshot.docs.map((doc) => doc.data());
-
   const sumOfScore = arrayOfPost.reduce((sum, current) => sum + current.postScore, 0);
   return sumOfScore;
 };
