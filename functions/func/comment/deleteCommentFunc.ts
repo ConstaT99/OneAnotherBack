@@ -27,11 +27,11 @@ export const deleteComment = async (data:{commentId: string}) => {
     if (!postData) {
       return Promise.reject(new Error('postData Read failed'));
     } else {
-      const docIdArray = postData.comment;
-      docIdArray.forEach((element:string, index:number) => {
-        if (element === postId) docIdArray.splice(index, 1);
+      const comment = postData.comment;
+      await comment.forEach((element:string, index:number) => {
+        if (element === postId) comment.splice(index, 1);
       });
-      await postRef.update({ comment: docIdArray });
+      await postRef.update({ comment });
     }
   }
   const replyArray = commentExists.repliedBy;
