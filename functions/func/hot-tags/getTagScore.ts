@@ -1,7 +1,5 @@
-/* eslint-disable */
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
-// import { getPostScore } from './getPostScoreFunc';
 /*
 Author: @ZhanJing @Carstin
 return the current score of this tag
@@ -26,27 +24,12 @@ export const getTagScore = async (data:{
     return Promise.reject(new Error(`tagData Read failed: at collection post with tagId [${tagId}].`));
   }
 
-  let tagScore = 0;
-  const posts = await tagData.posts;
+  const postCollection = db.collection('post');
+  const snapshot = await postCollection.where('tag', '==', tagId).get();
+  const arrayOfPost = snapshot.docs.map((doc) => doc.data());
 
-  return new Promise(async (resolve, reject) => {
-    if (!posts) {
-      reject(new Error('posts Read failed'));
-    } else {
-      for (const postId of posts) {
-        const postRef = db.collection('post').doc(postId);
-        const postDoc = await postRef.get();
-        const postData = postDoc.data();
-        if (!postData) {
-          reject(new Error('postData Read failed'));
-        } else {
-          const postScore = await postData.postScore;
-          tagScore += postScore;
-        }
-      }
-      resolve(tagScore);
-    }
-  });
+  const sumOfScore = arrayOfPost.reduce((sum, current) => sum + current.postScore, 0);
+  return sumOfScore;
 };
 
 export default functions.https.onCall(getTagScore);
