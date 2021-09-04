@@ -13,7 +13,7 @@ Output {
 }
 */
 
-export const updateRepliedCommentFunc = async (data: {
+export const updateRepliedComment = async (data: {
   commentId: string,
   toAddId: string,
 }) => {
@@ -34,4 +34,4 @@ export const updateRepliedCommentFunc = async (data: {
   return commentData;
 };
 
-export default functions.https.onCall(updateRepliedCommentFunc);
+export default functions.https.onCall(updateRepliedComment);

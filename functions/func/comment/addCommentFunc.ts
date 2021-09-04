@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
-import { updateRepliedCommentFunc } from './updateRepliedCommentFunc';
-import { updateRepliedPostFunc } from './updateRepliedPostFunc';
+import { updateRepliedComment } from './updateRepliedCommentFunc';
+import { updateRepliedPost } from './updateRepliedPostFunc';
 
 /*
 author @Cath
@@ -18,7 +18,7 @@ Output {
 //TO DO: update repliedBy for the parent post/comment
 */
 
-export const addCommentFunc = async (data: {
+export const addComment = async (data: {
   author: string
   content: string
   replyToPost: boolean
@@ -50,15 +50,15 @@ export const addCommentFunc = async (data: {
       commentId: replyId,
       toAddId: docRef.id,
     };
-    updateRepliedCommentFunc(updateInfo);
+    updateRepliedComment(updateInfo);
   } else {
     const updateInfo = {
       postId: replyId,
       toAddId: docRef.id,
     };
-    updateRepliedPostFunc(updateInfo);
+    updateRepliedPost(updateInfo);
   }
   return docRef.id;
 };
 
-export default functions.https.onCall(addCommentFunc);
+export default functions.https.onCall(addComment);

@@ -14,7 +14,7 @@ Output {
 }
 */
 
-export const updateRepliedPostFunc = async (data: {
+export const updateRepliedPost = async (data: {
   postId: string,
   toAddId: string,
 }) => {
@@ -37,4 +37,4 @@ export const updateRepliedPostFunc = async (data: {
   return postData;
 };
 
-export default functions.https.onCall(updateRepliedPostFunc);
+export default functions.https.onCall(updateRepliedPost);

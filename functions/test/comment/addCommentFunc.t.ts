@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 import { db } from '../../db';
-import { addCommentFunc } from '../../func/comment/addCommentFunc';
+import { addComment } from '../../func/comment/addCommentFunc';
 
 describe('add comment test', () => {
   it('Add comment replying to a comment. return true if comment successfully added', async () => {
@@ -11,7 +11,7 @@ describe('add comment test', () => {
       replyToPost: false,
       replyId: '4HIaiATrkZOGi17S3oiS',
     };
-    const returnId = await addCommentFunc(testData);
+    const returnId = await addComment(testData);
     const commentRef = db.collection('comment');
     const docRef = await commentRef.doc(returnId).get();
     // @ts-ignore
@@ -31,7 +31,7 @@ describe('add comment test', () => {
       replyToPost: true,
       replyId: 'wR9n7Q6vF5i1kaep0tuq',
     };
-    const returnId = await addCommentFunc(testData);
+    const returnId = await addComment(testData);
     const commentRef = db.collection('comment');
     const docRef = await commentRef.doc(returnId).get();
     // @ts-ignore
