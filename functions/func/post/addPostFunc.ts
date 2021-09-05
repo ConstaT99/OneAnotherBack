@@ -51,6 +51,7 @@ export const addPostFunc = async (data: {
   const viewNum : number = 0;
   const edited:boolean = false;
   const postScore:number = 0;
+  const privacy:boolean = false; // 是否被设为私密动态
 
   const postData = {
     uid,
@@ -73,6 +74,7 @@ export const addPostFunc = async (data: {
     shareNum,
     savedNum,
     postScore,
+    privacy,
   };
   const collection = 'post';
   const postRef = db.collection(collection);
