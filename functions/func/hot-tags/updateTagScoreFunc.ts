@@ -16,13 +16,13 @@ export const updateTagScore = async (data: {
 }) => {
   const { tagId } = data;
   if (tagId == null) {
-    return Promise.reject(new Error('postId does not exist'));
+    return Promise.reject(new Error('tagId does not exist'));
   }
   const tagRef = db.collection('tag').doc(tagId);
   const tagDoc = await tagRef.get();
   const tagData = tagDoc.data();
   if (!tagData) {
-    return Promise.reject(new Error('postData does not exist'));
+    return Promise.reject(new Error('tagData does not exist'));
   }
   const tagScore = await getTagScore({ tagId });
 
