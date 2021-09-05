@@ -50,6 +50,7 @@ export const addUser = async (user:UserRecord) => {
   const comment: Array<string> = []; // 评论 comment/docId
   const followPost : Array<string> = []; // 关注的post post/docId
   const savedPost:string[] = [];
+  const savedTags:string[] = [];
   // friend
   const followBy: Array<string> = [];// 关注我的用户 user/docId
   const followingList : Array<string> = []; // 关注的其他用户 user/docId
@@ -105,6 +106,7 @@ export const addUser = async (user:UserRecord) => {
     blackPostList,
     emailVerified,
     phoneNumberVerified,
+    savedTags,
   };
   const collection = 'user';
   const userRef = db.collection(collection);
