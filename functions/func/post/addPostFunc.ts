@@ -77,7 +77,11 @@ export const addPost = async (data: {
     postId: result.id,
   };
   await addTag(taginfo);
-  await updateCat({ name: categories, postId: result.id });
+  const catRefid = db.collection('categories');
+  const snapshot = await catRefid.where('catName', '==', categories).get();
+  const catId = snapshot.docs[0].id;
+
+  await updateCat({ catId, postId: result.id });
   return result;
 };
 

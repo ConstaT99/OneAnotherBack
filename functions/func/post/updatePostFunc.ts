@@ -23,7 +23,7 @@ export const updatePost = async (data: {
     uid, postId, updateField, updateContext,
   } = data;// get the value
   if (uid == null) {
-    return Promise.reject(new Error('uid is not exist'));
+    return Promise.reject(new Error('uid does not exist'));
   }
   if (updateField == null || updateContext == null) {
     return Promise.reject(new Error('update info is missing'));

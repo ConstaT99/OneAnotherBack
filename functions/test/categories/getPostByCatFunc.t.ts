@@ -4,14 +4,12 @@ import { getPostsByCat } from '../../func/categories/getPostsByCatFunc';
 
 describe('getPostByCatFunc test', () => {
   it('expect the return postArray to equal to the postArray in the db', async () => {
-    const check = await getPostsByCat({ name: '学习' });
+    const check = await getPostsByCat({ catId: 'u786Ts8fYiKkhgJmzlve' });
     const collection = 'categories';
-    const catRefid = db.collection(collection);
-    const snapshot = await catRefid.where('catName', '==', '学习').get();
-    const catId = snapshot.docs[0].id; // get the catId
-
-    const docRef = await catRefid.doc(catId).get();
+    const catRef = db.collection(collection).doc('u786Ts8fYiKkhgJmzlve');
+    const catDoc = await catRef.get();
+    const catData = catDoc.data();
     // @ts-ignore
-    expect(docRef.data().postArray).to.equal(check);
+    expect(catData.postArray).to.equal(check);
   });
 });

@@ -1,6 +1,5 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
-import { isCatExists } from './isCatExists';
 
 /*
 Author @Carstin
@@ -16,24 +15,23 @@ Output{
 */
 
 export const updateCat = async (data:{
-  name: string,
+  catId: string,
   postId: string
 }) => {
-  const { name, postId } = data;
-  if (!await isCatExists({ name })) {
-    return Promise.reject(new Error('category does not exist'));
-  }
-  const lastUpdate = Math.floor(Date.now() / 1000);
+  const { catId, postId } = data;
   const collection = 'categories';
-  const catRefid = db.collection(collection);
-  const snapshot = await catRefid.where('catName', '==', name).get();
-  const catId = snapshot.docs[0].id;
-
   const catRef = db.collection(collection).doc(catId);
-  await catRef.update({ lastUpdate });
-
   const catDoc = await catRef.get();
   const catData = catDoc.data();
+
+  if (!catData) {
+    return Promise.reject(new Error('category does not exist'));
+  }
+
+  const lastUpdate = Math.floor(Date.now() / 1000);
+
+  await catRef.update({ lastUpdate });
+
   return new Promise((resolve, reject) => {
     if (!catData) {
       reject(new Error('catData Read failed'));
