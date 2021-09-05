@@ -4,6 +4,7 @@ import { getPostScore } from './getPostScoreFunc';
 /*
 Author @Stephennn
 update the post score after being re-calculated.
+call after every update async
 Input {
     postId : the id of a post needed to be update
 }
