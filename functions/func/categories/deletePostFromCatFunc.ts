@@ -39,17 +39,11 @@ export const deletePostFromCat = async (data:{
 
   await catRef.update({ lastUpdate });
 
-  return new Promise((resolve, reject) => {
-    if (!catData) {
-      reject(new Error('catData Read failed'));
-    } else {
-      const docIdArray = catData.postArray;
-      docIdArray.forEach((element:string, index:number) => {
-        if (element === postId) docIdArray.splice(index, 1);
-      });
-      catRef.update({ postArray: docIdArray });
-      resolve(docIdArray);
-    }
+  const docIdArray = catData.postArray;
+  docIdArray.forEach((element:string, index:number) => {
+    if (element === postId) docIdArray.splice(index, 1);
   });
+  await catRef.update({ postArray: docIdArray });
+  return docIdArray;
 };
 export default functions.https.onCall(deletePostFromCat);
