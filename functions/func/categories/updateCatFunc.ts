@@ -32,15 +32,9 @@ export const updateCat = async (data:{
 
   await catRef.update({ lastUpdate });
 
-  return new Promise((resolve, reject) => {
-    if (!catData) {
-      reject(new Error('catData Read failed'));
-    } else {
-      const docIdArray = catData.postArray;
-      const newDocId = docIdArray.push(postId);
-      catRef.update({ postArray: docIdArray });
-      resolve(newDocId);
-    }
-  });
+  const docIdArray = catData.postArray;
+  const newDocId = docIdArray.push(postId);
+  await catRef.update({ postArray: docIdArray });
+  return newDocId;
 };
 export default functions.https.onCall(updateCat);
