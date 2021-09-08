@@ -1,10 +1,9 @@
 import { expect } from 'chai';
 import { readPost } from '../../func/post/readPostFunc';
-import { addPostFunc } from '../../func/post/addPostFunc';
+import { addPost } from '../../func/post/addPostFunc';
 import 'mocha';
-import { updatePostFunc } from '../../func/post/updatePostFunc';
-import { deletePostFunc } from '../../func/post/deletePostFunc';
-// import { deletePostFunc } from '../../func/post/deletePostFunc';
+import { updatePost } from '../../func/post/updatePostFunc';
+import { deletePost } from '../../func/post/deletePostFunc';
 
 describe('Post add test', () => {
   const testDataOne = {
@@ -48,7 +47,7 @@ describe('Post add test', () => {
   };
 
   it('add & update & read & delete test', async () => {
-    const resultOne = addPostFunc(testDataOne);
+    const resultOne = addPost(testDataOne);
     resultOne.then(() => {
       // pass the test
     }).catch(() => {
@@ -61,7 +60,7 @@ describe('Post add test', () => {
       updateContext: 'This is test update content',
     };
 
-    await updatePostFunc(updateDateOne);
+    await updatePost(updateDateOne);
 
     const readData = {
       postId: updateDateOne.postId,
@@ -78,7 +77,7 @@ describe('Post add test', () => {
       postId: readData.postId,
     };
 
-    await deletePostFunc(deleteData).then(() => {
+    await deletePost(deleteData).then(() => {
       // pass
     }).catch((error) => {
       expect.fail(error);
@@ -86,7 +85,7 @@ describe('Post add test', () => {
   });
 
   it('add Test with no title and no content', async () => {
-    addPostFunc(testDataFour).then(() => {
+    addPost(testDataFour).then(() => {
       expect.fail();
     }).catch(() => {
       // Doing Nothing it should raise error
@@ -95,7 +94,7 @@ describe('Post add test', () => {
   });
 
   it('add Test with no title and content', async () => {
-    const resultTwo = addPostFunc(testDataTwo);
+    const resultTwo = addPost(testDataTwo);
     resultTwo.then(() => {
       // pass the test
     }).catch(() => {
@@ -106,7 +105,7 @@ describe('Post add test', () => {
       postId: (await resultTwo).id,
     };
 
-    await deletePostFunc(deleteData).then(() => {
+    await deletePost(deleteData).then(() => {
       // pass
     }).catch((error) => {
       expect.fail(error);
@@ -114,7 +113,7 @@ describe('Post add test', () => {
   });
 
   it('add Test with title and no content', async () => {
-    const resultThree = addPostFunc(testDataThree);
+    const resultThree = addPost(testDataThree);
     resultThree.then(() => {
       // pass the test
     }).catch(() => {
@@ -126,7 +125,7 @@ describe('Post add test', () => {
       postId: (await resultThree).id,
     };
 
-    await deletePostFunc(deleteData).then(() => {
+    await deletePost(deleteData).then(() => {
       // pass
     }).catch((error) => {
       expect.fail(error);

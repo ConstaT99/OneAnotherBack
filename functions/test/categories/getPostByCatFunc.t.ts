@@ -1,17 +1,18 @@
 import { expect } from 'chai';
 import { db } from '../../db';
-import { getPostsByCatFunc } from '../../func/categories/getPostsByCatFunc';
+import { getPostsByCat } from '../../func/categories/getPostsByCatFunc';
 
 describe('getPostByCatFunc test', () => {
   it('expect the return postArray to equal to the postArray in the db', async () => {
-    const check = await getPostsByCatFunc({ name: '学习' });
+    const check = await getPostsByCat({ catId: '6qt1xEqTL2pI9J1ACBEe' });
     const collection = 'categories';
-    const catRefid = db.collection(collection);
-    const snapshot = await catRefid.where('catName', '==', '学习').get();
-    const catId = snapshot.docs[0].id; // get the catId
-
-    const docRef = await catRefid.doc(catId).get();
+    const catRef = db.collection(collection).doc('6qt1xEqTL2pI9J1ACBEe');
+    const catDoc = await catRef.get();
+    const catData = catDoc.data();
     // @ts-ignore
-    expect(docRef.data().postArray).to.equal(check);
+    const postArr = catData.postArray;
+    for (let i = 0; i < check.length; i += 1) {
+      expect(check[i]).to.equal(postArr[i]);
+    }
   });
 });

@@ -3,20 +3,20 @@ import { expect } from 'chai';
 import 'mocha';
 import fs from 'fs';
 import https from 'https';
-import { uploadFileFunc } from '../../func/common/uploadFileFunc';
-import { getFileUrlFunc } from '../../func/common/getFileUrlFunc';
+import { uploadFile } from '../../func/common/uploadFileFunc';
+import { getFileUrl } from '../../func/common/getFileUrlFunc';
 
 describe('Upload File Test', () => {
   it('upload file test', async () => {
     const tmpFile = fs.createWriteStream('./test/common/live_and_create_d.jpg');
-    const fileRef = await uploadFileFunc({
+    const fileRef = await uploadFile({
       uid: 'test',
       fname: 'test.jpg',
       file: fs.readFileSync('./test/testInfo/live_and_create.jpg'),
     });
 
     console.log(fileRef);
-    const url = await getFileUrlFunc({ file: fileRef });
+    const url = await getFileUrl({ file: fileRef });
     https.get(url, (response) => {
       if (response.statusCode !== 200) {
         expect.fail('link was not downloadable');

@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
-import { deletePostFromCatFunc } from '../categories/deletePostFromCatFunc';
-import { deletePostFromTagFunc } from '../tag/deletePostFromTagFunc';
+import { deletePostFromCat } from '../categories/deletePostFromCatFunc';
+import { deletePostFromTag } from '../tag/deletePostFromTagFunc';
 
 /*
 This is oncall  function for delete post written by Jerry;
@@ -16,7 +16,7 @@ output:
     TODO:
     delete comments and all replies
 */
-export const deletePostFunc = async (data:{
+export const deletePost = async (data:{
   uid: string;
   postId: string;
 }) => {
@@ -46,19 +46,22 @@ export const deletePostFunc = async (data:{
     postId,
   };
 
-  await deletePostFromTagFunc(deleteTagData);
+  await deletePostFromTag(deleteTagData);
 
   // delete from the categories
   const postCat = postData.categories;
+  const catRefid = db.collection('categories');
+  const snapshot = await catRefid.where('catName', '==', postCat).get();
+  const catId = snapshot.docs[0].id;
   const deleteCatData = {
-    name: postCat,
+    catId,
     postId,
   };
-  await deletePostFromCatFunc(deleteCatData);
+  await deletePostFromCat(deleteCatData);
 
   // TODO!! delete comment and replies
 
   return postRef.delete();
 };
 
-export default functions.https.onCall(deletePostFunc);
+export default functions.https.onCall(deletePost);

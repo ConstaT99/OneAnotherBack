@@ -1,15 +1,15 @@
 import * as functions from 'firebase-functions';
 import { isUserExists } from '../common/isUserExists';
 import { db } from '../../db';
-import { updateCatFunc } from '../categories/updateCatFunc';
-import { addTagFunc } from '../tag/addTagFunc';
+import { updateCat } from '../categories/updateCatFunc';
+import { addTag } from '../tag/addTagFunc';
 
 /*
 TODO:
 1. limit the title character number
 2. limit the content character number
 */
-export const addPostFunc = async (data: {
+export const addPost = async (data: {
   uid: string;
   title: string | null; // 30 字
   content: string | null; // contain text of the post 1000 字
@@ -31,8 +31,7 @@ export const addPostFunc = async (data: {
   if (image.length > 4) {
     return Promise.reject(new Error('exceed the number of images'));
   }
-  const emptyString:string[] = [];
-  if (title == null && content == null && image === emptyString) {
+  if (title == null && content == null) {
     return Promise.reject(new Error('one of title should not null'));
   }
   if (categories == null) {
@@ -83,9 +82,13 @@ export const addPostFunc = async (data: {
     name: tag,
     postId: result.id,
   };
-  await addTagFunc(taginfo);
-  await updateCatFunc({ name: categories, postId: result.id });
+  await addTag(taginfo);
+  const catRefid = db.collection('categories');
+  const snapshot = await catRefid.where('catName', '==', categories).get();
+  const catId = snapshot.docs[0].id;
+
+  await updateCat({ catId, postId: result.id });
   return result;
 };
 
-export default functions.https.onCall(addPostFunc);
+export default functions.https.onCall(addPost);

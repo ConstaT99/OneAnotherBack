@@ -10,15 +10,15 @@ Output {
     urls: the corresponded url of the file
 }
 */
-export const getFileUrlFunc = async (data:{
+export const getFileUrl = async (data:{
   file: string
 }) => {
   const { file } = data;
   const storagePath = storage.file(file);
   const expiration = new Date();
-  expiration.setMinutes(expiration.getMinutes() + 5);
+  expiration.setDate(expiration.getFullYear() + 99);
   const urls = await storagePath.getSignedUrl({ action: 'read', expires: expiration });
   return urls[0];
 };
 
-export default functions.https.onCall(getFileUrlFunc);
+export default functions.https.onCall(getFileUrl);

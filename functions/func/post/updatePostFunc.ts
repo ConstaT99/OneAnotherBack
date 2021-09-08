@@ -13,7 +13,7 @@ input:
 output:
     promise<writeresult>
 */
-export const updatePostFunc = async (data: {
+export const updatePost = async (data: {
   uid: string;
   postId: string;
   updateField: string;
@@ -23,7 +23,7 @@ export const updatePostFunc = async (data: {
     uid, postId, updateField, updateContext,
   } = data;// get the value
   if (uid == null) {
-    return Promise.reject(new Error('uid is not exist'));
+    return Promise.reject(new Error('uid does not exist'));
   }
   if (updateField == null || updateContext == null) {
     return Promise.reject(new Error('update info is missing'));
@@ -43,4 +43,4 @@ export const updatePostFunc = async (data: {
   return postRef.update({ [updateField]: updateContext });
 };
 
-export default functions.https.onCall(updatePostFunc);
+export default functions.https.onCall(updatePost);

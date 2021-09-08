@@ -16,7 +16,7 @@ output{
 }
 */
 
-export const updateTagFunc = async (data:{
+export const updateTag = async (data:{
   tagId: string,
   postId: string
 }) => {
@@ -44,4 +44,4 @@ export const updateTagFunc = async (data:{
     }
   });
 };
-export default functions.https.onCall(updateTagFunc);
+export default functions.https.onCall(updateTag);
