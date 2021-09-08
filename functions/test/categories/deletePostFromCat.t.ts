@@ -11,10 +11,11 @@ describe('deletePostFromCat test', () => {
     await deletePostFromCat(testData);
 
     const collection = 'categories';
-    const catRef = db.collection(collection);
-    const docRef = await catRef.doc(testData.catId).get();
+    const catRef = db.collection(collection).doc(testData.catId);
+    const docRef = await catRef.get();
+    const catData = docRef.data();
     // @ts-ignore
-    expect(docRef.data().postArray).not.contain('abcd');
+    expect(catData.postArray).not.contain('abcd');
   });
   it('the postId should not be removed if it does not exists in this postArray', async () => {
     const testData = {
