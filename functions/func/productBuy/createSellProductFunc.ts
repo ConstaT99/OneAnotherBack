@@ -5,7 +5,7 @@ import { isUserExists } from '../common/isUserExists';
 import { db } from '../../db';
 
 /*
-TODO: 
+TODO:
 1.need to update location type
 2. uncomment the verified status functions
 3. need test
