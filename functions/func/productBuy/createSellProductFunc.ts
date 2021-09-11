@@ -1,32 +1,38 @@
 import * as functions from 'firebase-functions';
-import { isPhoneVerified } from './checkPhoneVerified';
-import { isEmailVerified } from './checkEmailVerifiedFuc';
+// import { isPhoneVerified } from './checkPhoneVerified';
+// import { isEmailVerified } from './checkEmailVerifiedFuc';
 import { isUserExists } from '../common/isUserExists';
 import { db } from '../../db';
-import { updateCat } from '../categories/updateCatFunc';
-import { addTag } from '../tag/addTagFunc';
 
 /*
-
+TODO: 
+1.need to update location type
+2. uncomment the verified status functions
+3. need test
 */
 export const addProdSell = async (data: {
   uid: string,
   productName: string,
   price: string,
   description: string,
+  status: number;
+  image: [string];
+  location: any;
+  auction: boolean;
 }) => {
   const {
-    uid, productName, price, description, productName,
+    uid, productName, price, description, status, image, location, auction,
   } = data;
   if (!isUserExists({ uid })) {
     return Promise.reject(new Error('user is not exsit'));
   }
-  if (!isEmailVerified({ uid })) {
-    return Promise.reject(new Error('Email is not verified'));
-  }
-  if (!isPhoneVerified({ uid })) {
-    return Promise.reject(new Error('PhoneNumber is not verified'));
-  }
+  // this two function can be use after deploy add user function
+  // if (!isEmailVerified({ uid })) {
+  //   return Promise.reject(new Error('Email is not verified'));
+  // }
+  // if (!isPhoneVerified({ uid })) {
+  //   return Promise.reject(new Error('PhoneNumber is not verified'));
+  // }
 
   if (description == null || productName == null) {
     return Promise.reject(new Error('Need description or Name provide '));
@@ -37,26 +43,55 @@ export const addProdSell = async (data: {
     return Promise.reject(new Error('Product Name is not valid'));
   }
 
-  
+  if (status > 10 && status < 0) {
+    return Promise.reject(new Error('enter the valid number 0 ~ 10'));
+  }
 
-  const { } = data;
+  const createTime: number = Math.floor(Date.now() / 1000);
+  const archieve: boolean = false;
+  const comment:Array<string> = [];
+  const commentNum:number = 0;
 
-  const productSellData = {
-  };
+  let productSellData;
+  if (!auction) {
+    productSellData = {
+      uid,
+      createTime,
+      productName,
+      description,
+      status,
+      image,
+      price,
+      location,
+      archieve,
+      comment,
+      commentNum,
+    };
+  } else {
+    const auctionStartPrice = price;
+    const auctionIncrementPrice: number = 1;
+    const auctionStartTime: number = createTime;
+    const auctionEndTime: number = createTime + 604800;// 604800 stand for 7 days by default
+    productSellData = {
+      uid,
+      createTime,
+      productName,
+      description,
+      status,
+      image,
+      price,
+      location,
+      archieve,
+      auctionStartPrice,
+      auctionIncrementPrice,
+      auctionStartTime,
+      auctionEndTime,
+    };
+  }
+
   const collection = 'productSell';
-  const postRef = db.collection(collection);
-  const result = await postRef.add(productSellData);
-  const taginfo = {
-    name: tag,
-    postId: result.id,
-  };
-  await addTag(taginfo);
-  const catRefid = db.collection('categories');
-  const snapshot = await catRefid.where('catName', '==', categories).get();
-  const catId = snapshot.docs[0].id;
-
-  await updateCat({ catId, postId: result.id });
-  return result;
+  const sellRef = db.collection(collection);
+  return sellRef.add(productSellData);
 };
 
-export default functions.https.onCall(addPost);
+export default functions.https.onCall(addProdSell);
