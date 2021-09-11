@@ -3,6 +3,7 @@ import { isUserExists } from '../common/isUserExists';
 import { db } from '../../db';
 import { updateCat } from '../categories/updateCatFunc';
 import { addTag } from '../tag/addTagFunc';
+import { getAvatarByName } from '../school/getAvatarByNameFunc';
 
 /*
 TODO:
@@ -49,10 +50,28 @@ export const addPost = async (data: {
   const shareBy:Array<string> = [];
   const viewNum : number = 0;
   const edited:boolean = false;
-  const postScore:number = 0;
+  const postScore:number = 16.5;
   const privacy:boolean = false; // 是否被设为私密动态
+  const userRef = db.collection('user').doc(uid);
+  const tagDoc = await userRef.get();
+  const userData = tagDoc.data();
+  if (!userData) {
+      return Promise.reject(new Error("user does not exist"));
+  }
+  const userAvatar:string = userData.avatar;
+  const userName:string = userData.userName;
+  let userSchool:string = "";
+  let schoolAvatar:string = "";
+  if (userData.school != "" ) {
+    userSchool = userData.school;
+    schoolAvatar = await getAvatarByName({name: userSchool});
+  }
 
   const postData = {
+    userSchool,
+    schoolAvatar,
+    userAvatar,
+    userName,
     uid,
     title,
     content, // can be null
@@ -74,14 +93,17 @@ export const addPost = async (data: {
     savedNum,
     postScore,
     privacy,
+    postId:'',
   };
   const collection = 'post';
   const postRef = db.collection(collection);
   const result = await postRef.add(postData);
+  postRef.doc(result.id).update({ postId: result.id});
   const taginfo = {
     name: tag,
     postId: result.id,
   };
+
   await addTag(taginfo);
   const catRefid = db.collection('categories');
   const snapshot = await catRefid.where('catName', '==', categories).get();

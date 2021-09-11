@@ -11,10 +11,11 @@ Output {
 }
 */
 export const getPostsByCat = async (data:{
-  catId: string;
+  prePostId: string,
+  catId: string,
 }) => {
   const collection = 'categories';
-  const { catId } = data;
+  const { catId, prePostId } = data;
   const catRef = db.collection(collection).doc(catId);
   const catDoc = await catRef.get();
   const catData = catDoc.data();
@@ -25,6 +26,22 @@ export const getPostsByCat = async (data:{
     const outArray:string[] = [];
     return outArray;
   }
-  return catData.postArray;
+  // const outArray:string[] =  catData.postArray;
+
+  if (prePostId == "") {
+    const postRef = db.collection('post');
+    const postGet = await postRef.where('categories', '==', catId).orderBy("postScore", "desc").limit(10).get();
+    const postsData = postGet.docs.map((doc) => doc.data());
+    return postsData;
+
+} else {
+    const postRef = db.collection('post');
+    const postGet = await postRef.where('categories', '==', catId).orderBy("postScore", "desc").startAfter(prePostId).limit(10).get();
+    const postsData = postGet.docs.map((doc) => doc.data());
+    return postsData;
+}
+
+
+  
 };
 export default functions.https.onCall(getPostsByCat);
