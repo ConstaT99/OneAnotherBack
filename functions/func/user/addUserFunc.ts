@@ -1,7 +1,6 @@
-import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { UserRecord } from 'firebase-functions/lib/providers/auth';
-import { db } from '../../db'; // import timestamp class
+import { db } from '../../db'; //
 /*
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
@@ -36,7 +35,7 @@ export const addUser = async (user:UserRecord) => {
   const gender = 0; // 0 means unkwnon, 1 means female , 2 means male
   // profile
   const userName = displayName; // given a default
-  const registerDate = admin.firestore.Timestamp.now(); // get current date
+  const registerDate = Math.floor(Date.now() / 1000); // get current date
   const rate = 5; // 用户信誉分
   let phoneNumberVerified:boolean = false;
   if (phoneNumber != null) {
