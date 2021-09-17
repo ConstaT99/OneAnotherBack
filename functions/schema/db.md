@@ -10,18 +10,19 @@ user {
     RegisterDate: timestamp
     rate: Number // 用户信誉积分
     avatar: url(string)
+    gender: 0/ 1/ -1
 
     ### 好友 ###
     following: [uid]
     followedBy: [uid]
 
     ### 论坛 ###
-    posts: [postDocId]// string[]
-    postNum: int
-    comment: [uid]
-    postLike: [postDocId]
-    followPost: [postDocId]
-    savedpost: Map<string,string[]>
+    posts: [postDocId]// string[] 自己创建的评论
+    postNum: int // 评论数
+    comment: [string] // 写的评论
+    postLike: [postDocId] // 喜欢的动态
+    followPost: [postDocId] // 这个好像有点问题 
+    savedPost: string[] // 收藏的动态
 
     ### 二手 ###
     wantToBuy: [productBuy]// 求购车
@@ -35,12 +36,13 @@ user {
     sell:[productSell] // 已售卖物件
 
     willingToBuy: [productWillBuy]// 求购(this going to have another collection)
-    order: [orderDocId]
+    order: [orderDocId] // 订单信息
 
 		### 身份验证 ###
-		student: boolen // default: 0, 1 已认证
-		realName: boolen // default: 0, 1 已认证
-		school: string // default empty, when setudent == 1 fill in school Name
+    student: boolen // default: 0, 1 已认证
+    realName: boolen // default: 0, 1 已认证
+    school: string // default empty, when setudent == 1 fill in school Name
+
 }
 
 ## School{
@@ -51,64 +53,71 @@ user {
 
 ```
 sell {
-    description: string
-    picture: reference_pic
-    video: reference_vid(nullable)
-    dealPrice: float
-    category: [reference_cat]
-    location: geopoint
-    returnable: bool
-    archieve: bool
+    uid: string// 卖家信息 -- reference 
+    emailVerify: boolean // 邮箱认证
+    phoneVerify: boolean //手机号码验证
+    createTime: number // 创建时间
+    Name: string, // 商品名字
+    description: string // 商品阐述
+    status: string, // 商品新旧状态
+    picture: image url[] // 图片 数组
+    video: video url[] // 视频数组
+    dealPrice: float  一口价 / if 有 拍卖 那就显示 当前价格
+    category: string // 商品种类
+    location: geopoint //
+    returnable: bool // 
+    archieve: bool // 这个值用来判定是否显示在主页
 
     ### track owner/posting info ###
     postTime: time
     postBy: refernce_user
 
     ### Following are nullable ###
-    auction: bool
+    auction: bool // 拍卖：1 or 0 是否开启拍卖模式
     auctionStartPrice(起拍价): float
-    auctionIncrementPrice(最小增加单位): float
-    auctionStartTime: time
-    auctionEndTime: time
+    auctionIncrementPrice(最小增加单位): number
+    auctionStartTime: time 拍卖开始时间
+    auctionEndTime: time  拍卖结束时间（默认7天
 
     ### Comment ###
-    reply: [reference_reply]
+    reply: String
 }
 ```
 ```
 buy {
-    description: string
-    picture: reference_pic (nullable)
-    targetPrice: float (nullable)
-    category: [reference_cat]
-    location: geopoint
-    archieve: bool
-
-    ### track owner/posting info ###
-    postTime: time
-    postBy: refernce_user
+    name: string, // 物品名字
+    uid: string, // 发布人信息
+    description: string // 物品描述
+    picture: string[] (nullable) // 图片数组
+    targetPrice: float (nullable) // 求购心理预期
+    category: [reference_cat] // 物品种类
+    location: geopoint // 地点
+    archieve: bool // 是否显示在主页
+    createTime: time // 发部时间
 
     ### Comment ###
-    reply: [reference_reply]
+    reply: [string] // 回复
 }
 ```
 
 ```
 order {
-    seller: refernce_user
-    buyer: refernce_user
-    orderType: bool
-    obj: refernce_sell or refernce_buy 
-    time: time
-    price: float
+    seller: String // 卖家id
+    buyer: String // 买家id
+    orderType: bool // sell or buy
+    obj: String // docid from product 
+    time: time // 购买时间
+    price: float // 购买时的价格
 
     ### 预留 ###
-    paid: bool
-    cancelled: bool
-    returnable: bool
+    paid: bool // 是否付钱
+    cancelled: bool // 是否取消
+    returnable: bool //
     transcation: None
-    delivery: None
-    satisfaction: int (1 to 5)
+    delivery: nool // 是否寄送 或者 是否交易
+    // 评分系统
+    rateToBuyer: int (1 to 5) 
+    rateToSeller: int (1 to 5)
 }
 ```
 
@@ -117,16 +126,17 @@ order {
 ```
 post: {
     ### Post Info ###
-    poster: reference_user
+    uid: userid
     createTime:Time
 
     ### content ###
-    content: reference_str(md)
-    pictures:[reference_picture]
-    replies: [reference_reply]
-    replyNum: int
-    type: "multi photos"/ "single photo" / "No photo"
-    postCategory: [reference_cat] (default cat: nothing)
+    title: string // 题目
+    content: string // 内容
+    image:[image url]
+    comment: [comment id]
+    commentNum: int
+    tag: string // hashtag 分类
+    category: [大分类] (default cat: 其他)
 
     #### like feature ####
     like: int
@@ -146,6 +156,9 @@ post: {
     ### edit ###
     edited: bool
     editTime: time
+    
+    postScore: number // 热力分
+    aStatus: bool // 是否匿名
 }
 
 reply{ // this is nested 
