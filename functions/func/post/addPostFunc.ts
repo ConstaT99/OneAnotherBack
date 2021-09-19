@@ -15,7 +15,7 @@ export const addPost = async (data: {
   title: string | null; // 30 字
   content: string | null; // contain text of the post 1000 字
   image: string[];// contain image url
-  tag: string; // tagid
+  tag: string; // tagName
   categories: string | null; // categroy id
   aStatus: boolean;
 }) => {
@@ -36,7 +36,7 @@ export const addPost = async (data: {
     return Promise.reject(new Error('one of title should not null'));
   }
   if (categories == null) {
-    categories = '其它';
+    categories = 'HaYEZRkuTrcveAOMo7PE';
   }
   const createTime:number = Math.floor(Date.now() / 1000);
   const editTime:number = Math.floor(Date.now() / 1000);
@@ -56,15 +56,15 @@ export const addPost = async (data: {
   const tagDoc = await userRef.get();
   const userData = tagDoc.data();
   if (!userData) {
-      return Promise.reject(new Error("user does not exist"));
+    return Promise.reject(new Error('user does not exist'));
   }
   const userAvatar:string = userData.avatar;
-  const userName:string = userData.userName;
-  let userSchool:string = "";
-  let schoolAvatar:string = "";
-  if (userData.school != "" ) {
+  const { userName } = userData;
+  let userSchool:string = '';
+  let schoolAvatar:string = '';
+  if (userData.school !== '') {
     userSchool = userData.school;
-    schoolAvatar = await getAvatarByName({name: userSchool});
+    schoolAvatar = await getAvatarByName({ name: userSchool });
   }
 
   const postData = {
@@ -93,23 +93,20 @@ export const addPost = async (data: {
     savedNum,
     postScore,
     privacy,
-    postId:'',
+    postId: '',
   };
   const collection = 'post';
   const postRef = db.collection(collection);
   const result = await postRef.add(postData);
-  postRef.doc(result.id).update({ postId: result.id});
+  postRef.doc(result.id).update({ postId: result.id });
   const taginfo = {
     name: tag,
     postId: result.id,
   };
 
   await addTag(taginfo);
-  const catRefid = db.collection('categories');
-  const snapshot = await catRefid.where('catName', '==', categories).get();
-  const catId = snapshot.docs[0].id;
 
-  await updateCat({ catId, postId: result.id });
+  await updateCat({ catId: categories, postId: result.id });
   return result;
 };
 
