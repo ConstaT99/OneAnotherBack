@@ -27,11 +27,40 @@ export const deleteComment = async (data:{ commentId: string }) => {
     if (!postData) {
       return Promise.reject(new Error('postData Read failed'));
     }
-    const { comment } = postData;
+    const { comment, commentNum } = postData;
     await comment.forEach((element:string, index:number) => {
       if (element === commentId) comment.splice(index, 1);
     });
-    await postRef.update({ comment });
+    const newNum = commentNum - 1;
+    await postRef.update({ comment,commentNum: newNum });
+  } else if (commentExists.replyToProductBuy === true) {
+    const productId = commentExists.replyId;
+    const productRef = db.collection('productBuy').doc(productId);
+    const productDoc = await productRef.get();
+    const productData = productDoc.data();
+    if (!productData) {
+      return Promise.reject(new Error('productData Read failed'));
+    }
+    const { comment, commentNum } = productData;
+    await comment.forEach((element:string, index:number) => {
+      if (element === commentId) comment.splice(index, 1);
+    });
+    const newNum = commentNum - 1;
+    await productRef.update({ comment,commentNum: newNum });
+  } else if (commentExists.replyToProductSell === true) {
+    const productId = commentExists.replyId;
+    const productRef = db.collection('productSell').doc(productId);
+    const productDoc = await productRef.get();
+    const productData = productDoc.data();
+    if (!productData) {
+      return Promise.reject(new Error('productData Read failed'));
+    }
+    const { comment, commentNum } = productData;
+    await comment.forEach((element:string, index:number) => {
+      if (element === commentId) comment.splice(index, 1);
+    });
+    const newNum = commentNum - 1;
+    await productRef.update({ comment,commentNum: newNum });
   }
   const replyArray = commentExists.repliedBy;
   if (replyArray.length !== 0) {

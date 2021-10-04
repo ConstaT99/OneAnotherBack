@@ -15,7 +15,6 @@ Input {
 Output {
     the tag should be added into the tag collection
 }
-
 */
 const DEFAULT_AVATAR = 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com'
   + '/o/defaultTagAvatar.png?alt=media&token=80fb2991-96de-4c89-bf88-f6566315da57';

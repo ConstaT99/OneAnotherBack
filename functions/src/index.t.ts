@@ -24,4 +24,7 @@
 // export * from '../test/comment/getCommentFunc.t';
 // export * from '../test/comment/updateRepliedCommentFunc.t';
 // export * from '../test/comment/updateRepliedPostFunc.t';
-export * from '../test/comment/deleteCommentFunc.t';
+// export * from '../test/comment/deleteCommentFunc.t';
+// export * from '../test/comment/addLikeCommentFunc.t';
+// export * from '../test/comment/addLikePostFunc.t';
+export * from '../test/comment/removeLikeCommentFunc.t'

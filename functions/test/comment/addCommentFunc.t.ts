@@ -9,6 +9,8 @@ describe('add comment test', () => {
       author: 'me',
       content: 'this is a test comment replying to another comment',
       replyToPost: false,
+      replyToProductBuy: false,
+      replyToProductSell: false,
       replyId: '4HIaiATrkZOGi17S3oiS',
     };
     const returnId = await addComment(testData);
@@ -29,6 +31,8 @@ describe('add comment test', () => {
       author: 'me',
       content: 'this is a test comment replying to a post',
       replyToPost: true,
+      replyToProductBuy: false,
+      replyToProductSell: false,
       replyId: 'wR9n7Q6vF5i1kaep0tuq',
     };
     const returnId = await addComment(testData);
