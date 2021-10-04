@@ -14,7 +14,7 @@ input:
 output:
     promise<writeresult>
 */
-export const updateProdSell = async (data: {
+export const deleteProdSell = async (data: {
   uid: string;
   prodId: string;
 }) => {
@@ -36,4 +36,4 @@ export const updateProdSell = async (data: {
   return prodSellRef.delete();
 };
 
-export default functions.https.onCall(updateProdSell);
+export default functions.https.onCall(deleteProdSell);
