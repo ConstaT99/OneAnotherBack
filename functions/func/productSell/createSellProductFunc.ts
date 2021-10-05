@@ -3,6 +3,7 @@ import * as functions from 'firebase-functions';
 // import { isEmailVerified } from './checkEmailVerifiedFuc';
 import { isUserExists } from '../common/isUserExists';
 import { db } from '../../db';
+import { readUser } from '../user/readUserFunc';
 
 /*
 TODO:
@@ -52,10 +53,23 @@ export const addProdSell = async (data: {
   const comment:Array<string> = [];
   const commentNum:number = 0;
 
+
+  const sellerData = await readUser({ uid: uid })
+  if (sellerData === undefined) {
+    return Promise.reject(new Error('buyer user is undefined'));
+  }
+
+  const sellerName = sellerData.userName;
+  const sellerRate = sellerData.rate;
+  const sellerAvatar = sellerData.avatar;
+
   let productSellData;
   if (!auction) {
     productSellData = {
       uid,
+      sellerName,
+      sellerRate,
+      sellerAvatar,
       createTime,
       productName,
       description,
@@ -74,6 +88,9 @@ export const addProdSell = async (data: {
     const auctionEndTime: number = createTime + 604800;// 604800 stand for 7 days by default
     productSellData = {
       uid,
+      sellerName,
+      sellerRate,
+      sellerAvatar,
       createTime,
       productName,
       description,
