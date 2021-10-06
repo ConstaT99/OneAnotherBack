@@ -29,7 +29,8 @@ export const getTagsByUid = async (data:{
   const savedTagArray = userData.savedTags;
   const outArray = [];
   if (savedTagArray) {
-    for (const i in savedTagArray) {
+    for (const i of savedTagArray) {
+      // @ts-ignore
       const tagData = await getTagById({ tagId: i });
       outArray.push(tagData);
     }

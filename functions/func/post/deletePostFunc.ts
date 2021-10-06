@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 import { deletePostFromCat } from '../categories/deletePostFromCatFunc';
+import { deleteComment } from '../comment/deleteCommentFunc';
 import { deletePostFromTag } from '../tag/deletePostFromTagFunc';
 
 /*
@@ -58,6 +59,7 @@ export const deletePost = async (data:{
 
   // TODO!! delete comment and replies
 
+  await deleteComment({commentId: postId});
   return postRef.delete();
 };
 

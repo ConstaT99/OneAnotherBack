@@ -32,7 +32,7 @@ export const deleteComment = async (data:{ commentId: string }) => {
       if (element === commentId) comment.splice(index, 1);
     });
     const newNum = commentNum - 1;
-    await postRef.update({ comment,commentNum: newNum });
+    await postRef.update({ comment, commentNum: newNum });
   } else if (commentExists.replyToProductBuy === true) {
     const productId = commentExists.replyId;
     const productRef = db.collection('productBuy').doc(productId);
@@ -46,7 +46,7 @@ export const deleteComment = async (data:{ commentId: string }) => {
       if (element === commentId) comment.splice(index, 1);
     });
     const newNum = commentNum - 1;
-    await productRef.update({ comment,commentNum: newNum });
+    await productRef.update({ comment, commentNum: newNum });
   } else if (commentExists.replyToProductSell === true) {
     const productId = commentExists.replyId;
     const productRef = db.collection('productSell').doc(productId);
@@ -60,7 +60,7 @@ export const deleteComment = async (data:{ commentId: string }) => {
       if (element === commentId) comment.splice(index, 1);
     });
     const newNum = commentNum - 1;
-    await productRef.update({ comment,commentNum: newNum });
+    await productRef.update({ comment, commentNum: newNum });
   }
   const replyArray = commentExists.repliedBy;
   if (replyArray.length !== 0) {

@@ -27,4 +27,11 @@
 // export * from '../test/comment/deleteCommentFunc.t';
 // export * from '../test/comment/addLikeCommentFunc.t';
 // export * from '../test/comment/addLikePostFunc.t';
-export * from '../test/comment/removeLikeCommentFunc.t'
+// export * from '../test/comment/removeLikeCommentFunc.t';
+// export * from '../test/user/addNewFolderFunc.t';
+// export * from '../test/user/deleteFolderFunc.t';
+// export * from '../test/comment/savePostFunc.t';
+// export * from '../test/comment/removeSavedPost.t';
+// export * from '../test/comment/removeLikePostFunc.t';
+ export * from '../test/comment/getDirectCommentFunc.t';
+export * from '../test/comment/getSubCommentFunc.t';

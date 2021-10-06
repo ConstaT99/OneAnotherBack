@@ -11,7 +11,7 @@ describe('add comment test', () => {
       replyToPost: false,
       replyToProductBuy: false,
       replyToProductSell: false,
-      replyId: '4HIaiATrkZOGi17S3oiS',
+      replyId: 'IjlIWAJQOAPk3zW88Pa5',
     };
     const returnId = await addComment(testData);
     const commentRef = db.collection('comment');
@@ -21,7 +21,7 @@ describe('add comment test', () => {
     // @ts-ignore
     expect(docRef.data().content).to.equal('this is a test comment replying to another comment');
     // @ts-ignore
-    expect(docRef.data().replyId).to.equal('4HIaiATrkZOGi17S3oiS');
+    expect(docRef.data().replyId).to.equal('IjlIWAJQOAPk3zW88Pa5');
     // @ts-ignore
     expect(docRef.data().replyToPost).to.equal(false);
   });
@@ -33,7 +33,7 @@ describe('add comment test', () => {
       replyToPost: true,
       replyToProductBuy: false,
       replyToProductSell: false,
-      replyId: 'wR9n7Q6vF5i1kaep0tuq',
+      replyId: 'AzhrPXIzlmD356r6D1lC',
     };
     const returnId = await addComment(testData);
     const commentRef = db.collection('comment');
@@ -43,8 +43,34 @@ describe('add comment test', () => {
     // @ts-ignore
     expect(docRef.data().content).to.equal('this is a test comment replying to a post');
     // @ts-ignore
-    expect(docRef.data().replyId).to.equal('wR9n7Q6vF5i1kaep0tuq');
+    expect(docRef.data().replyId).to.equal('AzhrPXIzlmD356r6D1lC');
     // @ts-ignore
     expect(docRef.data().replyToPost).to.equal(true);
+  });
+  it('Add comment replying to a productSell', async () => {
+    const testData = {
+      author: 'me',
+      content: 'this is a test comment replying to a productSell',
+      replyToPost: false,
+      replyToProductBuy: false,
+      replyToProductSell: true,
+      replyId: 'WDe8aZKk0arAp2oH9F4S',
+    };
+    const returnId = await addComment(testData);
+    console.log(returnId);
+
+  });
+  it('Add comment replying to a productBuy', async () => {
+    const testData = {
+      author: 'me',
+      content: 'this is a test comment replying to a productBuy',
+      replyToPost: false,
+      replyToProductBuy: true,
+      replyToProductSell: false,
+      replyId: 'OGNE9HewhF1UbDFXKs9M',
+    };
+    const returnId = await addComment(testData);
+    console.log(returnId);
+
   });
 });

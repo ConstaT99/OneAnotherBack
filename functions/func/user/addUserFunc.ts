@@ -49,7 +49,7 @@ export const addUser = async (user:UserRecord) => {
   const postNum = 0; // 发帖个数
   const comment: Array<string> = []; // 评论 comment/docId
   const followPost : Array<string> = []; // 关注的post post/docId
-  const savedPost:string[] = ["默认收藏夹"];
+  const savedPost:string[] = ['默认收藏夹'];
   // friend
   const followBy: Array<string> = [];// 关注我的用户 user/docId
   const followingList : Array<string> = []; // 关注的其他用户 user/docId
@@ -111,14 +111,13 @@ export const addUser = async (user:UserRecord) => {
   const userRef = db.collection(collection);
   return new Promise< string | Error >((resolve, reject) => {
     userRef.doc(uid).set(userInfo).then(() => {
-
       const saveRef = userRef.doc(uid).collection('savedPost');
-      const folderName:string = "默认收藏夹";
+      const folderName:string = '默认收藏夹';
       const savedPosts:string[] = [];
       const defaultFolder = {
         folderName,
         savedPosts,
-      }
+      };
       saveRef.add(defaultFolder);
       resolve(`user ${uid} created the data successfully.`);
     }).catch((error) => {
