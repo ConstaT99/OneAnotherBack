@@ -58,7 +58,6 @@ describe('add comment test', () => {
     };
     const returnId = await addComment(testData);
     console.log(returnId);
-
   });
   it('Add comment replying to a productBuy', async () => {
     const testData = {
@@ -71,6 +70,5 @@ describe('add comment test', () => {
     };
     const returnId = await addComment(testData);
     console.log(returnId);
-
   });
 });

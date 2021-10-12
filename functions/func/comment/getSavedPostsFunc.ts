@@ -13,17 +13,17 @@ Output {
 }
 */
 export const getSavedPostsByFolder = async (data:{
-    uid: string,
-    folderName: string,
+  uid: string,
+  folderName: string,
 }) => {
-    const {uid, folderName} = data;
-    const saveRef = db.collection('user').doc(uid).collection('savedPost');
-    const snapshot = await saveRef.where('folderName', '==', folderName).get();
-    const saveData = snapshot.docs[0].data();
-    if (!saveData) {
-        return Promise.resolve('folder does not exists');
-    }
+  const { uid, folderName } = data;
+  const saveRef = db.collection('user').doc(uid).collection('savedPost');
+  const snapshot = await saveRef.where('folderName', '==', folderName).get();
+  const saveData = snapshot.docs[0].data();
+  if (!saveData) {
+    return Promise.resolve('folder does not exists');
+  }
 
-    return saveData;
-}
+  return saveData;
+};
 export default functions.https.onCall(getSavedPostsByFolder);

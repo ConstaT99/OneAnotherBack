@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
@@ -27,7 +28,7 @@ export const savePost = async (data:{
   }
   const currentArray = saveData.savedPosts;
   for (const items of currentArray) {
-    var temp1:string = items;
+    const temp1:string = items;
     if (temp1 === postId) {
       return Promise.resolve('post had already been saved');
     }
@@ -37,7 +38,6 @@ export const savePost = async (data:{
   const accurateSaveRef = db.collection('user').doc(uid).collection('savedPost').doc(folderId);
   accurateSaveRef.update({ savedPosts: currentArray });
   return Promise.resolve('post has been added to the savedArray');
-
 };
 
 export default functions.https.onCall(savePost);

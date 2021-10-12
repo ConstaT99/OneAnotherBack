@@ -51,15 +51,18 @@ export const deletePost = async (data:{
 
   // delete from the categories
   const postCat = postData.categories;
+  const catRefid = db.collection('categories');
+  const snapshot = await catRefid.where('catName', '==', postCat).get();
+  const catId = snapshot.docs[0].id;
   const deleteCatData = {
-    name: postCat,
+    catId,
     postId,
   };
   await deletePostFromCat(deleteCatData);
 
   // TODO!! delete comment and replies
 
-  await deleteComment({commentId: postId});
+  await deleteComment({ commentId: postId });
   return postRef.delete();
 };
 

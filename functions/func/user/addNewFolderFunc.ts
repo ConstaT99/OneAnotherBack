@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
@@ -15,7 +16,7 @@ export const addNewFolder = async (data:{
   }
   const saveArray = userData.savedPost;
   for (const item of saveArray) {
-      var temp1:string = item;
+    const temp1:string = item;
     if (temp1 === newAddedName) {
       return Promise.resolve('folder already existed');
     }

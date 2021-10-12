@@ -24,7 +24,9 @@ export const getPostsByTag = async (data:{
 
   if (prePostId === '') {
     const postRef = db.collection('post');
-    const postGet = await postRef.where('tag', '==', tagName).where('privacy', '==', false).orderBy('postScore', 'desc').orderBy('postId').limit(10)
+    const postGet = await postRef.where('tag', '==', tagName).where('privacy', '==', false)
+      .orderBy('postScore', 'desc').orderBy('postId')
+      .limit(10)
       .get();
     const postsData = await postGet.docs.map((doc) => doc.data());
     return postsData;
@@ -37,7 +39,8 @@ export const getPostsByTag = async (data:{
   }
   const prePostScore = prePostData.postScore;
   const postRef = db.collection('post');
-  const postGet = await postRef.where('tag', '==', tagName).where('privacy', '==', false).orderBy('postScore', 'desc')
+  const postGet = await postRef.where('tag', '==', tagName)
+    .where('privacy', '==', false).orderBy('postScore', 'desc')
     .orderBy('postId')
     .startAfter(prePostScore, prePostId)
     .limit(10)

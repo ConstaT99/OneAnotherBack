@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
@@ -28,7 +29,7 @@ export const removeLikePost = async (data:{
   const LikeArr = await postData.likeBy;
   let checkIn = false;
   for (const items of LikeArr) {
-      var temp:string = items;
+    const temp:string = items;
     if (uid === temp) {
       checkIn = true;
     }
