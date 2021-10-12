@@ -5,11 +5,11 @@ import { updateRepliedComment } from '../../func/comment/updateRepliedCommentFun
 describe('update comment s repliedBy test', () => {
   it('update the child comments of a parent comment. Return true if successfully updated.', async () => {
     const testData = {
-      commentId: '4HIaiATrkZOGi17S3oiS',
-      toAddId: 'Y04pIkcsz0d2duQUFYy4',
+      commentId: 'NpDGJHvpKhbvX1u4nzE2',
+      toAddId: 'WnNTViczxUlrVlIDFMZt',
     };
     const commentData = await updateRepliedComment(testData);
     // @ts-ignore
-    expect(commentData.repliedBy.indexOf('Y04pIkcsz0d2duQUFYy4')).to.not.equal(-1);
+    expect(commentData.repliedBy.indexOf('WnNTViczxUlrVlIDFMZt')).to.not.equal(-1);
   });
 });

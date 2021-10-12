@@ -29,7 +29,7 @@ export const deleteFolder = async (data:{
   });
   await userRef.update({ savedPost: saveArray });
   const saveRef = userRef.collection('savedPost');
-  const snapshot = await saveRef.get();
+  const snapshot = await saveRef.where('folderName', '==', folderName).get();
   const saveid = snapshot.docs[0].id;
 
   const folderRef = db.collection('user').doc(uid).collection('savedPost').doc(saveid);
