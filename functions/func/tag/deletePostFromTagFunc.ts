@@ -11,7 +11,7 @@ Input{
 }
 Output{
     Input tag name does not exists => reject('tag does not exist')
-    Input postId does not exists in this tag's postArray => reject('post does not exist in this tag')
+    Input postId does not exists in this tag's postArray => false
     post successfully deleted => resolve(docIdArray);
 }
 */
@@ -32,7 +32,8 @@ export const deletePostFromTag = async (data:{
   const tagData = tagDoc.data();
   // @ts-ignore
   if (tagData.posts.includes(postId) === false) {
-    return Promise.reject(new Error('post does not exist in this tag'));
+    functions.logger.info('post does not exist in this tag, or tag has already been deleted');
+    return Promise.resolve(false);
   }
 
   const lastUpdate = Math.floor(Date.now() / 1000);
