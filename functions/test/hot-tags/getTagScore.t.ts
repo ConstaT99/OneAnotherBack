@@ -1,6 +1,6 @@
 import 'mocha';
 // import { expect } from 'chai';
-import { getTagScore } from '../../func/hot-tags/getTagScore';
+import { getTagScore } from '../../func/hot-tags/getTagScoreFunc';
 
 describe('getTagScore function test', () => {
   it('posts vector with size of three', async () => {

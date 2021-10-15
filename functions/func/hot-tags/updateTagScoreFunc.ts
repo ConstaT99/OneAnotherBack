@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
-import { getTagScore } from './getTagScore';
+import { getTagScore } from './getTagScoreFunc';
 /*
 Author @Carstin
 update the tag score to the tag collection's tagScore
