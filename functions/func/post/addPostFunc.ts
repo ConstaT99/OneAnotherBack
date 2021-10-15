@@ -3,6 +3,7 @@ import { isUserExists } from '../common/isUserExists';
 import { db } from '../../db';
 import { updateCat } from '../categories/updateCatFunc';
 import { addTag } from '../tag/addTagFunc';
+import { getAvatarByName } from '../school/getAvatarByNameFunc';
 
 /*
 TODO:
@@ -14,7 +15,7 @@ export const addPost = async (data: {
   title: string | null; // 30 字
   content: string | null; // contain text of the post 1000 字
   image: string[];// contain image url
-  tag: string; // tagid
+  tag: string; // tagName
   categories: string | null; // categroy id
   aStatus: boolean;
 }) => {
@@ -35,11 +36,13 @@ export const addPost = async (data: {
     return Promise.reject(new Error('one of title should not null'));
   }
   if (categories == null) {
-    categories = '其它';
+    categories = 'HaYEZRkuTrcveAOMo7PE';
   }
   const createTime:number = Math.floor(Date.now() / 1000);
   const editTime:number = Math.floor(Date.now() / 1000);
-  const like:number = 0;
+  const likeNum:number = 0;
+  const shareNum:number = 0;
+  const savedNum: number = 0;
   const comment:Array<string> = [];
   const commentNum:number = 0;
   const likeBy:Array<string> = [];
@@ -47,9 +50,28 @@ export const addPost = async (data: {
   const shareBy:Array<string> = [];
   const viewNum : number = 0;
   const edited:boolean = false;
-  const postScore:number = 0;
+  const postScore:number = 16.5;
+  const privacy:boolean = false; // 是否被设为私密动态
+  const userRef = db.collection('user').doc(uid);
+  const tagDoc = await userRef.get();
+  const userData = tagDoc.data();
+  if (!userData) {
+    return Promise.reject(new Error('user does not exist'));
+  }
+  const userAvatar:string = userData.avatar;
+  const { userName } = userData;
+  let userSchool:string = '';
+  let schoolAvatar:string = '';
+  if (userData.school !== '') {
+    userSchool = userData.school;
+    schoolAvatar = await getAvatarByName({ name: userSchool });
+  }
 
   const postData = {
+    userSchool,
+    schoolAvatar,
+    userAvatar,
+    userName,
     uid,
     title,
     content, // can be null
@@ -58,7 +80,7 @@ export const addPost = async (data: {
     categories,
     createTime,
     editTime,
-    like,
+    likeNum,
     likeBy,
     comment,
     savedBy,
@@ -67,17 +89,29 @@ export const addPost = async (data: {
     commentNum,
     edited,
     aStatus,
+    shareNum,
+    savedNum,
     postScore,
+    privacy,
+    postId: '',
   };
   const collection = 'post';
   const postRef = db.collection(collection);
   const result = await postRef.add(postData);
+  postRef.doc(result.id).update({ postId: result.id });
   const taginfo = {
     name: tag,
     postId: result.id,
   };
+
   await addTag(taginfo);
-  await updateCat({ name: categories, postId: result.id });
+
+  const catRefid = db.collection('categories');
+  const snapshot = await catRefid.where('catId', '==', categories).get();
+  const catId = snapshot.docs[0].id;
+
+  await updateCat({ catId, postId: result.id });
+
   return result;
 };
 

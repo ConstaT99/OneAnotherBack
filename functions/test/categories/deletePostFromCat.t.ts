@@ -5,22 +5,21 @@ import { deletePostFromCat } from '../../func/categories/deletePostFromCatFunc';
 describe('deletePostFromCat test', () => {
   it('the postId should be removed from the postArray in this category', async () => {
     const testData = {
-      name: '兴趣',
+      catId: '6qt1xEqTL2pI9J1ACBEe',
       postId: 'abcd',
     };
     await deletePostFromCat(testData);
-    const collection = 'categories';
-    const catRefid = db.collection(collection);
-    const snapshot = await catRefid.where('catName', '==', testData.name).get();
-    const catId = snapshot.docs[0].id; // get the catId
 
-    const docRef = await catRefid.doc(catId).get();
+    const collection = 'categories';
+    const catRef = db.collection(collection).doc(testData.catId);
+    const docRef = await catRef.get();
+    const catData = docRef.data();
     // @ts-ignore
-    expect(docRef.data().postArray).not.contain('abcd');
+    expect(catData.postArray).not.contain('abcd');
   });
   it('the postId should not be removed if it does not exists in this postArray', async () => {
     const testData = {
-      name: '兴趣',
+      catId: '6qt1xEqTL2pI9J1ACBEe',
       postId: 'notExistsPostId',
     };
     await deletePostFromCat(testData)
