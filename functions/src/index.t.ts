@@ -20,23 +20,33 @@
 // export * from '../test/categories/isCatExists.t';
 // export * from '../test/categories/updateCatFunc.t';
 
-export * from '../test/comment/addCommentFunc.t';
-export * from '../test/comment/getCommentFunc.t';
-export * from '../test/comment/updateRepliedCommentFunc.t';
-export * from '../test/comment/updateRepliedPostFunc.t';
-// export * from '../test/comment/deleteCommentFunc.t';
-export * from '../test/comment/addLikeCommentFunc.t';
-export * from '../test/comment/addLikePostFunc.t';
-export * from '../test/comment/removeLikeCommentFunc.t';
-export * from '../test/user/addNewFolderFunc.t';
-export * from '../test/user/deleteFolderFunc.t';
-export * from '../test/comment/savePostFunc.t';
-export * from '../test/comment/removeSavedPost.t';
-export * from '../test/comment/removeLikePostFunc.t';
-export * from '../test/comment/getDirectCommentFunc.t';
-export * from '../test/comment/getSubCommentFunc.t';
-export * from '../test/tag/saveTagFunc.t';
-export * from '../test/tag/removeSavedTagFunc.t';
+// // Post collection
+// export * from '../test/post/postReadTest.t';
+// export * from '../test/post/postTest.t';
+export * from '../test/post/addPostFunc.t';
+export * from '../test/hot-tags/getTagScore.t';
+export * from '../test/hot-tags/getTenHotTags.t';
+export * from '../test/hot-tags/updatePostScoreFunc.t';
+export * from '../test/hot-tags/updateTagScoreFunc.t';
+export * from '../test/hot-tags/getHotTagsInOneDay.t';
+
+// export * from '../test/comment/addCommentFunc.t';
+// export * from '../test/comment/getCommentFunc.t';
+// export * from '../test/comment/updateRepliedCommentFunc.t';
+// export * from '../test/comment/updateRepliedPostFunc.t';
+// // export * from '../test/comment/deleteCommentFunc.t';
+// export * from '../test/comment/addLikeCommentFunc.t';
+// export * from '../test/comment/addLikePostFunc.t';
+// export * from '../test/comment/removeLikeCommentFunc.t';
+// export * from '../test/user/addNewFolderFunc.t';
+// export * from '../test/user/deleteFolderFunc.t';
+// export * from '../test/comment/savePostFunc.t';
+// export * from '../test/comment/removeSavedPost.t';
+// export * from '../test/comment/removeLikePostFunc.t';
+// export * from '../test/comment/getDirectCommentFunc.t';
+// export * from '../test/comment/getSubCommentFunc.t';
+// export * from '../test/tag/saveTagFunc.t';
+// export * from '../test/tag/removeSavedTagFunc.t';
 
 // // categories
 // export * from '../test/categories/updateCatFunc.t';

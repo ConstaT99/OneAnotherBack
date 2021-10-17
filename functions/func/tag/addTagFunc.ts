@@ -39,7 +39,7 @@ export const addTag = async (data:{
   if (postPic != null && typeof postPic === 'string') {
     avatar = postPic;
   }
-
+  const tagScore : number = 16.5;
   const tagInfo = {
     access,
     posts,
@@ -47,6 +47,7 @@ export const addTag = async (data:{
     name,
     lastUpdate,
     tagId: '',
+    tagScore,
   };
   const collection = 'tag';
   const tagRef = db.collection(collection);
