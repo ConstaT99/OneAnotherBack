@@ -20,9 +20,10 @@ export const addProdSell = async (data: {
   image: [string];
   location: any;
   auction: boolean;
+  doneDeal: number;
 }) => {
   const {
-    uid, productName, price, description, status, image, location, auction,
+    uid, productName, price, description, status, image, location, auction, doneDeal
   } = data;
   if (!isUserExists({ uid })) {
     return Promise.reject(new Error('user is not exsit'));
@@ -81,7 +82,7 @@ export const addProdSell = async (data: {
       archieve,
       comment,
       commentNum,
-      score
+      score,
     };
   } else {
     const auctionStartPrice = price;
@@ -107,6 +108,7 @@ export const addProdSell = async (data: {
       auctionEndTime,
       comment,
       commentNum,
+      doneDeal,
     };
   }
 
