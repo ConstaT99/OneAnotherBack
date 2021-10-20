@@ -62,6 +62,7 @@ export const addProdSell = async (data: {
   const sellerName = sellerData.userName;
   const sellerRate = sellerData.rate;
   const sellerAvatar = sellerData.avatar;
+  const score = sellerData.score;
 
   let productSellData;
   if (!auction) {
@@ -80,6 +81,7 @@ export const addProdSell = async (data: {
       archieve,
       comment,
       commentNum,
+      score
     };
   } else {
     const auctionStartPrice = price;
@@ -103,6 +105,8 @@ export const addProdSell = async (data: {
       auctionIncrementPrice,
       auctionStartTime,
       auctionEndTime,
+      comment,
+      commentNum,
     };
   }
 
