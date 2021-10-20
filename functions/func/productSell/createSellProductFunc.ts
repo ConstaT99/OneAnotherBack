@@ -23,7 +23,7 @@ export const addProdSell = async (data: {
   doneDeal: number;
 }) => {
   const {
-    uid, productName, price, description, status, image, location, auction, doneDeal
+    uid, productName, price, description, status, image, location, auction, doneDeal,
   } = data;
   if (!isUserExists({ uid })) {
     return Promise.reject(new Error('user is not exsit'));
@@ -62,7 +62,7 @@ export const addProdSell = async (data: {
   const sellerName = sellerData.userName;
   const sellerRate = sellerData.rate;
   const sellerAvatar = sellerData.avatar;
-  const score = sellerData.score;
+  const { score } = sellerData;
 
   let productSellData;
   if (!auction) {
