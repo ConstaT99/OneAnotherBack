@@ -12,18 +12,18 @@ output:
 */
 
 export const readOrder = async (data: {
-    orderId: string;
+  orderId: string;
 }) => {
-    const { orderId } = data;
-    if (orderId == null) {
-        return Promise.reject(new Error('order id is not given'));
-    }
-    const collection = 'order';
-    const orderRef = db.collection(collection).doc(orderId);
-    const orderdDoc = await orderRef.get();
-    if (!orderdDoc.exists) {
-        return Promise.reject(new Error(' order is not exist'));
-    }
-    return orderdDoc.data();
+  const { orderId } = data;
+  if (orderId == null) {
+    return Promise.reject(new Error('order id is not given'));
+  }
+  const collection = 'order';
+  const orderRef = db.collection(collection).doc(orderId);
+  const orderdDoc = await orderRef.get();
+  if (!orderdDoc.exists) {
+    return Promise.reject(new Error(' order is not exist'));
+  }
+  return orderdDoc.data();
 };
 export default functions.https.onCall(readOrder);

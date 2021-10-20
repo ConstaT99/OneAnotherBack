@@ -54,8 +54,7 @@ export const addProdSell = async (data: {
   const comment:Array<string> = [];
   const commentNum:number = 0;
 
-
-  const sellerData = await readUser({ uid: uid })
+  const sellerData = await readUser({ uid });
   if (sellerData === undefined) {
     return Promise.reject(new Error('buyer user is undefined'));
   }
