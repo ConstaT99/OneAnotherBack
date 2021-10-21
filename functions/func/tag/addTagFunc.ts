@@ -15,7 +15,6 @@ Input {
 Output {
     the tag should be added into the tag collection
 }
-
 */
 const DEFAULT_AVATAR = 'https://firebasestorage.googleapis.com/v0/b/oneanother-757c7.appspot.com'
   + '/o/defaultTagAvatar.png?alt=media&token=80fb2991-96de-4c89-bf88-f6566315da57';
@@ -40,7 +39,7 @@ export const addTag = async (data:{
   if (postPic != null && typeof postPic === 'string') {
     avatar = postPic;
   }
-
+  const tagScore : number = 16.5;
   const tagInfo = {
     access,
     posts,
@@ -48,6 +47,7 @@ export const addTag = async (data:{
     name,
     lastUpdate,
     tagId: '',
+    tagScore,
   };
   const collection = 'tag';
   const tagRef = db.collection(collection);
