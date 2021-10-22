@@ -65,4 +65,3 @@ export * from '../test/categories/getPostByCatFunc.t';
 export * from '../test/tag/getPostsByTag.t';
 export * from '../test/post/getMultipleHotPostsFunc.t';
 export * from '../test/post/getMultipleRandomPostsFunc.t';
-
