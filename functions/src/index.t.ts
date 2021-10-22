@@ -34,7 +34,7 @@
 // export * from '../test/comment/getCommentFunc.t';
 // export * from '../test/comment/updateRepliedCommentFunc.t';
 // export * from '../test/comment/updateRepliedPostFunc.t';
-// // export * from '../test/comment/deleteCommentFunc.t';
+// export * from '../test/comment/deleteCommentFunc.t';
 // export * from '../test/comment/addLikeCommentFunc.t';
 // export * from '../test/comment/addLikePostFunc.t';
 // export * from '../test/comment/removeLikeCommentFunc.t';
@@ -61,7 +61,13 @@
 // // common
 // export * from '../test/common/uploadMultipleFile.t';
 
-export * from '../test/categories/getPostByCatFunc.t';
-export * from '../test/tag/getPostsByTag.t';
-export * from '../test/post/getMultipleHotPostsFunc.t';
-export * from '../test/post/getMultipleRandomPostsFunc.t';
+// export * from '../test/categories/getPostByCatFunc.t';
+// export * from '../test/tag/getPostsByTag.t';
+// export * from '../test/post/getMultipleHotPostsFunc.t';
+// export * from '../test/post/getMultipleRandomPostsFunc.t';
+
+// export * from '../test/buy/addBuyProd.t'
+// export * from '../test/buy/readmultiplebuy.t'
+
+export * from '../test/sell/addSellProd.t'
+export * from '../test/sell/readmultiplesell.t'

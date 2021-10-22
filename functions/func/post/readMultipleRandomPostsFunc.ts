@@ -16,15 +16,19 @@ export const readMultipleRandomPosts = async (data:{
   prePostId: string;
 }) => {
   const { prePostId } = data;
+  var collection;
+  var postRef;
+  var postGet;
+  var postsData;
   if (prePostId === '') {
-    const collection = 'post';
-    const postRef = db.collection(collection);
-    const postGet = await postRef.where('privacy', '==', false)
+    collection = 'post';
+    postRef = db.collection(collection);
+    postGet = await postRef.where('privacy', '==', false)
       .orderBy('createTime', 'desc')
       .orderBy('postId')
       .limit(10)
       .get();
-    const postsData = postGet.docs.map((doc) => doc.data());
+    postsData = postGet.docs.map((doc) => doc.data());
     return postsData;
   }
   const prePostRef = db.collection('post').doc(prePostId);
@@ -34,15 +38,15 @@ export const readMultipleRandomPosts = async (data:{
     return Promise.reject(new Error('postData could not be reached'));
   }
   const preCreatedTime = prePostData.createTime;
-  const collection = 'post';
-  const postRef = db.collection(collection);
-  const postGet = await postRef.where('privacy', '==', false)
+  collection = 'post';
+  postRef = db.collection(collection);
+  postGet = await postRef.where('privacy', '==', false)
     .orderBy('createTime', 'desc')
     .orderBy('postId')
     .startAfter(preCreatedTime, prePostId)
     .limit(10)
     .get();
-  const postsData = postGet.docs.map((doc) => doc.data());
+  postsData = postGet.docs.map((doc) => doc.data());
   return postsData;
 };
 

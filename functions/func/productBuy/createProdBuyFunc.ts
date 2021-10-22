@@ -14,9 +14,9 @@ TODO:
 export const addProdBuy = async (data: {
   uid: string,
   productName: string,
-  targetPrice: string,
+  targetPrice: number,
   description: string,
-  image: [string];
+  image: string[] | never[];
   location: any;
 }) => {
   const {
@@ -25,6 +25,7 @@ export const addProdBuy = async (data: {
   if (!isUserExists({ uid })) {
     return Promise.reject(new Error('user is not exsit'));
   }
+
   // this two function can be use after deploy add user function
   // if (!isEmailVerified({ uid })) {
   //   return Promise.reject(new Error('Email is not verified'));

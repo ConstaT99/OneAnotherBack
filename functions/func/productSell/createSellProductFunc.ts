@@ -14,10 +14,10 @@ TODO:
 export const addProdSell = async (data: {
   uid: string,
   productName: string,
-  price: string,
+  price: number,
   description: string,
   status: number;
-  image: [string];
+  image: string[] | never[];
   location: any;
   auction: boolean;
   doneDeal: number;
@@ -65,7 +65,7 @@ export const addProdSell = async (data: {
   const { score } = sellerData;
 
   let productSellData;
-  if (!auction) {
+  if (auction === false) {
     productSellData = {
       uid,
       sellerName,
@@ -81,6 +81,7 @@ export const addProdSell = async (data: {
       archieve,
       comment,
       commentNum,
+      auction,
       score,
     };
   } else {
@@ -101,6 +102,7 @@ export const addProdSell = async (data: {
       price,
       location,
       archieve,
+      auction,
       auctionStartPrice,
       auctionIncrementPrice,
       auctionStartTime,
