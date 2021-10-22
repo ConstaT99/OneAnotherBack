@@ -69,5 +69,5 @@
 // export * from '../test/buy/addBuyProd.t'
 // export * from '../test/buy/readmultiplebuy.t'
 
-export * from '../test/sell/addSellProd.t'
-export * from '../test/sell/readmultiplesell.t'
+export * from '../test/sell/addSellProd.t';
+export * from '../test/sell/readmultiplesell.t';

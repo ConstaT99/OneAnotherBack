@@ -16,10 +16,10 @@ export const readMultipleHotPosts = async (data:{
   prePostId : string;
 }) => {
   const { prePostId } = data;
-  var collection;
-  var postRef;
-  var postGet;
-  var postsData;
+  let collection;
+  let postRef;
+  let postGet;
+  let postsData;
   if (prePostId === '') {
     collection = 'post';
     postRef = db.collection(collection);
