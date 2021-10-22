@@ -4,6 +4,13 @@ import { db } from '../../db';
 /*
 Author @Carstin
 read multiple hot posts in this one func
+Input {
+  prePostId: the postId of the last post in previous call
+    null for first time calling this func.
+}
+Output {
+  postArray: limit 10 posts max for each call
+}
 */
 export const readMultipleHotPosts = async (data:{
   prePostId : string;
@@ -12,7 +19,8 @@ export const readMultipleHotPosts = async (data:{
   if (prePostId === '') {
     const collection = 'post';
     const postRef = db.collection(collection);
-    const postGet = await postRef.where('privacy', '==', false).orderBy('postScore', 'desc').orderBy('postId').limit(10).get();
+    const postGet = await postRef.where('privacy', '==', false).orderBy('postScore', 'desc').orderBy('postId').limit(10)
+      .get();
     const postsData = postGet.docs.map((doc) => doc.data());
     return postsData;
   }

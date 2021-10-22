@@ -11,11 +11,13 @@ Output {
 }
 */
 export const getPostsByCat = async (data:{
+
   prePostId: string,
   catId: string,
 }) => {
   const collection = 'categories';
   const { catId, prePostId } = data;
+
   const catRef = db.collection(collection).doc(catId);
   const catDoc = await catRef.get();
   const catData = catDoc.data();
@@ -30,7 +32,9 @@ export const getPostsByCat = async (data:{
 
   if (prePostId === '') {
     const postRef = db.collection('post');
-    const postGet = await postRef.where('categories', '==', catId).where('privacy', '==', false).orderBy('postScore', 'desc').orderBy('postId')
+
+    const postGet = await postRef.where('categories', '==', catId).where('privacy', '==', false)
+      .orderBy('postScore', 'desc').orderBy('postId')
       .limit(10)
       .get();
     const postsData = postGet.docs.map((doc) => doc.data());
@@ -44,7 +48,9 @@ export const getPostsByCat = async (data:{
   }
   const prePostScore = prePostData.postScore;
   const postRef = db.collection('post');
-  const postGet = await postRef.where('categories', '==', catId).where('privacy', '==', false).orderBy('postScore', 'desc').orderBy('postId')
+
+  const postGet = await postRef.where('categories', '==', catId).where('privacy', '==', false)
+    .orderBy('postScore', 'desc').orderBy('postId')
     .startAfter(prePostScore, prePostId)
     .limit(10)
     .get();

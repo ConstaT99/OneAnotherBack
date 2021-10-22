@@ -1,6 +1,17 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 
+/*
+Author @Carstin
+read multiple random posts in this one func
+Input {
+  prePostId: the postId of the last post in previous call
+    null for first time calling this func.
+}
+Output {
+  postArray: limit 10 posts max for each call
+}
+*/
 export const readMultipleRandomPosts = async (data:{
   prePostId: string;
 }) => {
