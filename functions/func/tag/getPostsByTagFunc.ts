@@ -4,6 +4,15 @@ import { db } from '../../db';
 /*
 Author @Carstin
 return a PostArray which contains 10 hotest post under this TAG
+Input{
+  PrePostid: the postId of the last post you previously get from this func,
+    null for first time calling this func
+  TagName: Tag text
+}
+OutPut{
+  PostArray: limited 10 posts max for each call
+}
+
 */
 export const getPostsByTag = async (data:{
   prePostId: string,
@@ -39,8 +48,8 @@ export const getPostsByTag = async (data:{
   }
   const prePostScore = prePostData.postScore;
   const postRef = db.collection('post');
-  const postGet = await postRef.where('tag', '==', tagName)
-    .where('privacy', '==', false).orderBy('postScore', 'desc')
+  const postGet = await postRef.where('tag', '==', tagName).where('privacy', '==', false)
+    .orderBy('postScore', 'desc')
     .orderBy('postId')
     .startAfter(prePostScore, prePostId)
     .limit(10)

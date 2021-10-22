@@ -23,12 +23,12 @@
 // // Post collection
 // export * from '../test/post/postReadTest.t';
 // export * from '../test/post/postTest.t';
-export * from '../test/post/addPostFunc.t';
-export * from '../test/hot-tags/getTagScore.t';
-export * from '../test/hot-tags/getTenHotTags.t';
-export * from '../test/hot-tags/updatePostScoreFunc.t';
-export * from '../test/hot-tags/updateTagScoreFunc.t';
-export * from '../test/hot-tags/getHotTagsInOneDay.t';
+// export * from '../test/post/addPostFunc.t';
+// export * from '../test/hot-tags/getTagScore.t';
+// export * from '../test/hot-tags/getTenHotTags.t';
+// export * from '../test/hot-tags/updatePostScoreFunc.t';
+// export * from '../test/hot-tags/updateTagScoreFunc.t';
+// export * from '../test/hot-tags/getHotTagsInOneDay.t';
 
 // export * from '../test/comment/addCommentFunc.t';
 // export * from '../test/comment/getCommentFunc.t';
@@ -60,3 +60,8 @@ export * from '../test/hot-tags/getHotTagsInOneDay.t';
 
 // // common
 // export * from '../test/common/uploadMultipleFile.t';
+
+export * from '../test/categories/getPostByCatFunc.t';
+export * from '../test/tag/getPostsByTag.t';
+export * from '../test/post/getMultipleHotPostsFunc.t';
+export * from '../test/post/getMultipleRandomPostsFunc.t';
