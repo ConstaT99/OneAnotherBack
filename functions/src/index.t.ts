@@ -61,7 +61,12 @@
 // // common
 // export * from '../test/common/uploadMultipleFile.t';
 
-export * from '../test/categories/getPostByCatFunc.t';
-export * from '../test/tag/getPostsByTag.t';
-export * from '../test/post/getMultipleHotPostsFunc.t';
-export * from '../test/post/getMultipleRandomPostsFunc.t';
+// export * from '../test/categories/getPostByCatFunc.t';
+// export * from '../test/tag/getPostsByTag.t';
+// export * from '../test/post/getMultipleHotPostsFunc.t';
+// export * from '../test/post/getMultipleRandomPostsFunc.t';
+
+export * from '../test/search/searchTag.t';
+export * from '../test/search/searchUserFunc.t';
+export * from '../test/search/searchPostFunc.t';
+export * from '../test/search/searchProductFunc.t';
