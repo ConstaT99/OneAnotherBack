@@ -66,13 +66,13 @@
 // export * from '../test/post/getMultipleHotPostsFunc.t';
 // export * from '../test/post/getMultipleRandomPostsFunc.t';
 
-export * from '../test/search/searchTag.t';
+// export * from '../test/search/searchTag.t';
 export * from '../test/search/searchUserFunc.t';
-export * from '../test/search/searchPostFunc.t';
-export * from '../test/search/searchProductFunc.t';
+// export * from '../test/search/searchPostFunc.t';
+// export * from '../test/search/searchProductFunc.t';
 
-// export * from '../test/buy/addBuyProd.t'
-// export * from '../test/buy/readmultiplebuy.t'
+// // export * from '../test/buy/addBuyProd.t'
+// // export * from '../test/buy/readmultiplebuy.t'
 
-export * from '../test/sell/addSellProd.t';
-export * from '../test/sell/readmultiplesell.t';
+// export * from '../test/sell/addSellProd.t';
+// export * from '../test/sell/readmultiplesell.t';

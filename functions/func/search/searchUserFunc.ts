@@ -11,13 +11,30 @@ Output {
 }
 */
 export const searchUser = async (data:{
-  input:string
+  input:string;
+  preUid: string;
 }) => {
-  const { input } = data;
+  const { input, preUid } = data;
   const collection = 'user';
   const userRef = db.collection(collection);
-  const userGet = await userRef.where('userName', '>=', input).where('userName', '<=', `${input}\uf8ff`).get();
+  let userGet;
+  if (preUid === '') {
+    userGet = await userRef.where('userName', '>=', input).where('userName', '<=', `${input}\uf8ff`)
+      .limit(10).get();
+    const userData = userGet.docs.map((doc) => doc.data());
+    return userData;
+  }
+  const preUserRef = db.collection(collection).doc(preUid);
+  const preUserDoc = await preUserRef.get();
+  const preUserData = preUserDoc.data();
+  if (!preUserData) {
+    return Promise.reject(new Error('userData could not be reached'));
+  }
+  userGet = await userRef.where('userName', '>=', input).where('userName', '<=', `${input}\uf8ff`)
+    .startAfter(preUserDoc).limit(10)
+    .get();
   const userData = userGet.docs.map((doc) => doc.data());
   return userData;
 };
+
 export default functions.https.onCall(searchUser);
