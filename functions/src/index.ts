@@ -109,6 +109,12 @@ import readMultipleRandomSellFunc from '../func/productSell/readMultipleRandomSe
 import readSellProductFun from '../func/productSell/readSellProductFun';
 import updateSellProductFunc from '../func/productSell/updateSellProductFunc';
 
+// search
+import searchPostsFunc from '../func/search/searchPostsFunc';
+import searchProductsFunc from '../func/search/searchProductsFunc';
+import searchTagFunc from '../func/search/searchTagFunc';
+import searchUserFunc from '../func/search/searchUserFunc';
+
 // hello world
 export * from '../func/template/helloWorld';
 
@@ -214,5 +220,11 @@ export const deleteSellProduct = deleteSellProductFunc;
 export const readMultipleRandomSell = readMultipleRandomSellFunc;
 export const readSellProduct = readSellProductFun;
 export const updateSellProduct = updateSellProductFunc;
+
+// search
+export const searchPosts = searchPostsFunc;
+export const searchProducts = searchProductsFunc;
+export const searchTag = searchTagFunc;
+export const searchUser = searchUserFunc;
 
 // end here
