@@ -50,7 +50,7 @@
 
 // // categories
 // export * from '../test/categories/updateCatFunc.t';
-// export * from '../test/categories/getPostByCatFunc.t';
+export * from '../test/categories/getPostByCatFunc.t';
 // export * from '../test/categories/deletePostFromCat.t';
 // export * from '../test/categories/isCatExists.t';
 
@@ -67,7 +67,7 @@
 // export * from '../test/post/getMultipleRandomPostsFunc.t';
 
 // export * from '../test/search/searchTag.t';
-export * from '../test/search/searchUserFunc.t';
+// export * from '../test/search/searchUserFunc.t';
 // export * from '../test/search/searchPostFunc.t';
 // export * from '../test/search/searchProductFunc.t';
 
