@@ -1,4 +1,4 @@
-import { readMultipleRandomBuy } from '../../func/productBuy/readMultipleRandomBuy';
+import { readMultipleRandomBuy } from '../../func/productBuy/readMultipleRandomBuyFunc';
 
 describe('greadMultipleRandomPostsFunc test', () => {
   it('expect the return postArray to equal to the postArray in the db', async () => {

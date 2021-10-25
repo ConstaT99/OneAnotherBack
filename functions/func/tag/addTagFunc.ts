@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-import { isTagExists } from './isTagExists';
+import { isTagExists } from './isTagExistsFunc';
 import { getPicOfPost } from '../post/getPicOfPost';
 import { db } from '../../db';
 import { updateTag } from './updateTagFunc';

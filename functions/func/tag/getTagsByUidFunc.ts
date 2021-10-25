@@ -2,7 +2,7 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
 import { isUserExists } from '../common/isUserExists';
-import { getTagById } from './getTagById';
+import { getTagById } from './getTagByIdFunc';
 
 /*
 Author @Carstin
