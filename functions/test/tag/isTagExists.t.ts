@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { isTagExists } from '../../func/tag/isTagExists';
+import { isTagExists } from '../../func/tag/isTagExistsFunc';
 
 // import { db } from '../../db';
 

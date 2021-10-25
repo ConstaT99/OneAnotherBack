@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
-import { isTagExists } from './isTagExists';
+import { isTagExists } from './isTagExistsFunc';
 
 /*
 Author @Carstin

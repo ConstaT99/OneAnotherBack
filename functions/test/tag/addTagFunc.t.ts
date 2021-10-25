@@ -2,7 +2,7 @@ import 'mocha';
 import { expect } from 'chai';
 import { addTag } from '../../func/tag/addTagFunc';
 import { db } from '../../db';
-import { isTagExists } from '../../func/tag/isTagExists';
+import { isTagExists } from '../../func/tag/isTagExistsFunc';
 
 describe('addTagFunction test', () => {
   it('the result should be true if the Tag is successfully created', async () => {
