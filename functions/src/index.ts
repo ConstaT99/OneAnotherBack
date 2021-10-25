@@ -215,4 +215,4 @@ export const readMultipleRandomSell = readMultipleRandomSellFunc;
 export const readSellProduct = readSellProductFun;
 export const updateSellProduct = updateSellProductFunc;
 
-// entry point for all functions
+// end here
