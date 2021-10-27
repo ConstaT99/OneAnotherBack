@@ -5,9 +5,10 @@ Author @Carstin
 Search users by userName
 Input {
     input: user Name you wanna get
+    preUid: uid of the last user in preivous call of this func
 }
 Output {
-    userData: the array of user data that matched with the input
+    userData: the array of user data that matched with the input, limit 10
 }
 */
 export const searchUser = async (data:{
