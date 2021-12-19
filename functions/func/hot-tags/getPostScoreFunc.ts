@@ -38,7 +38,8 @@ export const getPostScore = async (data:{
   const timePasted = currentTime - lastEdited;
   if (timePasted < 0) {
     return Promise.reject(new Error('time is not valid, current time - last_edited time is less than 0'));
-  } if (timePasted > 7776000) { // 90 days
+  } 
+  if (timePasted > 7776000) { // 90 days
     postScore *= 0.5;
   } else if (timePasted > 2592000) { // 30 days
     postScore *= 0.7;
