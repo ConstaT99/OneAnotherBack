@@ -17,6 +17,7 @@ describe('Upload File Test', () => {
 
     console.log(fileRef);
     const url = await getFileUrl({ file: fileRef });
+    console.log(url);
     https.get(url, (response) => {
       if (response.statusCode !== 200) {
         expect.fail('link was not downloadable');

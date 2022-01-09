@@ -6,6 +6,7 @@
 // export * from '../test/user/userUpdateTest';
 
 // export * from '../test/school/schoolTest';
+export * from '../test/school/uploadSchool.t';
 
 // export * from '../test/common/isUserExists.t';
 // export * from '../test/common/uploadFile.t';
@@ -50,7 +51,7 @@
 
 // // categories
 // export * from '../test/categories/updateCatFunc.t';
-export * from '../test/categories/getPostByCatFunc.t';
+//export * from '../test/categories/getPostByCatFunc.t';
 // export * from '../test/categories/deletePostFromCat.t';
 // export * from '../test/categories/isCatExists.t';
 
