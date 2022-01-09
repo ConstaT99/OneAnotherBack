@@ -1,4 +1,4 @@
-伊利诺伊州立大学（Illinois State University，简称ISU）
+伊利诺伊州立大学（Illinois State University，ISU）
 伊利诺伊大学厄巴纳-香槟分校（University of Illinois at Urbana-Champaign）
 伊利诺伊大学芝加哥分校（University of Illinois at Chicago）
 芝加哥大学（The University of Chicago）
@@ -9,12 +9,12 @@
 普渡大学（Purdue University）
 芝加哥洛约拉大学（Loyola University Chicago）
 密歇根州立大学（Michigan State University；MSU）
-密歇根大学（英語：University of Michigan）
+密歇根大学（University of Michigan）
 普林斯顿大学（Princeton University）
 哈佛大学（Harvard University）
 耶鲁大学（Yale University）
 宾夕法尼亚大学（University of Pennsylvania ）
-纽约市哥伦比亚大学（英語：Columbia University in the City of New York）
+纽约市哥伦比亚大学（Columbia University in the City of New York）
 纽约大学（New York University）
 帕森斯设计学院（Parsons School of Design, The New School）
 普瑞特艺术学院（Pratt Institute）
@@ -22,8 +22,8 @@
 康奈尔大学（Cornell University）
 雪城大学（Syracuse University）
 卡内基梅隆大学（Carnegie Mellon University）
-約翰斯·霍普金斯大學（英語：The Johns Hopkins University）
-乔治城大学（英語：Georgetown University）
+約翰斯·霍普金斯大學（The Johns Hopkins University）
+乔治城大学（Georgetown University）
 宾夕法尼亚州立大学（The Pennsylvania State University）
 俄亥俄州立大学（The Ohio State University）
 波士顿大学（Boston University）
@@ -33,4 +33,4 @@
 波士顿学院（Boston College）
 理海大学（Lehigh University）
 罗格斯大学（Rutgers University）
-麻省理工学院（英语：Massachusetts Institute of Technology）
+麻省理工学院（Massachusetts Institute of Technology）
