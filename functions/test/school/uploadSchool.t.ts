@@ -8,14 +8,14 @@ describe('upload school names and avatars test', () => {
     const avatarNames = readFileSync('./schoolinfo/pictureNameIndex.txt', 'utf8').split('\n');
     const path = './schoolinfo/logos/';
     let count = 0;
-    for await (var avatarName of avatarNames) {
+    for await (let avatarName of avatarNames) {
       await uploadSchool({
         uid: avatarName,
-        fname: avatarName+ '.PNG',
-        fileLocation: path + avatarName + '.PNG',
+        fname: `${avatarName}.PNG`,
+        fileLocation: `${path}${avatarName}.PNG`,
         schoolName: schoolNames[count],
       });
-      count+=1;
+      count += 1;
     }
   });
 });
