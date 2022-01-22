@@ -51,7 +51,7 @@
 
 // // categories
 // export * from '../test/categories/updateCatFunc.t';
-//export * from '../test/categories/getPostByCatFunc.t';
+// export * from '../test/categories/getPostByCatFunc.t';
 // export * from '../test/categories/deletePostFromCat.t';
 // export * from '../test/categories/isCatExists.t';
 
