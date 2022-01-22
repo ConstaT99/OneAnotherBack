@@ -6,7 +6,7 @@
 // export * from '../test/user/userUpdateTest';
 
 // export * from '../test/school/schoolTest';
-//export * from '../test/school/uploadSchool.t';
+// export * from '../test/school/uploadSchool.t';
 
 // export * from '../test/common/isUserExists.t';
 // export * from '../test/common/uploadFile.t';

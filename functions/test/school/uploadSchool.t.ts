@@ -1,6 +1,6 @@
 import 'mocha';
-import { uploadSchool } from '../../func/school/uploadSchoolFunc';
 import { readFileSync } from 'fs';
+import { uploadSchool } from '../../func/school/uploadSchoolFunc';
 
 describe('upload school names and avatars test', () => {
   it('upload school names and avatars test', async () => {

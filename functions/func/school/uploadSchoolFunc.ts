@@ -1,9 +1,9 @@
 import * as functions from 'firebase-functions';
 import fs from 'fs';
 
-import { uploadFile } from '../../func/common/uploadFileFunc';
-import { getFileUrl } from '../../func/common/getFileUrlFunc';
-import { addSchool } from '../../func/school/addSchoolFunc';
+import { uploadFile } from '../common/uploadFileFunc';
+import { getFileUrl } from '../common/getFileUrlFunc';
+import { addSchool } from './addSchoolFunc';
 
 /*
 Author @Cath
@@ -32,9 +32,9 @@ export const uploadSchool = async (data:{
   });
   const url = await getFileUrl({ file: fileRef });
   await addSchool({
-      avatar: url,
-      schoolName: data.schoolName,
-  })
+    avatar: url,
+    schoolName: data.schoolName,
+  });
 };
 
 export default functions.https.onCall(uploadSchool);
