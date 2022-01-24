@@ -118,6 +118,9 @@ import searchUserFunc from '../func/search/searchUserFunc';
 // hello world
 export * from '../func/template/helloWorld';
 
+// onRequest Template
+export * from '../func/template/onRequest';
+
 // video
 export const addVideo = addFuncVideo;
 export const deleteVideo = deleteFuncVideo;

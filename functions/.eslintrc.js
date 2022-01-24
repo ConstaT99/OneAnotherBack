@@ -26,7 +26,7 @@ module.exports = {
     'import',
   ],
   rules: {
-    'max-len': ['error', { code: 120 }],
+    'max-len': ['error', { code: 200 }],
     'no-console': 'off',
     // 'indent': ['error', 4],
   },
