@@ -41,3 +41,10 @@ export const readMultipleHotPosts = async (data:{
   return postsData;
 };
 export default functions.https.onCall(readMultipleHotPosts);
+
+
+export const readMultipleHotPostsOnRequest = functions.https.onRequest(async (request, response) => {
+  const prePostId = request.query.prePostId as string;
+  const postOutput = await readMultipleHotPosts({prePostId});
+  response.send(postOutput);
+});

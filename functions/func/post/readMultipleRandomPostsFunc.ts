@@ -46,4 +46,8 @@ export const readMultipleRandomPosts = async (data:{
   return postsData;
 };
 
-export default functions.https.onCall(readMultipleRandomPosts);
+export const readMultipleRandomPostsOnRequest = functions.https.onRequest(async (request, response) => {
+  const prePostId = request.query.prePostId as string;
+  const postOutput = await readMultipleRandomPosts({prePostId});
+  response.send(postOutput);
+});

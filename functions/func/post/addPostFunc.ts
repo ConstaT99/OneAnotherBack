@@ -23,11 +23,8 @@ export const addPost = async (data: {
     uid, content, title, image, tag, aStatus,
   } = data;
   let { categories } = data;
-  if (uid == null) {
-    return Promise.reject(new Error('user is not exist'));
-  }
-  if (!isUserExists({ uid })) {
-    return Promise.reject(new Error('user is not exists'));
+  if (uid == null || !isUserExists({ uid })) {
+    return Promise.reject(new Error('user does not exists'));
   }
   if (image.length > 4) {
     return Promise.reject(new Error('exceed the number of images'));
