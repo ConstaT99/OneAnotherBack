@@ -1,4 +1,3 @@
-import * as functions from 'firebase-functions';
 import { db } from '../../db';
 /*
 This is oncall function for get random 20  productBuy products written by Jerry;
@@ -34,7 +33,6 @@ export const readMultipleRandomBuy = async (data:{
     .startAfter(preBuyDoc)
     .limit(20)
     .get();
-  buyData = buyGet.docs.map((doc) => doc.data());
+  buyData = buyGet.docs.map((doc) => doc.data()); 
   return buyData;
 };
-export default functions.https.onCall(readMultipleRandomBuy);

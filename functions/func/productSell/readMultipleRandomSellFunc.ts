@@ -37,4 +37,9 @@ export const readMultipleRandomSell = async (data: {
   sellData = sellGet.docs.map((doc) => doc.data());
   return sellData;
 };
-export default functions.https.onCall(readMultipleRandomSell);
+
+export const readMultipleRandomSellOnRequest = functions.https.onRequest(async (request, response) => {
+  const preSellId = request.query.preSellId as string;
+  const preSellOutput = await readMultipleRandomSell({preSellId});
+  response.send(preSellOutput);
+});
