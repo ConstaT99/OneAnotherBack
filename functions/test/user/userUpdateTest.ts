@@ -11,7 +11,6 @@ describe('User update test', () => {
   };
 
   it('should update user name successfully', async () => {
-
     // First we track old name
     let userdata = await readUser(testdata);
     if (userdata === undefined) {
@@ -45,11 +44,11 @@ describe('User update test', () => {
         expect.fail('Not suppose to update for null context');
       })
       .catch(() => {
+        // Nothing
       });
   });
 
   it('should reject non existing field', async () => {
-
     testdata.updateField = '';
 
     await updateUser((testdata))
@@ -57,6 +56,7 @@ describe('User update test', () => {
         expect.fail('Not suppose to update for empty field');
       })
       .catch(() => {
+        // Nothing
       });
 
     testdata.updateField = 'LOL';
@@ -66,6 +66,7 @@ describe('User update test', () => {
         expect.fail('Not suppose to update for non existing field');
       })
       .catch(() => {
+        // Nothing
       });
   });
 });
