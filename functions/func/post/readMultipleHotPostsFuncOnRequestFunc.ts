@@ -1,4 +1,4 @@
-import { readMultipleHotPosts } from '../post/readMultipleHotPostsFunc';
+import { readMultipleHotPosts } from './readMultipleHotPostsFunc';
 import * as functions from 'firebase-functions';
 
 /*

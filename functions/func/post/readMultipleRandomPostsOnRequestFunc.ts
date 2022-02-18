@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-import { readMultipleRandomPosts } from '../post/readMultipleRandomPostsFunc';
+import { readMultipleRandomPosts } from './readMultipleRandomPostsFunc';
 
 /*
 Author: Carstin
