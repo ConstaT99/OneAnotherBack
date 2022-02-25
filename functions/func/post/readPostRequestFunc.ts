@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import { db } from '../../db';
+/* eslint-disable import/prefer-default-export */
 
 /*
 This is oncall function for update user profile written by Cath;
@@ -11,16 +12,15 @@ output:
     promise<firebasefirestore.documentdata | undefined>
 */
 
-export const readPost = async (data: {
-    postId: string;
-}) => {
-    const { postId } = data;
-    if (postId == null) {
-        return Promise.reject(new Error('post does not exist'));
-    }
-    const collection = 'post';
-    const postRef = db.collection(collection).doc(postId);
-    const postDoc = await postRef.get();
-    return postDoc.data();
-};
-export default functions.https.onCall(readPost);
+export const readPostRequest = functions.https.onRequest(async (request, response) => {
+  functions.logger.info('this is a read post function');
+  const postId = request.query.postId as string; // get uid from url
+  const collection = 'post';
+  if (typeof postId === 'undefined') {
+    response.status(404).send('Invalid URL');
+  }
+  const postRef = db.collection(collection).doc(postId);
+  const postDoc = await postRef.get();
+  functions.logger.info(postId);
+  response.send(postDoc.data());
+});

@@ -11,19 +11,16 @@ output:
     promise<firebasefirestore.documentdata | undefined>
 */
 
-export const readPostRequest = functions.https.onRequest(async (request,response) =>{
-  functions.logger.info("this is a read post function");
-  const postId = request.query.postId as string; // get uid from url
-  const collection = "post";
-  if (typeof postId === "undefined"){
-    response.status(404).send('Invalid URL');
+export const readPost = async (data: {
+  postId: string;
+}) => {
+  const { postId } = data;
+  if (postId == null) {
+    return Promise.reject(new Error('post does not exist'));
   }
+  const collection = 'post';
   const postRef = db.collection(collection).doc(postId);
   const postDoc = await postRef.get();
-  functions.logger.info(postId);
-  response.send(postDoc.data());
-});
-
-
-
-
+  return postDoc.data();
+};
+export default functions.https.onCall(readPost);
